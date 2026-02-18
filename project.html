@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects – Edikt Media</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div id="site-header"></div>
+
+<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      // 🔥 INIT HEADER LOGIC AFTER HEADER LOADS
+      initHeaderScroll();
+    });
+</script>
+
+<script src="assets/js/header.js"></script>
+
+<!-- ================= PROJECTS HERO ================= -->
+<section class="projects-hero">
+  <div class="container">
+
+    <h1 class="hero-title reveal">
+      Dive into the work
+    </h1>
+
+   <p class="hero-subtitle reveal">
+  As a creative powerhouse, we believe the best way to show what we do is to let the work speak for itself.
+  Here's a glimpse into some of our recent projects — spanning branding, events, animation, and digital campaigns across diverse industries.
+</p>
+
+
+  </div>
+</section>
+
+
+<!-- ================= PROJECTS GRID ================= -->
+<section class="projects">
+  <div class="container">
+
+    <div class="projects-grid-page">
+
+      <!-- Project 1 -->
+      <div class="project-item">
+        <a href="project-stp-i-conference-website.html" class="project-link">
+          <div class="project-image">
+            <span class="project-tag">UI/UX Design</span>
+            <img src="assets/images/extras/UI UX Design.jpg" 
+                 alt="STP-I Conference Website" 
+                 loading="lazy">
+          </div>
+        </a>
+
+        <div class="project-content">
+          <h3>STP-I Conference Website</h3>
+          <p>
+            Dynamic, user-friendly site showcasing event details,
+            managing registrations, and providing real-time updates with clear, seamless navigation across devices
+          </p>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-item">
+        <a href="index.html" class="project-link">
+          <div class="project-image">
+            <span class="project-tag">UI/UX Design</span>
+            <img src="assets/images/extras/Edikt UI UX Design.jpg" 
+                 alt="Edikt Media Website" 
+                 loading="lazy">
+          </div>
+        </a>
+
+        <div class="project-content">
+          <h3>Edikt Media</h3>
+          <p>
+            Modern, responsive site emphasizing UX, intuitive navigation,
+            dynamic content, and aesthetics,showcasing brand identity, services, and creative expertise.
+          </p>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-item">
+        <a href="project-salem-stainless-steel.html" class="project-link">
+          <div class="project-image">
+            <span class="project-tag">Exhibition</span>
+            <img src="assets/images/extras/Exhibition.png" 
+                 alt="Salem Exhibition" 
+                 loading="lazy">
+          </div>
+        </a>
+
+        <div class="project-content">
+          <h3>Salem Stainless Steel Suppliers Pvt. Ltd.</h3>
+          <p>
+            Interactive exhibition showcasing premium products and innovation with visually striking displays, highlighting the brand's expertise and industry leadership.
+          </p>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-item">
+        <a href="project-stp-i-conference.html" class="project-link">
+          <div class="project-image">
+            <span class="project-tag">Event</span>
+            <img src="assets/images/extras/Event.jpeg" 
+                 alt="STP-I Conference Event" 
+                 loading="lazy">
+          </div>
+        </a>
+
+        <div class="project-content">
+          <h3>STP-I Conference</h3>
+          <p>
+            Successfully organized the event, managing planning, logistics, and attendee engagement, creating a seamless, professional, and impactful experience.
+          </p>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-item">
+        <a href="project-edikt-media-logo.html" class="project-link">
+          <div class="project-image">
+            <span class="project-tag">Logo Design</span>
+            <img src="assets/images/extras/Logo Design.jpg" 
+                 alt="Edikt Logo Design" 
+                 loading="lazy">
+          </div>
+        </a>
+
+        <div class="project-content">
+          <h3>Edikt Media</h3>
+          <p>
+            Logo reflecting brand identity, creativity, and professionalism, showcasing proficiency in designing memorable and impactful visual identities.
+          </p>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project-item">
+        <a href="project-brijbasi.html" class="project-link">
+          <div class="project-image">
+            <span class="project-tag">Branding</span>
+            <img src="assets/images/extras/Branding.png" 
+                 alt="Brijbasi Branding" 
+                 loading="lazy">
+          </div>
+        </a>
+
+        <div class="project-content">
+          <h3>Brijbasi</h3>
+          <p>
+            Comprehensive branding strategy focusing on visual identity, messaging, and consistency, highlighting the company's legacy, quality, and industry leadership.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- FOOTER -->
+  <div id="site-footer"></div>
+
+<script>
+  fetch('footer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-footer').innerHTML = html;
+    });
+</script>
+
+  <script src="assets/js/script.js"></script>
+
+
+<script src="assets/js/scroll-reveal.js"></script>
+
+
+</body>
+</html>
+

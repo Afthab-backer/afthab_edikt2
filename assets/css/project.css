@@ -1,0 +1,404 @@
+/* ===============================
+   GLOBAL
+================================= */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #fff;
+  color: #111;
+}
+
+.container {
+  width: 85%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 70px 0;
+}
+
+/* Conference typography (explicit defaults used on conference pages) */
+:root {
+  --body-font: 'Poppins', sans-serif;
+  --title-font: 'Outfit', sans-serif;
+  --text-color: #111;
+  --muted-color: #666;
+  --copy-color: #444;
+}
+
+body {
+  font-family: var(--body-font);
+  color: var(--text-color);
+}
+
+/* Reusable container sizing to match conference layout */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+/* Hero typography (conference match) */
+.hero-title {
+  font-family: var(--title-font);
+  font-size: 42px;
+  margin: 0;
+}
+
+.hero-subtitle {
+  margin-top: 8px;
+  font-size: 18px;
+  color: var(--muted-color);
+}
+
+/* Overview copy sizing */
+.project-overview p {
+  line-height: 1.7;
+  color: var(--copy-color);
+  font-size: 16px;
+}
+
+/* ===============================
+   HERO
+================================= */
+
+.project-hero-header {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.hero-arrow {
+  font-size: 40px;
+  color: #14A44D;
+  transform: scaleX(2);
+  display: inline-block;
+}
+
+.hero-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 42px;
+  margin: 0;
+}
+
+.hero-subtitle {
+  margin-top: 8px;
+  font-size: 18px;
+  color: #666;
+}
+
+/* ===============================
+   GRID
+================================= */
+
+.project-hero-grid .grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* ===============================
+   DETAIL
+================================= */
+
+.project-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.project-overview h3 {
+  color: #2e7d32;
+}
+
+.project-meta .meta-label {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.project-meta .meta-value {
+  font-weight: 600;
+  margin-top: 6px;
+  margin-bottom: 20px;
+}
+
+.project-overview {
+  max-width: 800px;
+}
+
+.section-title {
+  color: #2e7d32;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.project-overview p {
+  line-height: 1.7;
+  color: #444;
+  font-size: 16px;
+}
+
+.overview-spacing {
+  margin-top: 18px;
+}
+
+
+/* ===============================
+   FULL WIDTH IMAGE
+================================= */
+
+.project-fullwidth {
+  margin-top: 30px;
+}
+
+.project-fullwidth img {
+  width: 100%;
+  border-radius: 18px;
+}
+
+/* ===============================
+   SUMMARY
+================================= */
+
+.project-summary {
+  margin-top: 50px;
+}
+
+.project-summary h2 {
+  color: #2e7d32;
+  margin-bottom: 16px;
+}
+
+/* ===============================
+   BRAND SECTION
+================================= */
+
+.project-brand {
+  margin-top: 50px;
+}
+
+.brand-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.brand-tile {
+  padding: 50px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-left {
+  background: #6A1B9A;
+  color: #fff;
+}
+
+.brand-logo {
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.brand-logo img {
+  max-width: 150px;
+}
+
+.brand-right {
+  background: #6A1B9A;
+  color: #fff;
+}
+
+.brand-colors {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.color-swatch {
+  flex: 1;
+  padding: 30px;
+  text-align: center;
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.color-swatch.white {
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #222;
+}
+
+
+/* ===============================
+   PROJECT GALLERY
+================================= */
+
+.project-gallery {
+  margin-top: 60px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1.2fr;
+  grid-template-rows: 260px 260px 260px;
+  gap: 24px;
+}
+
+/* Common style */
+.gallery-item {
+  overflow: hidden;
+  border-radius: 28px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* LEFT LARGE */
+.large-left {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+/* CENTER LARGE */
+.large-center {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+/* RIGHT STACK */
+.stack-top {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.stack-bottom {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+/* BOTTOM ROW (3 images across full width) */
+.bottom:nth-of-type(5) {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.bottom:nth-of-type(6) {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.bottom:nth-of-type(7) {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+/* Hover */
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .large-left,
+  .large-center,
+  .stack-top,
+  .stack-bottom,
+  .bottom {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ===============================
+   EXPERIENCE SECTION
+================================= */
+
+.project-experience {
+  padding: 80px 0 40px;
+}
+
+.project-experience .container {
+  max-width: 1000px;
+}
+
+.experience-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: #2e7d32;
+  margin-bottom: 18px;
+}
+
+.project-experience p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #555;
+}
+
+.experience-spacing {
+  margin-top: 22px;
+}
+
+
+/* ===============================
+   FULL WIDTH IMAGE
+================================= */
+
+.project-fullwidth-image {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.project-fullwidth-image img {
+  width: 100%;
+  height: 600px;          /* adjust if needed */
+  object-fit: cover;
+  display: block;
+}
+
+
+/* ===============================
+   RESPONSIVE
+================================= */
+
+@media(max-width: 992px) {
+  .project-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-row {
+    grid-template-columns: 1fr;
+  }
+
+  .project-hero-grid .grid {
+    grid-template-columns: 1fr;
+  }
+}

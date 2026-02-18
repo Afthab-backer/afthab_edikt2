@@ -1,0 +1,61 @@
+/* Disclaimer page styles (extracted from stp.css)
+   Left-aligned text, illustration on the right, responsive stacking
+*/
+.page-disclaimer .disclaimer {
+  padding: 88px 0 !important;
+  background: linear-gradient(90deg, rgba(255,244,244,0.02), rgba(244,255,250,0.02));
+}
+
+.page-disclaimer .disclaimer-row {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  justify-content: space-between;
+}
+
+.page-disclaimer .disclaimer-text {
+  flex: 1 1 640px;
+  max-width: 720px;
+  text-align: left !important;
+}
+
+.page-disclaimer .disclaimer-text .section-title {
+  color: #2e7d32;
+  font-size: 52px;
+  font-weight: 700;
+  margin: 0 0 18px 0;
+  line-height: 1.02;
+  text-align: left !important;
+}
+
+.page-disclaimer .disclaimer-text p {
+  color: #444;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.page-disclaimer .disclaimer-illustration {
+  flex: 0 0 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  order: 2;
+}
+
+.page-disclaimer .disclaimer-illustration img {
+  width: 420px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 1000px) {
+  .page-disclaimer .disclaimer-row {
+    flex-direction: column;
+    gap: 28px;
+  }
+  .page-disclaimer .disclaimer-illustration { order: 2; }
+  .page-disclaimer .disclaimer-text { order: 1; }
+  .page-disclaimer .disclaimer-text .section-title { font-size: 36px; }
+}

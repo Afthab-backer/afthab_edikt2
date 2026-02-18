@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Team – Edikt Media</title>
+
+  <!-- GLOBAL STYLES -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- GOOGLE FONT (same as other pages) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<div id="site-header"></div>
+
+<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      // 🔥 INIT HEADER LOGIC AFTER HEADER LOADS
+      initHeaderScroll();
+    });
+</script>
+
+<script src="assets/js/header.js"></script>
+
+<!-- ================= HERO ================= -->
+<section class="team-hero reveal">
+  <div class="container">
+    <h1 class="hero-title reveal">Meet Our Creative Minds</h1>
+    <p class="hero-subtitle reveal">
+      The people who turns ideas into impactful experiences
+    </p>
+  </div>
+</section>
+
+
+<!-- ================= TEAM SECTION ================= -->
+<section class="team">
+  <div class="container">
+
+    <!-- ROW 1 : 2 MEMBERS -->
+    <div class="team-row two reveal-stagger">
+      <div class="team-card reveal">
+        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Ajay">
+        <!-- BIO OVERLAY -->
+        <div class="team-bio">
+            <h3>Ajay</h3>
+            <span>Director – International Sales</span>
+            <p>
+                Ajay drives Edikt Media’s global growth with vision and strategic insight.
+                His dynamic leadership strengthens international partnerships, inspires
+                the team, and positions the company as a creative powerhouse on the global stage.
+            </p>
+        </div>
+        <div class="team-info">
+          <h3>Ajay</h3>
+          <p>Director – International Sales</p>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <img src="assets\images\extras\Smiling women.png" alt="Vinita">
+        <!-- BIO OVERLAY -->
+        <div class="team-bio">
+            <h3>Vinita</h3>
+            <span>Director & Design Verifier</span>
+            <p>
+                Vinita ensures every project at Edikt Media reflects excellence.
+                Combining precision, creativity, and leadership, 
+                she guides the team with passion and a detail-oriented vision,
+                delivering consistently world-class creative solutions.
+            </p>
+        </div>
+        <div class="team-info">
+          <h3>Vinita</h3>
+          <p>Director & Design Verifier</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW 2 : 3 MEMBERS -->
+    <div class="team-row three reveal-stagger">
+      <div class="team-card reveal">
+        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Saif">
+         <!-- BIO OVERLAY -->
+        <div class="team-bio">
+            <h3>Saif</h3>
+            <span>UI/UX Designer</span>
+            <p>
+                Saif transforms ideas into seamless digital experiences.
+                With creativity, precision, and a user-first approach,
+                he ensures every Edikt Media project is visually stunning,
+                intuitive, and engaging across all digital platforms.
+            </p>
+        </div>
+        <div class="team-info">
+          <h3>Saif</h3>
+          <p>UI/UX Designer</p>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <img src="assets\images\extras\Smiling women.png" alt="Pooja">
+         <!-- BIO OVERLAY -->
+        <div class="team-bio">
+            <h3>Pooja</h3>
+            <span>BDM & Backend Tester</span>
+            <p>
+                Pooja drives client growth while ensuring flawless digital performance.
+                Combining strategic business thinking with technical insight, she brings
+                energy, precision, and innovation to every Edikt Media project she contributes to.
+            </p>
+        </div>
+        <div class="team-info">
+          <h3>Pooja</h3>
+          <p>BDM & Backend Tester</p>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <img src="assets\images\extras\Smiling women.png" alt="Janhavi">
+         <!-- BIO OVERLAY -->
+        <div class="team-bio">
+            <h3>Janhavi</h3>
+            <span>Sr. CS & BDM</span>
+            <p>
+                Janhavi balances structure with strategy, ensuring Edikt Media operates smoothly while driving growth.
+                Her leadership, precision, and commitment to excellence make her a vital cornerstone of the company’s success.
+            </p>
+        </div>
+        <div class="team-info">
+          <h3>Janhavi</h3>
+          <p>Sr. CS & BDM</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW 3 : 3 MEMBERS -->
+    <div class="team-row three reveal-stagger">
+      <div class="team-card reveal">
+        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Harish">
+         <!-- BIO OVERLAY -->
+        <div class="team-bio">
+            <h3>Harish</h3>
+            <span>Accounts</span>
+            <p>
+                Harish manages Edikt Media’s finances with accuracy and dedication.
+                His sharp analytical skills and commitment to transparency ensure smooth operations,
+                empowering the team to focus confidently on creativity and growth.
+            </p>
+        </div>
+        <div class="team-info">
+          <h3>Harish</h3>
+          <p>Accounts</p>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Afthab">
+         <!-- BIO OVERLAY -->
+        <div class="team-bio">
+            <h3>Afthab</h3>
+            <span>Developer</span>
+            <p>
+                Afthab brings technical expertise and innovative problem-solving to Edikt Media.
+                His coding precision, creativity, and dedication ensure seamless, 
+                high-performing digital solutions, powering projects that are both robust and user-friendly.
+            </p>
+        </div>
+        <div class="team-info">
+          <h3>Afthab</h3>
+          <p>Developer</p>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Fauzan">
+         <!-- BIO OVERLAY -->
+        <div class="team-bio">
+            <h3>Fauzan</h3>
+            <span>Marketing (Dubai)</span>
+            <p>
+                Fauzan brings strategic vision and creative energy to Edikt Media.
+                His marketing expertise, innovative campaigns, and strong communication skills 
+                amplify brand presence, driving meaningful engagement and measurable growth.
+            </p>
+        </div>
+        <div class="team-info">
+          <h3>Fauzan</h3>
+          <p>Marketing (Dubai)</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+<div id="site-footer"></div>
+
+<script>
+  fetch('footer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-footer').innerHTML = html;
+    });
+</script>
+
+<!-- ================= GLOBAL SCRIPT ================= -->
+<script src="assets/js/script.js"></script>
+
+<script src="assets/js/scroll-reveal.js"></script>
+
+
+</body>
+</html>

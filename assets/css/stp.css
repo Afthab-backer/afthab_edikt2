@@ -1,0 +1,660 @@
+/* Page-scoped CSS for STP-I Conference page
+   Matches conference/project layout and typography without altering image sizes
+*/
+
+.page-stp .project-fullwidth img {
+  display: block !important;
+  line-height: 0 !important;
+}
+
+/* Reduce size of the full-width image on the STP page */
+.page-stp .project-fullwidth {
+  max-width: 100%;
+  margin-top: 18px !important; /* smaller gap above */
+  margin-bottom: 18px !important;
+}
+
+.page-stp .project-fullwidth img {
+  height: 600px !important; /* increased height */
+  max-height: 600px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+  border-radius: 18px !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* Hover-zoom: scale the image only (not the container/card) */
+.page-stp .project-fullwidth {
+  overflow: hidden !important;
+}
+
+.page-stp .project-fullwidth img {
+  transition: transform 0.6s cubic-bezier(.2,.8,.2,1) !important;
+  transform-origin: center center !important;
+}
+
+.page-stp .project-fullwidth:hover img {
+  transform: scale(1.12) !important;
+}
+/* Page-scoped CSS for STP-I Conference page
+   Matches conference/project layout and typography without altering image sizes
+*/
+
+body.page-stp {
+  font-family: 'Poppins', sans-serif !important;
+  color: #111 !important;
+  background: #fff !important;
+}
+
+.page-stp .container {
+  /* keep full-bleed if project.css made container full-width; ensure spacing */
+  padding: 60px 0 !important;
+}
+
+.page-stp .hero-title {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 42px !important;
+  margin: 0 !important;
+}
+
+.page-stp .hero-subtitle {
+  margin-top: 8px !important;
+  font-size: 18px !important;
+  color: #666 !important;
+}
+
+.page-stp .project-overview p {
+  line-height: 1.7 !important;
+  color: #444 !important;
+  font-size: 17px !important;
+}
+
+/* Align overview heading to the left column */
+.page-stp .project-overview .section-title {
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+
+/* Make Overview heading visually match the Project Summary heading */
+.page-stp .project-summary h2,
+.page-stp .project-overview .section-title {
+  font-size: 28px !important;
+  color: #2e7d32 !important;
+  font-weight: 600 !important;
+  margin-bottom: 16px !important;
+}
+
+/* Hero grid image sizing for STP page */
+.page-stp .project-hero-grid .grid-item img {
+  height: 480px !important; /* user-requested taller images */
+  width: 100% !important;
+  object-fit: cover !important;
+  border-radius: 18px !important;
+  display: block !important;
+}
+
+/* Allow scroll-reveal animations on the STP page by not forcing revealed state */
+
+/* Respect existing image sizing: do NOT set heights here */
+
+/* Page-specific container: larger centered max-width for this page only */
+.page-stp .container {
+  width: 90% !important;
+  max-width: 1600px !important;
+  margin: 0 auto !important;
+  padding: 60px 0 !important;
+}
+
+/* Make the STP project page container match the narrower 'stp-narrow' layout used elsewhere */
+.page-stp main.container,
+.page-stp main.project-page {
+  max-width: 1100px !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 60px 0 !important;
+}
+
+@media (max-width: 900px) {
+  .page-stp main.container, .page-stp main.project-page { padding: 40px 18px !important; }
+}
+
+/* Reduce spacing between hero grid and the following detail/overview */
+.page-stp .project-hero-grid {
+  margin-bottom: 70px !important; /* small space between hero images and Overview */
+  padding-bottom: 0 !important;
+}
+
+.page-stp .project-hero-grid .grid {
+  gap: 18px !important; /* keep moderate gap between images */
+}
+
+.page-stp .project-detail,
+.page-stp .project-detail-grid {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Make the Overview column wider so paragraphs have longer lines (match screenshot) */
+.page-stp .project-detail-grid {
+  grid-template-columns: 1fr 220px !important; /* reduce sidebar width to increase main column */
+  gap: 36px !important;
+}
+
+.page-stp .project-overview {
+  max-width: none !important;
+  margin-bottom: 60px !important; /* space after Overview */
+}
+
+/* override global margin set in project.css (was 40px) */
+.page-stp .project-detail-grid {
+  margin-top: 8px !important;
+}
+
+/* Ensure hero images sit flush and don't add unexpected inline spacing */
+.page-stp .project-hero-grid img {
+  display: block !important;
+  line-height: 0 !important;
+}
+
+/* Tighten spacing between the full-width image and Project Summary */
+.page-stp .project-fullwidth {
+  margin-bottom: 36px !important; /* add space after the full-width image */
+}
+
+.page-stp .project-summary {
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+  padding: 0 !important;
+}
+
+.page-stp .project-summary p {
+  margin-bottom: 10px !important;
+}
+
+/* Remove extra spacing introduced by headings inside the summary */
+.page-stp .project-summary .section-heading,
+.page-stp .project-summary h2 {
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+/* Tighten spacing below summary section before the gallery */
+.page-stp .project-gallery {
+  margin-top: 12px !important;
+}
+
+/* Make project-experience match the Overview sizing and spacing */
+.page-stp .project-experience {
+  padding: 40px 0 !important; /* modest vertical spacing */
+}
+
+.page-stp .project-experience .container {
+  max-width: 1600px !important; /* same as .project-overview */
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  padding: 0 !important;
+}
+
+.page-stp .project-experience .experience-title {
+  font-size: 28px !important; /* match overview/summary headings */
+  color: #2e7d32 !important;
+  font-weight: 600 !important;
+  margin: 0 0 12px 0 !important;
+}
+
+.page-stp .project-experience p {
+  font-size: 17px !important; /* match overview body */
+  line-height: 1.7 !important;
+  color: #444 !important;
+  margin-bottom: 12px !important;
+}
+
+/* --- Appended from project-edikt-media-logo.html (page-scoped overrides) --- */
+
+/* Page-scoped: force container max-width to 1600px for the Edikt page */
+.page-edikt-logo .container {
+  max-width: 1600px !important;
+  width: 90% !important;
+  margin: 0 auto !important;
+}
+
+/* Make the Edikt page use the same main container sizing/padding as STP pages */
+.page-edikt-logo main.container,
+.page-edikt-logo main.project-page {
+  max-width: 1100px !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 60px 0 !important;
+}
+
+@media (max-width: 900px) {
+  .page-edikt-logo main.container,
+  .page-edikt-logo main.project-page { padding: 40px 18px !important; }
+}
+
+/* Force STP-like typography and sizing for this page */
+.page-edikt-logo { font-family: 'Poppins', sans-serif !important; color: #111 !important; }
+.page-edikt-logo .hero-title { font-family: 'Outfit', sans-serif !important; font-size: 42px !important; margin: 0 !important; }
+.page-edikt-logo .hero-subtitle { font-size: 18px !important; color: #666 !important; margin-top: 8px !important; }
+
+.page-edikt-logo .project-overview p,
+.page-edikt-logo p { font-size: 17px !important; line-height: 1.7 !important; color: #444 !important; }
+
+.page-edikt-logo .section-title,
+.page-edikt-logo .project-summary h2 { font-size: 28px !important; color: #2e7d32 !important; font-weight: 600 !important; margin-bottom: 16px !important; }
+
+/* Left-align Overview heading */
+.page-edikt-logo .project-overview .section-title { text-align: left !important; margin-left: 0 !important; }
+
+/* Ensure images/hero grid behavior matches STP page */
+.page-edikt-logo .project-hero-grid .grid-item img { object-fit: cover !important; border-radius: 18px !important; display: block !important; }
+
+/* Ensure the fullwidth image container stays stationary while only the image scales */
+.project-fullwidth-image {
+  overflow: hidden;
+  border-radius: 18px;
+  transform: none !important;
+  will-change: auto;
+}
+
+/* Ensure CTAs on the Edikt page use the site "magic" gradient instead of the green from edikt.css */
+.page-edikt-logo .btn.magic-btn,
+.page-edikt-logo .btn-primary.magic-btn {
+  background: linear-gradient(135deg, #ffb347 0%, #ff8c2b 35%, #ff6a2a 65%, #ff3d3d 100%);
+  color: #ffffff;
+  border: none;
+}
+
+.page-edikt-logo .btn.magic-btn:hover,
+.page-edikt-logo .btn-primary.magic-btn:hover {
+  filter: brightness(0.97);
+}
+
+/* Ensure inner text sizing and alignment match the site-wide magic button */
+.page-edikt-logo .btn.magic-btn {
+  /* match global .magic-btn sizing from assets/css/style.css */
+  padding: 0 28px;
+  height: 40px;
+  min-width: 140px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 9999px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-edikt-logo .btn.magic-btn .button__text {
+  position: relative;
+  z-index: 2;
+  transform: translateY(0);
+  letter-spacing: -0.02em;
+  font-family: 'Poppins', sans-serif;
+  font-size: inherit;
+  line-height: 1;
+  display: inline-block;
+}
+
+.page-edikt-logo .btn.magic-btn .button__filler {
+  position: absolute;
+  width: 150%;
+  height: 200%;
+  border-radius: 50%;
+  top: -50%;
+  left: -25%;
+
+  background: var(--fillerColor);
+  transform: translateY(75%);
+  z-index: 1;
+}
+
+.project-fullwidth-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transform-origin: center center !important;
+  transition: transform 3s cubic-bezier(.2,.8,.2,.9) !important;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Zoom only the image on hover/focus, not the container */
+.project-fullwidth-image:hover img,
+.project-fullwidth-image:focus-within img {
+  transform: scale(1.12) !important;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .project-fullwidth-image img,
+  .project-fullwidth-image:hover img,
+  .project-fullwidth-image:focus-within img {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Project-specific gallery: match reference layout exactly
+   - two columns (left wider than right)
+   - distinct heights per tile to mirror reference
+   - rounded corners, consistent gap and container width */
+.project-gallery-grid { padding: 36px 0; }
+.project-gallery-grid .gallery-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr; /* left column wider */
+  grid-template-rows: auto auto;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  align-items: start;
+}
+.project-gallery-grid .grid-item {
+  overflow: hidden;
+  border-radius: 20px;
+  background: #f8f8f8;
+  /* smaller unified tile height */
+  height: 220px !important;
+  min-height: 220px;
+  display: block;
+  /* Prevent the grid-item/container from being transformed/zoomed
+     (some global CSS was causing the whole card to scale). Force
+     the container to stay stationary — only the inner image will scale.) */
+  transform: none !important;
+  will-change: unset !important;
+}
+/* Top-left: large cinematic tile */
+/* Keep top-left as reference (base min-height set on .grid-item)
+   and ensure all other tiles use the same height. Width tweaks remain. */
+.project-gallery-grid .gallery-grid .grid-item:nth-child(1) { }
+.project-gallery-grid .gallery-grid .grid-item:nth-child(2) { justify-self: stretch; }
+/* decrease bottom-left width and increase bottom-right width only */
+.project-gallery-grid .gallery-grid .grid-item:nth-child(3) {
+  /* decrease bottom-left width and tighten spacing to the right */
+  width: 65% !important;
+  justify-self: start;
+  margin-right: -30px; /* larger negative margin to reduce gap */
+}
+.project-gallery-grid .gallery-grid .grid-item:nth-child(4) {
+  /* slightly decrease bottom-right width from 160% to 150% */
+  width: 150% !important;
+  justify-self: end;
+  margin-left: -18px; /* reduce overlap a bit */
+}
+.project-gallery-grid .grid-item img {
+  width: 100% !important;
+  height: 100% !important; /* override external CSS height */
+  display: block !important;
+  object-fit: cover !important;
+  transform-origin: center center !important;
+}
+/* stronger hover zoom (and keyboard focus) for all gallery tiles */
+.project-gallery-grid .grid-item img {
+  transition: transform 600ms cubic-bezier(.2,.8,.2,.9) !important;
+  will-change: transform;
+}
+/* Ensure only the IMAGE scales on hover/focus — not the .grid-item container */
+.project-gallery-grid .grid-item:hover,
+.project-gallery-grid .grid-item:focus-within {
+  transform: none !important;
+}
+.project-gallery-grid .grid-item:hover img,
+.project-gallery-grid .grid-item:focus-within img {
+  transform: scale(1.12) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-gallery-grid .grid-item img,
+  .project-gallery-grid .grid-item:hover img,
+  .project-gallery-grid .grid-item:focus-within img {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+@media (max-width: 900px) {
+  .project-gallery-grid { padding: 28px 0; }
+  .project-gallery-grid .gallery-grid { grid-template-columns: 1fr; gap: 14px; padding: 0 14px; }
+  .project-gallery-grid .gallery-grid .grid-item:nth-child(1),
+  .project-gallery-grid .gallery-grid .grid-item:nth-child(2) { min-height: 200px; }
+  .project-gallery-grid .gallery-grid .grid-item:nth-child(3),
+  .project-gallery-grid .gallery-grid .grid-item:nth-child(4) { min-height: 160px; width: 100%; justify-self: stretch; }
+}
+@media (min-width: 1600px) {
+  .project-gallery-grid .gallery-grid { max-width: 1400px; }
+  .project-gallery-grid .gallery-grid .grid-item:nth-child(1) { min-height: 360px; }
+  .project-gallery-grid .gallery-grid .grid-item:nth-child(2) { min-height: 340px; }
+  .project-gallery-grid .gallery-grid .grid-item:nth-child(3),
+  .project-gallery-grid .gallery-grid .grid-item:nth-child(4) { min-height: 260px; }
+}
+
+/* Page-scoped STP gallery sizing for markup using .project-gallery > .gallery-grid */
+.page-stp .project-gallery .gallery-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 0.9fr;
+  grid-auto-rows: auto;
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto 36px auto;
+  padding: 0 18px;
+  box-sizing: border-box;
+  align-items: start;
+}
+
+.page-stp .project-gallery .gallery-item {
+  overflow: hidden;
+  border-radius: 18px;
+  background: #f8f8f8;
+  display: block;
+}
+
+.page-stp .project-gallery .gallery-item.large-left,
+.page-stp .project-gallery .gallery-item.large-center {
+  min-height: 300px;
+  height: 300px;
+}
+
+.page-stp .project-gallery .gallery-item.stack-top,
+.page-stp .project-gallery .gallery-item.stack-bottom {
+  min-height: 140px;
+  height: 140px;
+}
+
+.page-stp .project-gallery .gallery-item.bottom { min-height: 160px; height:160px; }
+
+/* Explicit grid placement to match reference layout */
+.page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(1) { grid-column: 1; grid-row:1; }
+.page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(2) { grid-column: 2; grid-row:1; }
+.page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(3) { grid-column: 3; grid-row:1; }
+.page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(4) { grid-column: 3; grid-row:2; }
+.page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(5) { grid-column: 1; grid-row:3; }
+.page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(6) { grid-column: 2; grid-row:3; }
+.page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(7) { grid-column: 3; grid-row:3; }
+
+/* Pull the 4th (top-right stack bottom) tile upward to reduce vertical gap with #3 */
+.page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(4) {
+  margin-top: -120px;
+  position: relative;
+  z-index: 3;
+  transform: translateZ(0);
+}
+
+@media (max-width: 900px) {
+  .page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(4) { margin-top: 0; position: static; z-index: auto; }
+}
+
+/* Lift the bottom row (items 5,6,7) upward equally to tighten spacing */
+.page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(5),
+.page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(6),
+.page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(7) {
+  margin-top: -240px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(5),
+  .page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(6),
+  .page-stp .project-gallery .gallery-grid > .gallery-item:nth-child(7) {
+    margin-top: 0;
+    position: static;
+    z-index: auto;
+  }
+}
+
+.page-stp .project-gallery .gallery-item img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  transition: transform 450ms cubic-bezier(.2,.8,.2,.9) !important;
+}
+
+.page-stp .project-gallery .gallery-item:hover img,
+.page-stp .project-gallery .gallery-item:focus-within img {
+  transform: scale(1.08) !important;
+}
+
+@media (max-width: 900px) {
+  .page-stp .project-gallery .gallery-grid { grid-template-columns: 1fr; gap: 12px; padding: 0 12px; }
+  .page-stp .project-gallery .gallery-item.large-left,
+  .page-stp .project-gallery .gallery-item.large-center { height: 220px; min-height: 220px; }
+  .page-stp .project-gallery .gallery-item { height: 180px; min-height: 160px; }
+}
+
+
+/* Make Overview use the whole viewport width and remove padding/grid */
+.page-edikt-logo .project-detail {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  margin: 0 !important;
+  padding: 0 150px !important; /* match global container horizontal padding */
+  box-sizing: border-box !important;
+}
+
+.page-edikt-logo .project-overview {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.page-edikt-logo .project-overview p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+    
+/* Increase only the height of the right-side aim image */
+.page-edikt-logo .aim-image img {
+  height: 900px !important;
+  width: 500px !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* --- End appended overrides for Edikt page --- */
+
+/* Ensure hero back arrow is clickable above fixed header */
+.page-stp .project-hero-header .hero-back {
+  position: relative !important;
+  z-index: 10001 !important;
+}
+
+/* Also ensure Edikt page back arrow is above header */
+.page-edikt-logo .project-hero-header .hero-back {
+  position: relative !important;
+  z-index: 10001 !important;
+}
+
+/* ---------------------------------------------------------------------------
+   Edikt fullwidth image: isolated styling
+   - Prevents any site-wide cinematic/hover rules from affecting this image
+   - Use the `.allow-effect` class on the section to enable page-specific effects
+   - Targets only the Edikt page to avoid cross-page side-effects
+--------------------------------------------------------------------------- */
+.page-edikt-logo .project-fullwidth-edikt {
+  /* Fixed frame so the container height stays constant while the inner image scales */
+  position: relative;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+  transform: none !important; /* ensure container does not get transformed */
+  will-change: auto !important;
+  height: 820px !important; /* increased frame height so image appears longer */
+  max-height: 85vh !important;
+}
+
+.page-edikt-logo .project-fullwidth-edikt img {
+  /* anchor image to the top of the frame so cropping happens at the bottom */
+  position: absolute !important;
+  top: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) scale(1) !important;
+  width: auto !important;
+  min-width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: top center !important; /* pin image to top so crop happens at bottom */
+  transform-origin: top center !important;
+  transition: transform 6s cubic-bezier(.2,.8,.2,.9) !important; /* slightly faster cinematic */
+  will-change: transform !important;
+  backface-visibility: hidden !important;
+}
+
+.page-edikt-logo .project-fullwidth-edikt:hover img,
+.page-edikt-logo .project-fullwidth-edikt:focus-within img {
+  transform: translateX(-50%) scale(1.18) !important; /* stronger cinematic zoom */
+}
+
+/* Allow small screens to use natural flow instead of fixed frame */
+@media (max-width: 900px) {
+  .page-edikt-logo .project-fullwidth-edikt {
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  .page-edikt-logo .project-fullwidth-edikt img {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    height: auto !important;
+    transition: none !important;
+  }
+}
+
+/* if you want to enable custom effects on this image via a class, keep `.allow-effect` available */
+.page-edikt-logo .project-fullwidth-edikt.allow-effect img {
+  /* preserved as an opt-in, but default hero-like zoom applied above */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-edikt-logo .project-fullwidth-edikt img,
+  .page-edikt-logo .project-fullwidth-edikt.allow-effect img {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+/* Collapse the large gap after the gallery without altering gallery item positions.
+   Pull the following section up visually, and add equivalent top padding so
+   content doesn't overlap. Reset on small screens. */
+.page-stp .project-gallery {
+  margin-bottom: -700px !important;
+}
+.page-stp .project-experience {
+  padding-top: 360px !important;
+}
+
+@media (max-width: 900px) {
+  .page-stp .project-gallery { margin-bottom: 0 !important; }
+  .page-stp .project-experience { padding-top: 40px !important; }
+}
+

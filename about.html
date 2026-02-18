@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us – Edikt Media</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+<body class="page-about">
+
+    <!-- HEADER -->
+  <div id="site-header"></div>
+
+<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      // 🔥 INIT HEADER LOGIC AFTER HEADER LOADS
+      initHeaderScroll();
+    });
+</script>
+
+<script src="assets/js/header.js"></script>
+
+<!-- ABOUT CONTENT -->
+<section class="about reveal">
+  <div class="container">
+
+    <!-- ROW 1 -->
+    <div class="about-row">
+
+      <!-- TEXT -->
+      <div class="about-text">
+        <h2 class="section-title reveal">
+          Get to know about “Edikt Media”
+        </h2>
+
+        <p class="reveal delay-1">
+          At Edikt Media, we craft immersive brand experiences that
+          blend creativity, strategy, and technology. Headquartered in Pune, we are a
+          multidisciplinary creative agency specializing in events & exhibitions,
+          UI/UX, digital design, branding, and integrated media solutions.
+        </p>
+
+        <p class="reveal delay-2">
+          We bring together a passionate team of marketing and sales professionals,
+          developers, designers, strategists, and storytellers who work collaboratively
+          to transform ideas into impactful visual narratives.
+        </p>
+
+        <p class="about-quote reveal delay-3">
+          “Your Brand. Our Canvas. Limitless Possibilities.”
+        </p>
+      </div>
+
+      <!-- IMAGE -->
+      <div class="about-image reveal delay-2">
+        <img src="assets/images/extras/About us page image 2.png" alt="Edikt Media Office">
+      </div>
+    </div>
+
+    <!-- ROW 2 -->
+    <div class="about-row reverse">
+
+      <!-- IMAGE -->
+      <div class="about-image reveal delay-1">
+        <img src="assets/images/extras/About US page image 1.png" alt="Edikt Media Origin Story">
+      </div>
+
+      <!-- TEXT -->
+      <div class="about-text origin-box">
+        <h2 class="section-title reveal">
+          Our Origin Story
+        </h2>
+
+        <p class="reveal delay-1">
+          We are thinkers with creativity in our DNA—minds that see beyond the ordinary and speak volumes through design. In a world that’s constantly evolving and increasingly driven by visuals, we believe even the simplest ideas deserve to be seen in extraordinary ways.
+        </p>
+
+        <p class="reveal delay-2">
+          Our founder envisioned a space where clarity meets creativity—a studio that cuts through the noise with ideas that are bold, fresh, and deeply impactful. From that vision, we set out to craft meaningful brand experiences that stand out in today’s cluttered digital and physical landscapes.
+        </p>
+
+        <p class="reveal delay-3">
+          Every project we take on is a step towards that goal—telling stories with design, emotion, and purpose.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- GLOBAL STATS SECTION -->
+<section class="global-stats reveal">
+  <div class="container">
+
+    <h2 class="stats-title reveal">
+      Delivering Excellence Globally
+    </h2>
+
+    <div class="stats-sub reveal delay-1">
+      <span>Digital</span>
+      <span class="dot"></span>
+      <span>Designed</span>
+      <span class="dot"></span>
+      <span>Delivered</span>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-item reveal delay-1">
+        <h3>100+</h3>
+        <p>Clients</p>
+      </div>
+
+      <div class="stat-item reveal delay-2">
+        <h3>Global</h3>
+        <p>Presence</p>
+      </div>
+
+      <div class="stat-item reveal delay-3">
+        <h3>90%</h3>
+        <p>Retention</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LET'S TALK SECTION -->
+<section class="talk-section reveal">
+  <div class="container talk-layout">
+
+    <!-- LEFT CONTENT -->
+    <div class="talk-left">
+      <img
+        src="assets\images\edikt logo\edikt media logo png.png"
+        alt="Edikt Media Logo"
+        class="talk-logo reveal"
+      >
+
+      <h2 class="talk-title reveal delay-1">
+        Let’s Talk About<br>
+        <span>Your Vision</span>
+      </h2>
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="talk-right reveal delay-2">
+      <img
+        src="assets/images/extras/About us page image 3.jpeg"
+        alt="Global Connectivity"
+      >
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+ <!-- FOOTER -->
+<div id="site-footer"></div>
+
+<script>
+  fetch('footer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-footer').innerHTML = html;
+    });
+</script>
+
+  <script src="assets/js/script.js"></script>
+
+<script src="assets/js/scroll-reveal.js"></script>
+
+</body>
+</html>
+

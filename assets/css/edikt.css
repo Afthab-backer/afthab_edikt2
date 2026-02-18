@@ -1,0 +1,781 @@
+/* ===============================
+   GLOBAL
+================================= */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #ffffff;
+  color: #222;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.project-page {
+  padding: 60px 0 0;
+}
+
+
+/* ===============================
+   HERO HEADER
+================================= */
+
+.project-hero-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.hero-back {
+  text-decoration: none;
+}
+
+.hero-arrow {
+  font-size: 42px;
+  color: #14A44D;
+  transform: scaleX(2);
+  display: inline-block;
+}
+
+.hero-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.hero-subtitle {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #666;
+  max-width: 750px;
+  line-height: 1.6;
+}
+
+
+/* ===============================
+   HERO GRID
+================================= */
+
+.project-hero-grid .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+
+/* ===============================
+   OVERVIEW SECTION
+================================= */
+
+.project-detail {
+  margin-top: 60px;
+}
+
+.project-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 50px;
+  align-items: start;
+}
+
+.section-title {
+  color: #2e7d32;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.project-overview p {
+  line-height: 1.8;
+  color: #555;
+  font-size: 16px;
+}
+
+.overview-spacing {
+  margin-top: 18px;
+}
+
+.project-meta .meta-label {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.project-meta .meta-value {
+  font-weight: 600;
+  margin-top: 8px;
+  margin-bottom: 25px;
+}
+
+
+/* ===============================
+   FULL WIDTH IMAGE (inside overview)
+================================= */
+
+.project-fullwidth {
+  margin-top: 40px;
+}
+
+.project-fullwidth img {
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+  border-radius: 28px;
+  display: block;
+}
+
+
+/* ===============================
+   SUMMARY
+================================= */
+
+.project-summary {
+  margin-top: 80px;
+  max-width: 1000px;
+}
+
+/* Page-scoped: make project-summary span the full viewport width
+   with the same horizontal padding as the Overview on the Edikt page */
+.page-edikt-logo .project-summary {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  margin: 0 !important;
+  padding: 0 150px !important; /* match .project-detail padding */
+  box-sizing: border-box !important;
+}
+
+.section-heading {
+  font-family: 'Outfit', sans-serif;
+  font-size: 30px;
+  color: #2e7d32;
+  margin-bottom: 18px;
+}
+
+.project-summary p {
+  line-height: 1.8;
+  color: #555;
+  font-size: 17px;
+}
+
+.paragraph-spacing {
+  margin-top: 20px;
+}
+
+
+/* ===============================
+   7 IMAGE GALLERY
+================================= */
+
+.project-gallery {
+  margin-top: 80px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1.2fr;
+  grid-template-rows: 260px 260px 260px;
+  gap: 24px;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: 28px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Layout positioning */
+
+.large-left {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.large-center {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.stack-top {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.stack-bottom {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.bottom:nth-of-type(5) {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.bottom:nth-of-type(6) {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.bottom:nth-of-type(7) {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+
+/* ===============================
+   PROJECT GALLERY (2x2)
+================================= */
+
+.project-gallery-grid {
+  margin-top: 48px;
+}
+
+.project-gallery-grid .gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.project-gallery-grid .grid-item img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 28px;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.project-gallery-grid .grid-item img:hover {
+  transform: scale(1.03);
+}
+
+@media (max-width: 992px) {
+  .project-gallery-grid .grid-item img {
+    height: 260px;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-gallery-grid .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-gallery-grid .grid-item img {
+    height: 220px;
+  }
+}
+
+
+/* ===============================
+   EXPERIENCE SECTION
+================================= */
+
+.project-experience {
+  padding: 100px 0 60px;
+}
+
+.experience-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 32px;
+  color: #2e7d32;
+  margin-bottom: 20px;
+}
+
+.project-experience p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #555;
+}
+
+.experience-spacing {
+  margin-top: 22px;
+}
+
+
+/* ===============================
+  FULL WIDTH IMAGE (bottom) - cinematic zoom
+================================= */
+
+.project-fullwidth-image {
+  margin-top: 60px;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+
+.project-fullwidth-image img {
+  width: 100%;
+  height: 820px; /* increased height */
+  object-fit: cover;
+  display: block;
+  transform-origin: center center;
+  transition: transform 4s cubic-bezier(.2,.8,.2,.9), filter 3s ease; /* faster */
+  will-change: transform;
+}
+
+/* Faster, stronger cinematic zoom on hover */
+.project-fullwidth-image:hover img {
+  transform: scale(1.15); /* stronger zoom */
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .project-fullwidth-image img {
+    transition: none;
+  }
+  .project-fullwidth-image:hover img {
+    transform: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .project-fullwidth-image img {
+    height: 560px; /* scaled down for tablet */
+  }
+}
+
+@media (max-width: 600px) {
+  .project-fullwidth-image img {
+    height: 360px; /* scaled down for phone */
+  }
+}
+
+
+/* ===============================
+   FULLSCREEN COVER (100vh) - zoom on hover
+================================= */
+
+.project-fullscreen-image {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* cover full viewport height */
+  overflow: hidden;
+}
+
+.project-fullscreen-image img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%) scale(1);
+  object-fit: cover;
+  will-change: transform;
+  transition: transform 6s cubic-bezier(.2,.8,.2,.9), filter 3s ease;
+}
+
+.project-fullscreen-image:hover img {
+  transform: translate(-50%, -50%) scale(1.18); /* stronger zoom on hover */
+}
+
+@media (max-width: 992px) {
+  .project-fullscreen-image {
+    height: 80vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-fullscreen-image {
+    height: 60vh;
+  }
+
+  .project-fullscreen-image img {
+    transition: transform 3s ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-fullscreen-image img {
+    transition: none;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .project-fullscreen-image:hover img {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+
+/* ===============================
+   CTA SECTION
+================================= */
+
+.cta {
+  margin-top: 100px;
+  padding: 80px 0;
+  text-align: center;
+  background: #f8f9fa;
+}
+
+.cta-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 34px;
+  margin-bottom: 16px;
+}
+
+.cta-subtitle {
+  max-width: 700px;
+  margin: auto;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px; /* reduced for smaller buttons */
+  border-radius: 32px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background: #14A44D;
+  color: #fff;
+  transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #0f8b3e;
+}
+
+
+/* ===============================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 992px) {
+
+  .project-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-hero-grid .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .large-left,
+  .large-center,
+  .stack-top,
+  .stack-bottom,
+  .bottom {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .project-fullwidth img,
+  .project-fullwidth-image img {
+    height: 450px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .experience-title {
+    font-size: 26px;
+  }
+}
+
+/* ===============================
+   PROJECT AIM SECTION
+================================= */
+
+.project-aim {
+  padding: 100px 0 80px;
+}
+
+.project-aim-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 64px;
+  align-items: start;
+  overflow: visible;
+}
+
+.aim-main-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  color: #2e7d32;
+  margin-bottom: 30px;
+}
+
+.aim-block {
+  margin-bottom: 28px;
+}
+
+.aim-block h4 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: #111;
+  line-height: 1.1;
+}
+
+.aim-block p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #666;
+  margin: 0;
+}
+
+.aim-image {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 28px;
+  justify-self: end;
+  margin-right: -60px;
+}
+
+.aim-image::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  top: 14px;
+  right: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.aim-image{
+  /* make the container a fixed-size frame so transforms on the image
+     don't affect layout or the card itself */
+  width: 500px; /* match per-page override in HTML */
+  height: 900px; /* match per-page override in HTML */
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 28px;
+  justify-self: end;
+  margin-right: -60px;
+}
+
+.aim-image img {
+  /* position the image absolutely inside the fixed frame so scaling
+     only affects the visual image, not the container/card */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 18px 40px rgba(19,19,19,0.06);
+  /* start zoomed-in (stationary) and gently zoom OUT on sustained hover */
+  transform: scale(1.18);
+  transition: transform 3s cubic-bezier(.2,.8,.2,.9), filter 0.4s;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Hover: image shrinks and shifts slightly to the right while card stays */
+.aim-image:hover img {
+  /* on hover, zoom OUT back toward natural scale */
+  transform: scale(1) translateZ(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aim-image img {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Ensure the card/container itself never transforms on hover (defensive) */
+.aim-image,
+.aim-image:hover {
+  transform: none !important;
+}
+
+/* Improve rendering during transform and prevent visual artifacts */
+.aim-image img {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.aim-content .aim-block {
+  margin-bottom: 28px;
+}
+
+.aim-main-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  color: #2e7d32;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 992px) {
+  .project-aim-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .aim-image img {
+    height: 420px;
+  }
+}
+
+/* ===============================
+   BRAND GRID (2x2)
+================================= */
+
+.brand-grid {
+  margin: 72px auto;
+  display: grid;
+  max-width: 1500px; /* increase overall width for larger presence */
+  grid-template-columns: 1fr 1fr;
+  gap: 5px; /* reduced gap between cards */
+  align-items: stretch;
+  justify-content: center;
+}
+
+.brand-grid {
+  margin: 36px auto; /* reduced vertical spacing to bring summary closer */
+  display: grid;
+  max-width: 1500px; /* increase overall width for larger presence */
+  grid-template-columns: 1fr 1fr;
+  gap: 24px; /* moderate gap between cards */
+  align-items: stretch;
+  justify-content: center;
+}
+}
+
+.card-typography {
+  text-align: left;
+  padding: 72px; /* increase left column padding */
+}
+
+.brand-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #222;
+  line-height: 1.03;
+}
+
+.brand-subtitle {
+  font-weight: 700;
+  color: #222;
+  margin: 6px 0 12px 0;
+}
+
+.brand-desc {
+  color: #666;
+  margin: 0;
+}
+
+.card-logo img {
+  width: 100%;
+  max-height: 220px; /* make logo images larger */
+  object-fit: contain;
+}
+
+.card-mark img {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+}
+
+/* Nudge the final brand card slightly to the right without affecting layout */
+.brand-grid .brand-card.card-mark {
+  transform: translateX(18px);
+}
+
+/* Disable the nudge on small screens so layout stays consistent */
+@media (max-width: 992px) {
+  .brand-grid .brand-card.card-mark {
+    transform: none;
+  }
+}
+
+.card-gradients .gradients-wrap {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.swatch {
+  width: 190px;
+  height: 190px;
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  box-shadow: 0 10px 28px rgba(19,19,19,0.05);
+}
+
+.swatch-green {
+  background: linear-gradient(135deg,#0b7a45 0%, #26c07b 100%);
+}
+
+.swatch-red {
+  background: linear-gradient(135deg,#ff5f4d 0%, #ffb74d 100%);
+}
+
+.swatch-label {
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+@media (max-width: 992px) {
+  .brand-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-typography {
+    padding: 28px;
+  }
+
+  .swatch {
+    width: 120px;
+    height: 120px;
+  }
+}

@@ -1,0 +1,343 @@
+/* Page-scoped CSS for Salem Stainless Steel project
+   Loaded only on project-salem-stainless-steel.html
+   Keeps styles isolated so they don't affect other project pages (eg. STP-I)
+*/
+
+/* Styles moved from inline HTML to keep page presentation in CSS */
+.page-salem main.container {
+  padding: 60px 0;
+}
+
+.page-salem .project-hero-header {
+  margin-bottom: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.page-salem .hero-back {
+  text-decoration: none;
+  color: inherit;
+}
+
+.page-salem .hero-arrow-large {
+  color: #14A44D;
+  font-size: 40px;
+  transform: scaleX(2);
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  pointer-events: none;
+}
+
+.page-salem .project-hero-grid {
+  margin-top: 18px;
+}
+
+.page-salem .project-hero-grid .grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.page-salem .project-detail-grid.container {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 40px;
+  align-items: start;
+}
+
+.page-salem .project-overview h3 {
+  color: #2e7d32;
+  margin-bottom: 14px;
+}
+
+.page-salem .project-overview p + p {
+  margin-top: 18px;
+}
+
+.page-salem .project-meta {
+  font-family: Poppins, sans-serif;
+}
+
+.page-salem .project-meta > div:first-child {
+  margin-bottom: 28px;
+}
+
+.page-salem .project-meta > div > div:first-child {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.page-salem .project-meta > div > div:last-child {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.page-salem .project-summary {
+  margin-top: 44px;
+}
+
+.page-salem .project-summary h2 {
+  color: #2e7d32;
+  margin-bottom: 16px;
+}
+
+.page-salem .project-summary p + p {
+  margin-top: 18px;
+}
+
+/* ===============================
+   SALEM FULL WIDTH SYSTEM (CLEAN)
+================================= */
+
+/* Full bleed container */
+.page-salem .project-fullwidth.full-bleed.reduced {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Overview wrapper */
+.page-salem .salem-overview-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Overview image */
+.page-salem .salem-overview-wrap img.salem-overview-img {
+  width: min(1100px, 95vw);
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s ease;
+}
+
+/* Hover zoom */
+.page-salem .salem-overview-wrap:hover img.salem-overview-img {
+  transform: scale(1.05);
+}
+
+
+/* ===============================
+   SALEM OVERVIEW IMAGE CLEAN FIX
+================================= */
+
+.page-salem .project-fullwidth.full-bleed.reduced {
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+.page-salem .salem-overview-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.page-salem .salem-overview-wrap img.salem-overview-img {
+  width: min(1100px, 95vw);
+  max-width: 1100px;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  transition: transform 1.2s cubic-bezier(.16,.84,.24,1);
+}
+
+.page-salem .salem-overview-wrap:hover img.salem-overview-img {
+  transform: scale(1.05);
+}
+
+
+/* Target only the Overview full-bleed image: wider but reduced height */
+.page-salem .salem-overview-img {
+  /* sized to match screenshot: centered banner (height reduced) */
+  width: min(1100px, 95vw) !important;
+  max-width: 1100px !important;
+  height: 320px !important; /* reduced per user preference */
+  object-fit: cover !important; /* crop to fill reduced height */
+  display: block !important;
+  margin: 0 auto !important;
+  transform-origin: center center !important;
+  transition: transform 1.6s cubic-bezier(.16,.84,.24,1) !important;
+}
+
+/* Hover — smooth cinematic zoom for overview banner */
+.page-salem .project-fullwidth.full-bleed.reduced .project-fullwidth-wrap:hover .salem-overview-img,
+.page-salem .project-fullwidth.full-bleed.reduced .project-fullwidth-wrap:focus .salem-overview-img {
+  transform: scale(1.06) translateZ(0) !important;
+}
+
+/* Stronger, page-scoped rule to override global full-bleed sizing (higher specificity) */
+.page-salem .project-fullwidth.full-bleed.reduced .project-fullwidth-wrap .salem-overview-img {
+  width: min(1100px, 95vw) !important;
+  max-width: 1100px !important;
+  height: 500px !important; /* reduced height */
+  object-fit: cover !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  transform-origin: center center !important;
+  transition: transform 1.6s cubic-bezier(.16,.84,.24,1) !important;
+  /* reset global centering that uses left:50% + translateX(-50%) so hover scale stays centered */
+  position: static !important;
+  left: auto !important;
+  transform: none !important;
+}
+
+/* Disable the decorative overlay for Salem reduced images */
+.page-salem .project-fullwidth.full-bleed.reduced .project-fullwidth-wrap::before {
+  display: none !important;
+  background: transparent !important;
+}
+
+/* Disable cinematic overlay and transforms for any .no-effect images on this page */
+.page-salem .project-fullwidth-wrap.no-effect::before { display: none !important; }
+
+/* Hover (zoom-out) for the overview banner even when wrapper uses .no-effect */
+.page-salem .project-fullwidth.full-bleed.reduced .project-fullwidth-wrap.no-effect:hover img.salem-overview-img,
+.page-salem .project-fullwidth.full-bleed.reduced .project-fullwidth-wrap.no-effect:focus img.salem-overview-img {
+  transform: scale(0.96) !important; /* zoom out slightly */
+  transition: transform 1.2s cubic-bezier(.16,.84,.24,1) !important;
+}
+
+/* Ensure the wrapper itself and its decorative layer don't transform — only the image should */
+.page-salem .project-fullwidth.full-bleed.reduced .project-fullwidth-wrap.no-effect:hover,
+.page-salem .project-fullwidth.full-bleed.reduced .project-fullwidth-wrap.no-effect:focus {
+  transform: none !important;
+}
+.page-salem .project-fullwidth.full-bleed.reduced .project-fullwidth-wrap.no-effect:hover::before,
+.page-salem .project-fullwidth.full-bleed.reduced .project-fullwidth-wrap.no-effect:focus::before {
+  transform: none !important;
+}
+
+/* Make sure the standard cinematic Post 1 elsewhere on the page keeps its look
+   but remains scoped — any further Salem-only tuning can go here. */
+.page-salem .project-fullwidth .project-fullwidth-wrap img {
+  max-width: 900px !important;
+}
+
+/* Helper to disable only the decorative overlay (::before) but keep hover transforms */
+.page-salem .project-fullwidth-wrap.no-overlay::before {
+  display: none !important;
+  background: transparent !important;
+}
+
+/* Post 1 image: reduced height + cinematic zoom on hover */
+.page-salem .project-fullwidth .project-fullwidth-wrap.no-overlay .post1-image {
+  width: 100% !important;
+  max-width: 1400px !important;
+  height: 700px !important; /* updated per user request */
+  object-fit: cover !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  border-radius: 12px !important;
+  transform-origin: center center !important;
+  transition: transform 1.6s cubic-bezier(.16,.84,.24,1), filter 1.6s cubic-bezier(.16,.84,.24,1) !important;
+}
+
+/* Clip overflow so scaling doesn't push surrounding layout */
+.page-salem .project-fullwidth .project-fullwidth-wrap.no-overlay {
+  overflow: hidden !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.page-salem .project-fullwidth .project-fullwidth-wrap.no-overlay:hover .post1-image,
+.page-salem .project-fullwidth .project-fullwidth-wrap.no-overlay:focus .post1-image {
+  transform: scale(1.08) translateZ(0) !important;
+}
+
+/* Make the Post 1 non-effect image wider and let height scale naturally */
+.page-salem .project-fullwidth.reveal .project-fullwidth-wrap.no-effect img {
+  width: min(1400px, 100vw) !important;
+  max-width: 1400px !important;
+  height: auto !important;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+}
+
+/* Reduce vertical gap between hero grid and project detail on Salem page */
+.page-salem .project-detail {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important; /* override inline 28px */
+}
+
+/* Reduce top hero grid image sizes on the Salem page (tweak max-height as needed) */
+.page-salem .project-hero-grid .grid-item img {
+  width: 100% !important;
+  height: auto !important; /* show full image without cropping */
+  max-height: 900px !important; /* allow large display while capping extreme sizes */
+  object-fit: contain !important;
+  background-color: #fafafa !important;
+  display: block !important;
+  transform-origin: center center !important;
+  will-change: transform !important;
+  transition: transform 1.6s cubic-bezier(.16,.84,.24,1) !important;
+}
+
+.page-salem .project-hero-grid .grid-item:hover img,
+.page-salem .project-hero-grid .grid-item:focus img {
+  transform: scale(1.18) translateZ(0) !important;
+}
+
+
+/* Match STP narrow: constrain content width and reduce typography for Salem page */
+.page-salem main.container {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 60px 0; /* keep existing vertical padding */
+}
+
+.page-salem .project-detail,
+.page-salem .project-summary,
+.page-salem .project-overview,
+.page-salem .project-extra {
+  font-size: 20px !important;
+  line-height: 1.6 !important;
+  color: #333 !important;
+}
+
+.page-salem .project-summary h2 {
+  font-size: 20px !important;
+  margin-bottom: 30px !important;
+  color: #2e7d32 !important;
+}
+
+.page-salem .project-overview h3 {
+  font-size: 20px !important;
+  margin-bottom: 30px !important;
+  color: #2e7d32 !important;
+}
+
+.page-salem .project-summary p,
+.page-salem .project-overview p,
+.page-salem .project-extra p {
+  font-size: 18px !important;
+  margin-bottom: 30px !important;
+}
+
+@media (max-width: 900px) {
+  .page-salem main.container { padding: 40px 18px; }
+  .page-salem .project-summary h2,
+  .page-salem .project-overview h3 { font-size: 18px !important; }
+  .page-salem .project-summary p,
+  .page-salem .project-overview p { font-size: 15px !important; }
+}
+
+
+
+

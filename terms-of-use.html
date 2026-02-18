@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms and Conditions – Edikt Media</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="page-privacy">
+
+  <!-- HEADER -->
+  <div id="site-header"></div>
+
+<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+      if (typeof initHeaderScroll === 'function') initHeaderScroll();
+    });
+</script>
+
+<script src="assets/js/header.js"></script>
+
+<!-- TERMS CONTENT -->
+<section class="privacy reveal">
+  <div class="container">
+
+    <h1 class="section-title">Terms and Conditions – Edikt Media</h1>
+
+    <p>
+      Welcome to Edikt Media. By accessing or using our website, you agree to comply with the following terms:
+    </p>
+
+    <h2>Acceptance of Terms</h2>
+    <p>By using this website, you agree to these Terms and Conditions, our Privacy Policy, and any applicable laws. If you do not agree, please do not use the site.</p>
+
+    <h2>Use of Website</h2>
+    <p>You may use the website for personal or professional purposes.</p>
+    <p>You agree not to misuse the site, including hacking, uploading harmful content, or infringing on our intellectual property.</p>
+
+    <h2>Intellectual Property</h2>
+    <p>All content, logos, images, and designs on this website are the property of Edikt Media.</p>
+    <p>You may not copy, reproduce, or distribute any content without written permission.</p>
+
+    <h2>External Links</h2>
+    <p>Our website may contain links to third-party websites.</p>
+    <p>We are not responsible for the content or privacy practices of these sites.</p>
+
+    <h2>Limitation of Liability</h2>
+    <p>Edikt Media is not liable for any damages, losses, or inconveniences arising from the use of this website.</p>
+    <p>We do not guarantee the accuracy, reliability, or completeness of the content.</p>
+
+    <h2>Changes to Terms</h2>
+    <p>We reserve the right to update or modify these Terms at any time.</p>
+    <p>Continued use of the website constitutes acceptance of the revised Terms.</p>
+
+    <h2>Governing Law</h2>
+    <p>These Terms are governed by the laws of India.</p>
+    <p>Any disputes will be resolved under the jurisdiction of Pune.</p>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<script>
+  fetch('footer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-footer').innerHTML = html;
+    });
+</script>
+
+<script src="assets/js/script.js"></script>
+
+<script src="assets/js/scroll-reveal.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Work With Us | Edikt Media</title>
+
+  <!-- MAIN CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="page-work">
+
+<!-- ================= HEADER (SAME AS HOME) ================= -->
+<div id="site-header"></div>
+
+<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      // 🔥 INIT HEADER LOGIC AFTER HEADER LOADS
+      initHeaderScroll();
+    });
+</script>
+
+<script src="assets/js/header.js"></script>
+
+<!-- ================= WORK WITH US HERO ================= -->
+<section class="careers-hero reveal">
+  <div class="container">
+    <h1 class="careers-title reveal">
+      Discover your future with Edikt Media
+    </h1>
+  </div>
+</section>
+
+
+<!-- ================= CAREER VALUES ================= -->
+<section class="careers-values reveal">
+  <div class="container careers-grid">
+
+    <div class="career-card reveal delay-1">
+      <div class="career-icon">
+        <img src="assets\images\extras\Career freedom.png" alt="Career Freedom">
+      </div>
+      <h3>Career<br>Freedom</h3>
+      <p>
+        We believe that freedom fuels creativity. Whether you're a designer, strategist, developer, 
+        or dreamer - we offer a space where ideas flow freely and your voice matters.
+      </p>
+    </div>
+
+    <div class="career-card reveal delay-2">
+      <div class="career-icon">
+        <img src="assets\images\extras\Collaborative Culture.png" alt="Collaborative Culture">
+      </div>
+      <h3>Collaborative<br>Culture</h3>
+      <p>
+        We believe that great things happen creative minds come together. Our culture thrives
+        on collaboration, openness, and a shared commitment to pushing boundaries.
+      </p>
+    </div>
+
+    <div class="career-card reveal delay-3">
+      <div class="career-icon">
+        <img src="assets\images\extras\Career  growth.png" alt="Career Growth">
+      </div>
+      <h3>Career<br>Growth</h3>
+      <p>
+        We empower you to grow with hands-on-projects, mentorship, and learning opportunities.
+        At Edikt, your growth is our priority - from your first day to milestone ahead.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= JOB OPENINGS ================= -->
+<section class="jobs reveal">
+  <div class="container">
+
+    <h2 class="jobs-title reveal">
+      Current Job Openings
+    </h2>
+
+    <div class="jobs-grid">
+
+      <div class="job-card reveal delay-1">
+        <h3>UI/UX Designer</h3>
+        <p class="job-type">Remote | Full-time</p>
+        <button class="job-btn" onclick="openJob('uiux')">View Role</button>
+      </div>
+
+      <div class="job-card reveal delay-2">
+        <h3>Frontend Developer</h3>
+        <p class="job-type">Hybrid | Full-time</p>
+        <button class="job-btn" onclick="openJob('frontend')">View Role</button>
+      </div>
+
+      <div class="job-card reveal delay-3">
+        <h3>Team Manager</h3>
+        <p class="job-type">Hybrid | Full-time</p>
+        <button class="job-btn" onclick="openJob('TeamManager')">View Role</button>
+      </div>
+
+      <div class="job-card reveal delay-4">
+        <h3>Backend Developer</h3>
+        <p class="job-type">Hybrid | Full-time</p>
+        <button class="job-btn" onclick="openJob('Backend')">View Role</button>
+      </div>
+
+      <div class="job-card reveal delay-1">
+        <h3>Telecaller for Events</h3>
+        <p class="job-type">Hybrid | Full-time</p>
+        <button class="job-btn" onclick="openJob('Telecaller')">View Role</button>
+      </div>
+
+      <div class="job-card reveal delay-2">
+        <h3>Accounts Executive</h3>
+        <p class="job-type">Hybrid | Full-time</p>
+        <button class="job-btn" onclick="openJob('accounts')">View Role</button>
+      </div>
+
+      <div class="job-card reveal delay-3">
+        <h3>Manager</h3>
+        <p class="job-type">Hybrid | Full-time</p>
+        <button class="job-btn" onclick="openJob('Manager')">View Role</button>
+      </div>
+
+      <div class="job-card reveal delay-4">
+        <h3>Client Acquisition</h3>
+        <p class="job-type">Hybrid | Full-time</p>
+        <button class="job-btn" onclick="openJob('ClientAcquisition')">View Role</button>
+      </div>
+
+      <div class="job-card reveal delay-1">
+        <h3>Business Development Manager</h3>
+        <p class="job-type">Hybrid | Full-time</p>
+        <button class="job-btn" onclick="openJob('BusinessDev')">View Role</button>
+      </div>
+
+      <div class="job-card reveal delay-2">
+        <h3>Telecaller for Tech solutions</h3>
+        <p class="job-type">Hybrid | Full-time</p>
+        <button class="job-btn" onclick="openJob('TelecallerTech')">View Role</button>
+      </div>
+
+      <div class="job-card reveal delay-3">
+        <h3>Company Secretary</h3>
+        <p class="job-type">Hybrid | Full-time</p>
+        <button class="job-btn" onclick="openJob('CompanySecretary')">View Role</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= JOB MODAL ================= -->
+<div class="job-modal" id="jobModal" aria-hidden="true">
+  <div class="job-modal-content">
+    <button class="job-close" onclick="closeJob()">×</button>
+    <div id="jobContent"></div>
+  </div>
+</div>
+
+<!-- JS -->
+<script src="assets/js/script.js"></script>
+
+<div id="site-footer"></div>
+
+<script>
+  fetch('footer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-footer').innerHTML = html;
+    });
+</script>
+
+
+<script src="assets/js/scroll-reveal.js"></script>
+
+
+</body>
+</html>

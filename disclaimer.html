@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Disclaimer – Edikt Media</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/disclaimer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="page-disclaimer">
+
+  <!-- HEADER -->
+  <div id="site-header"></div>
+
+<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+      initHeaderScroll();
+    });
+</script>
+
+<script src="assets/js/header.js"></script>
+
+<!-- DISCLAIMER CONTENT -->
+<section class="disclaimer reveal">
+  <div class="container">
+    <div class="disclaimer-row">
+
+      <!-- LEFT: text -->
+      <div class="disclaimer-text">
+        <h1 class="section-title">Disclaimer</h1>
+
+        <p>
+          All logos, brand names, trademarks, and registered trademarks appearing on this website are the property of their respective owners. They are used on this site strictly for identification, informational, and/or reference purposes only. The use of these names, logos, and brands does not imply endorsement, sponsorship, or affiliation with our company unless explicitly stated.
+        </p>
+
+        <p>
+          Any unauthorized use, reproduction, or distribution of these logos or brand names is prohibited and may violate trademark laws.
+        </p>
+
+        <p>
+          If you are a trademark owner and believe your logo or name is being used inappropriately on this website, please contact us at <strong>contactus@edikt.in</strong> and we will promptly address your concerns.
+        </p>
+      </div>
+
+      <!-- RIGHT: illustration -->
+      <div class="disclaimer-illustration reveal delay-1">
+        <img src="assets\images\extras\Disclaimer NDA.svg" alt="Disclaimer illustration">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<script>
+  fetch('footer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-footer').innerHTML = html;
+    });
+</script>
+
+<script src="assets/js/script.js"></script>
+
+<script src="assets/js/scroll-reveal.js"></script>
+
+</body>
+</html>
