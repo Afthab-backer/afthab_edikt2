@@ -1778,13 +1778,23 @@ section {
   display:block;
 }
 
+.footer-tagline{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:0 !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+
 .footer-tagline p{
-  margin:6px 0;
+  margin:0 !important; /* remove vertical spacing between the three words */
+  padding:0 !important;
   font-weight:700;
   letter-spacing:1px;
 
   color:#3a3a3a;
-  font-size:1.05rem;
+  font-size:1.60rem !important; /* increased per request */
+  line-height:1 !important; /* keep lines tightly stacked */
 }
 
 .footer-dpiit{
@@ -2056,46 +2066,9 @@ section {
 
 /* ===============================
 
-/* Mobile: constrain orbit so it fits on small screens (scaled-down, preserving rotation behavior) */
-@media (max-width: 640px) {
-  /* Keep the original orbit geometry but scale it down so rotations and positions remain consistent */
-  .orbit-wrapper {
-    width: 1000px !important;
-    height: 1000px !important;
-    transform: scale(0.28) !important; /* scales the entire system proportionally */
-    transform-origin: center center !important;
-    margin: 18px auto !important;
-    pointer-events: none;
-    overflow: visible;
-  }
-
-  /* Slightly smaller center globe (will be scaled by wrapper transform too) */
-  .orbit-center {
-    width: 390px;
-    height: 390px;
-    box-shadow: 0 18px 36px rgba(0,0,0,0.12);
-  }
-
-  .orbit-center img {
-    width: 80%;
-    height: 80%;
-    object-fit: cover;
-  }
-
-  /* Keep the original orbit radius (translateX: 340px) so the angular layout stays identical */
-  .orbit { transform: rotate(var(--angle)) translateX(340px) !important; }
-
-  /* Slow the rotation slightly on small devices to keep motion comfortable */
-  .orbit-rotator { animation-duration: 24s !important; }
-
-  /* Reduce icon sizes so they read well at the scaled size (scale applied by wrapper) */
-  .orbit-content img { width: 120px !important; height: 120px !important; }
-
-  .orbit-content span { font-size: 13px !important; }
-
-  /* Avoid cutting the center globe — allow scaled layout to remain visible */
-  .orbit-wrapper { overflow: visible !important; }
-}
+/* Old mobile scaling rules removed — replaced with modern responsive sizing
+   further down the file to avoid transform-based scaling which caused
+   clipping and coordinate mismatches on smaller screens. */
    ORIGIN STORY CARD
    =============================== */
 
@@ -2921,7 +2894,7 @@ section {
 
   /* Further shrink orbit and center it */
   .orbit-wrapper {
-    transform: scale(0.6);
+    transform: none; /* avoid scale-based clipping; rely on responsive widths */
     transform-origin: center top;
     margin-top: 6px;
   }
@@ -3342,11 +3315,14 @@ img.magnetic-target {
 
 .orbit-wrapper {
   position: relative;
-  /* slightly reduced from the 'big hug' — tuned down a bit */
-  width: 1000px;
-  height: 1000px;
+  /* fluid container with a sensible maximum */
+  width: 100%;
+  max-width: 1000px;
+  aspect-ratio: 1 / 1;
+  height: auto;
   margin: 110px auto;
   pointer-events: none;
+  transform-origin: center center;
 }
 
 /* ===============================
@@ -3357,9 +3333,9 @@ img.magnetic-target {
   position: absolute;
   top: 50%;
   left: 50%;
-  /* slightly reduced center globe size */
-  width: 390px;
-  height: 390px;
+  /* fluid center globe size: percentage-based with a safe max */
+  width: min(390px, 42%);
+  height: auto;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   overflow: hidden;
@@ -3368,10 +3344,10 @@ img.magnetic-target {
 }
 
 .orbit-center img {
-  width: 80%;
-  height: 80%;
-  object-fit: cover;
-  /* center image remains static per previous request */
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* prevent cropping */
+  display: block;
   animation: none !important;
 }
 
@@ -3409,11 +3385,10 @@ img.magnetic-target {
   left: 50%;
   width: 0;
   height: 0;
+  transform-origin: center center;
 
-  /* slightly reduced orbit radius to match tuned sizes */
-  transform:
-    rotate(var(--angle))
-    translateX(340px);
+  /* use responsive radius so the orbit scales with container */
+  transform: rotate(var(--angle)) translateX(min(340px, 36vw));
 }
 
 /* ===============================
@@ -3422,20 +3397,27 @@ img.magnetic-target {
    =============================== */
 
 .orbit-content {
+  position: absolute; /* center at the orbit point */
+  left: 0;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
-  /* keep icons readable (counter-rotate) */
-  transform: rotate(calc(-1 * var(--angle)));
-
-  /* match faster orbit speed */
+  /* center the content and include a static counter-rotation equal to
+     the orbit angle; the animation then applies an additional -360deg
+     rotation to cancel the rotator's spin so icons stay upright */
+  transform: translate(-50%, -50%) rotate(calc(-1 * var(--angle)));
   animation: contentCounterSpin 18s linear infinite;
 }
 
 @keyframes contentCounterSpin {
+  from {
+    transform: translate(-50%, -50%) rotate(calc(-1 * var(--angle)));
+  }
   to {
-    transform: rotate(calc(-1 * var(--angle))) rotate(-360deg);
+    transform: translate(-50%, -50%) rotate(calc(-1 * var(--angle))) rotate(-360deg);
   }
 }
 
@@ -3445,13 +3427,13 @@ img.magnetic-target {
    =============================== */
 
 .orbit-content img {
-  /* tuned down slightly from largest size */
-  width: 180px;
-  height: 180px;
+  /* responsive icon sizing — scales with viewport but bounded */
+  width: clamp(60px, 14vw, 180px);
+  height: auto;
   border-radius: 0;
-  object-fit: cover;
+  object-fit: contain; /* avoid cropping */
   background: transparent;
-  transform: scale(1.18);
+  transform: scale(1.08);
   box-shadow: none;
 }
 
@@ -3478,6 +3460,106 @@ img.magnetic-target {
   animation-play-state: paused;
 }
 
+/* ===============================
+   ORBIT RESPONSIVE TUNING (320px — 768px)
+   Keeps same behaviour and animations while ensuring nothing clips
+   and images scale fluidly across small devices.
+   =============================== */
+
+@media (max-width: 768px) {
+  .orbit-wrapper {
+    width: 92%;
+    max-width: 760px;
+    /* keep a square aspect ratio so absolute children can use centered coords */
+    aspect-ratio: 1 / 1;
+    height: auto;
+    margin: 24px auto 28px;
+    max-height: 86vh; /* prevent the orbit from overflowing the viewport height */
+    transform-origin: center center;
+    pointer-events: none;
+  }
+
+  .orbit-center {
+    width: 40%;
+    height: 40%;
+    max-width: 280px;
+    max-height: 280px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.12);
+  }
+
+  .orbit-center img {
+    width: 80%;
+    height: auto;
+    object-fit: contain;
+    animation: none !important;
+  }
+
+  /* reduce the orbit radius so icons remain inside viewport */
+  .orbit {
+    transform-origin: center center;
+    transform: rotate(var(--angle)) translateX(min(340px, 38vw));
+  }
+
+  .orbit-content {
+    animation: contentCounterSpin 18s linear infinite;
+  }
+
+  .orbit-content img {
+    width: clamp(72px, 18vw, 140px);
+    height: auto;
+    transform: scale(1.05);
+    object-fit: contain;
+    pointer-events: none;
+  }
+
+  .orbit-content span {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 420px) {
+  .orbit-wrapper {
+    font-size: 1.05rem !important; /* scale back on very small screens */
+    max-width: 420px;
+    margin: 18px auto 22px;
+    aspect-ratio: 1 / 1;
+    max-height: 84vh;
+    transform-origin: center center;
+  }
+
+  .orbit-center {
+    width: 46%;
+    height: 46%;
+    max-width: 220px;
+    max-height: 220px;
+    box-shadow: 0 24px 56px rgba(0,0,0,0.12);
+  }
+
+  .orbit-center img {
+    width: 86%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .orbit {
+    transform-origin: center center;
+    transform: rotate(var(--angle)) translateX(min(300px, 33vw));
+  }
+
+  .orbit-content img {
+    width: clamp(60px, 20vw, 120px);
+    height: auto;
+    transform: scale(1);
+    object-fit: contain;
+    pointer-events: none;
+  }
+
+  .orbit-content span {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+}
+
 
 
 
@@ -3490,6 +3572,76 @@ img.magnetic-target {
   text-align: center;
   background: linear-gradient(120deg, #fdf2f2, #f0fdf4);
 }
+
+
+/* ===============================
+   ORBIT: STRONG OVERRIDES (last-resort)
+   Place highly-specific rules here to beat page-scoped overrides that
+   may use !important. These restore the intended responsive behavior
+   for the orbit system site-wide.
+   =============================== */
+
+.page-home .orbit-wrapper,
+.orbit-wrapper {
+  width: 100% !important;
+  max-width: 1000px !important;
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
+  margin: 60px auto !important;
+  transform-origin: center center !important;
+}
+
+.page-home .orbit-center,
+.orbit-center {
+  width: min(390px, 42%) !important;
+  height: auto !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.page-home .orbit-center img,
+.orbit-center img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+.page-home .orbit-content img,
+.orbit-content img {
+  width: clamp(60px, 14vw, 180px) !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+/* Ensure orbit icons are visible above the center globe and not clipped */
+.orbit-content {
+  /* keep orbit content absolutely positioned at the orbit point
+     so transform-based centering and counter-rotation continue to work */
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  z-index: 6 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transform: translate(-50%, -50%) rotate(calc(-1 * var(--angle))) !important;
+  animation: contentCounterSpin 18s linear infinite !important;
+}
+
+.page-home .orbit-content img,
+.orbit-content img {
+  z-index: 7 !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+.page-home .orbit,
+.orbit {
+  transform-origin: center center !important;
+  transform: rotate(var(--angle)) translateX(min(340px, 36vw)) !important;
+}
+
 
 .team-hero h1 {
   font-size: 3.2rem;
