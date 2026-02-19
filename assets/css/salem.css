@@ -338,6 +338,31 @@
   .page-salem .project-overview p { font-size: 15px !important; }
 }
 
+/* Mobile: reduce Post 1 image height so it fits better on small screens */
+@media (max-width: 640px) {
+  .page-salem .post1-image {
+    height: 380px !important;
+    max-height: 380px !important;
+    object-fit: cover !important;
+  }
+}
+
+/* Crop Post 1 image to the right and make it fit the screen cleanly */
+.page-salem .post1-image {
+  width: 100% !important;
+  height: auto; /* allow media queries to control exact height */
+  object-fit: cover !important;
+  object-position: right center !important;
+  display: block !important;
+}
+
+/* Ensure the full-bleed wrapper doesn't introduce unwanted offsets */
+.page-salem .project-fullwidth-wrap.no-overlay {
+  display: flex !important;
+  justify-content: flex-start !important; /* keep image aligned to the left edge of the wrapper while object-position shifts visible crop to the right */
+  overflow: hidden !important;
+}
+
 
 
 

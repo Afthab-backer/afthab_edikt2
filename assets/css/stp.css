@@ -24,6 +24,17 @@
   margin: 0 auto !important;
 }
 
+/* Mobile: slightly decrease full-width image height and ensure it fits viewport */
+@media (max-width: 640px) {
+  .page-stp .project-fullwidth img {
+    height: 380px !important;
+    max-height: 380px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+}
+
 /* Hover-zoom: scale the image only (not the container/card) */
 .page-stp .project-fullwidth {
   overflow: hidden !important;

@@ -35,6 +35,16 @@ body {
   overflow-x: hidden;
 }
 
+/* Mobile: small spacing between project hero grid images */
+@media (max-width: 640px) {
+  .project-hero-grid .grid-item img {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+}
+
+
 
 /* push page content below fixed header */
 body {
@@ -1220,6 +1230,30 @@ section {
   gap: 30px;
   margin-top: 50px;
 }
+  /* Mobile: position the DPIIT logo to the right of the main footer logo
+     without changing layout for other screen sizes. This only affects
+     narrow screens and keeps other footer content unchanged. */
+  @media (max-width: 640px) {
+    .footer .footer-brand { position: relative !important; }
+    .footer .footer-brand .footer-dpiit {
+      position: absolute !important;
+      right: 12px !important;
+      top: 8px !important;
+      width: 160px !important; /* increased per request */
+      height: auto !important;
+      display: inline-block !important;
+    }
+    /* Add right padding so the dpiit image doesn't overlap text when it sits absolutely */
+    .footer .footer-brand { padding-right: 200px !important; }
+  }
+
+  /* Hide Company and Services footer columns on small screens as requested */
+  @media (max-width: 640px) {
+    .footer-content .footer-section:nth-child(2),
+    .footer-content .footer-section:nth-child(3) {
+      display: none !important;
+    }
+  }
 
 .client-logo {
   background: var(--bg-light);
@@ -1631,6 +1665,23 @@ section {
 @media (max-width: 480px) {
   .services-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile: ensure service card labels appear under images */
+@media (max-width: 480px) {
+  .services-grid .service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .services-grid .service-card p {
+    display: block !important;
+    margin: 10px 0 0;
+    color: inherit !important;
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.2;
   }
 }
 
@@ -6080,3 +6131,33 @@ html body main.stp-narrow .project-overview h3 {
     word-break: break-word !important;
   }
 }
+
+  /* Mobile: make services grid 2x2 and ensure images/cards fit cleanly */
+  @media (max-width: 768px) {
+    .services-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 14px !important;
+      align-items: start !important;
+    }
+
+    .services-grid .service-card {
+      width: 100% !important;
+      margin: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    .services-grid .service-image {
+      height: auto !important;
+      aspect-ratio: 16/10 !important;
+      overflow: hidden !important;
+      border-radius: 10px !important;
+    }
+
+    .services-grid .service-image img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+  }
