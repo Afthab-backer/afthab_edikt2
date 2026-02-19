@@ -1464,7 +1464,15 @@ section {
 @media (max-width: 768px) {
 
   .event-title {
-    font-size: 2rem;
+    font-size: 1.6rem;
+    /* allow wrapping on small screens so the title fits */
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    max-width: 100% !important;
+    padding: 0 20px; /* ensure some side padding within viewport */
+    box-sizing: border-box;
+    line-height: 1.25;
   }
 
   .event-logo-wrap img {
@@ -2176,6 +2184,21 @@ section {
   height: 6px;
   background: #ff6a2a;
   border-radius: 50%;
+}
+
+/* Make the stats sub-line fit on small screens in a single line */
+@media (max-width: 420px) {
+  .stats-sub {
+    gap: 8px !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 30px !important;
+    white-space: nowrap !important;
+    justify-content: center;
+  }
+  .stats-sub span,
+  .stats-sub .dot {
+    flex-shrink: 0 !important;
+  }
 }
 
 /* GRID */
@@ -3112,6 +3135,14 @@ a, button, .job-btn, .magic-btn, img, input, textarea, select, label {
     min-width: 160px;
     height: 70px;
     margin: 0 20px;
+  }
+
+  /* Speed up the continuous client slider on mobile for snappier motion */
+  .logo-track {
+    animation-duration: 3s !important; /* very fast mobile scroll */
+  }
+  .logo-slider.reverse .logo-track {
+    animation-duration: 3.5s !important; /* very fast mobile reverse scroll */
   }
 
   .client-box img {
@@ -4353,6 +4384,54 @@ section {
   transform-origin:center;
 
   clip-path:none;
+}
+
+/* Mobile: center the robot spline on small screens */
+@media (max-width: 768px) {
+  .home-about-right { justify-content: center; }
+  .spline-wrapper {
+    width: 460px !important;
+    height: 560px !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+  }
+  .spline-wrapper spline-viewer {
+    width: 460px !important;
+    height: 560px !important;
+    transform: none !important;
+    max-width: 100% !important;
+  }
+
+  /* Remove or visually mask the "Built with Spline" badge on small screens.
+     Primary: hide any anchor that links to spline.design (common badge).
+     Fallback: add a subtle bottom mask to cover any remaining badge. */
+  /* Hide known badge anchors and classes */
+  .spline-wrapper a[href*="spline"],
+  .spline-wrapper a[aria-label*="Spline"],
+  .spline-wrapper [title*="Spline"] {
+    display: none !important;
+  }
+  .spline-wrapper .spline-badge,
+  .spline-wrapper .spline-credit,
+  .spline-wrapper .built-with-spline,
+  .spline-wrapper .badge,
+  .spline-wrapper .credit {
+    display: none !important;
+  }
+
+  /* Strong opaque bottom mask to fully hide any remaining badge visuals */
+  .spline-wrapper::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0 !important;
+    height: 22% !important;
+    pointer-events: none;
+    background: #ffffff !important; /* solid white to fully mask badge */
+    z-index: 10010 !important; /* ensure it sits above the spline viewer */
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.02) !important; /* subtle blend */
+  }
 }
 
 
