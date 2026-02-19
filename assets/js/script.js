@@ -22,19 +22,38 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
    MOBILE MENU
    Ensure binding runs after DOM is ready so elements are found reliably
    =============================== */
-document.addEventListener('DOMContentLoaded', () => {
+function initMobileMenu() {
   const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
   const navbar = document.querySelector('.navbar');
 
-  if (mobileMenuToggle && navbar) {
+  if (mobileMenuToggle && navbar && !mobileMenuToggle._bound) {
     mobileMenuToggle.addEventListener('click', function () {
       navbar.classList.toggle('active');
       this.classList.toggle('active');
-      // update aria-expanded for accessibility
       const isOpen = this.classList.contains('active');
       this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
+    // mark it bound so we don't double-bind
+    mobileMenuToggle._bound = true;
+    return true;
   }
+  return false;
+}
+
+// Try to initialize on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  if (initMobileMenu()) return;
+
+  // If header is injected asynchronously (via fetch), observe DOM for the toggle
+  const observer = new MutationObserver((mutations, obs) => {
+    if (initMobileMenu()) {
+      obs.disconnect();
+    }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+  // safety: stop observing after 5s to avoid leaking
+  setTimeout(() => observer.disconnect(), 5000);
 });
 
 

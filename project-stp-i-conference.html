@@ -12,6 +12,18 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Mobile: make 2-column hero images square (1:1) without affecting desktop */
+    @media (max-width: 768px) {
+      .project-hero-grid .grid-item { aspect-ratio: 1/1; }
+      .project-hero-grid .grid-item img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="page-stp">

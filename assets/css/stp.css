@@ -120,6 +120,33 @@ body.page-stp {
   .page-stp main.container, .page-stp main.project-page { padding: 40px 18px !important; }
 }
 
+/* Mobile: make the STP page's hero 2-column images square (1:1) — page-scoped */
+@media (max-width: 768px) {
+  .page-stp .project-hero-grid .grid-item {
+    aspect-ratio: 1 / 1 !important;
+    overflow: hidden !important;
+  }
+
+  .page-stp .project-hero-grid .grid-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  /* Stack hero images vertically on narrow screens */
+  .page-stp .project-hero-grid .grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .page-stp .project-hero-grid .grid-item {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
 /* Reduce spacing between hero grid and the following detail/overview */
 .page-stp .project-hero-grid {
   margin-bottom: 70px !important; /* small space between hero images and Overview */
@@ -656,5 +683,45 @@ body.page-stp {
 @media (max-width: 900px) {
   .page-stp .project-gallery { margin-bottom: 0 !important; }
   .page-stp .project-experience { padding-top: 40px !important; }
+}
+
+/* Mobile: convert project gallery grid into a horizontal, swipeable slider */
+@media (max-width: 768px) {
+  .page-stp .project-gallery .gallery-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 16px !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    padding: 12px 14px !important;
+  }
+
+  .page-stp .project-gallery .gallery-grid .gallery-item {
+    flex: 0 0 84% !important;
+    min-width: 260px !important;
+    scroll-snap-align: start !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+  }
+
+  .page-stp .project-gallery .gallery-item img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: cover !important;
+    border-radius: inherit !important;
+  }
+
+  /* Optional: subtle thin scrollbar styling for WebKit */
+  .page-stp .project-gallery .gallery-grid::-webkit-scrollbar { height: 8px; }
+  .page-stp .project-gallery .gallery-grid::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 8px; }
+}
+
+/* Hide the Edikt page's extra gallery on small screens where it's not needed */
+@media (max-width: 768px) {
+  .page-edikt-logo .project-gallery-grid {
+    display: none !important;
+  }
 }
 

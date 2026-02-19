@@ -413,7 +413,15 @@ main.stp-narrow .project-summary p {
   /* Header: collapse navbar into mobile toggle */
   .navbar { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; padding: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-radius: 0 0 12px 12px; }
   .navbar.active { display: flex; }
-  .mobile-menu-toggle{ display:flex; }
+  .mobile-menu-toggle{
+    display:flex;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
+    z-index: 10001;
+  }
   .header-cta { margin-left: 8px; }
 
   /* Footer stack */
@@ -443,6 +451,13 @@ main.stp-narrow .project-summary p {
   font-weight: 500;
 
   transition: color 0.3s ease;
+}
+
+/* Show/hide specific nav items only for mobile menu */
+.navbar a.mobile-only { display: none; }
+
+@media (max-width: 768px) {
+  .navbar a.mobile-only { display: block; }
 }
 
 /* HOVER */
@@ -3391,6 +3406,27 @@ img.magnetic-target {
   transform: rotate(var(--angle)) translateX(min(340px, 36vw));
 }
 
+/* Mobile: show client logos in a 2x2 grid (used by all_clients.html) */
+@media (max-width: 768px) {
+  .page-clients .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .page-clients .client-card {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .page-clients .client-card img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+}
+
 /* ===============================
    🔥 CRITICAL FIX 🔥
    CONTENT COUNTER-ROTATES
@@ -3952,7 +3988,7 @@ img.magnetic-target {
 }
 
 .page-clients .cta-top {
-  font-size: 1.1rem;
+  font-size: 2.4rem;
   font-weight: 500;
   color: #2e7d32;
   margin-bottom: 40px;
@@ -4034,6 +4070,19 @@ img.magnetic-target {
   font-size: 1.25rem;
   line-height: 1.75;
   color: #444;
+}
+
+/* Mobile override: allow subtitle to wrap and fit small screens */
+@media (max-width: 768px) {
+  .services-360-subtitle {
+    min-width: auto !important;
+    max-width: 100%;
+    margin: 0 12px 28px;
+    font-size: 1rem;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
 }
 
 /* ===============================
@@ -5910,4 +5959,45 @@ html body main.stp-narrow .project-overview h3 {
     white-space: nowrap;
   }
 
+}
+
+
+/* Strong global mobile override: ensure project meta stacks above overview and overview text fills viewport
+   This uses high-specificity selectors and !important to override inline grid on some pages. */
+@media (max-width: 768px) {
+  /* target the common project grid containers */
+  .project-detail .project-detail-grid,
+  .project-detail-grid.container,
+  main.container .project-detail-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+    align-items: stretch !important;
+  }
+
+  /* move meta block above overview */
+  .project-detail .project-meta,
+  .project-detail-grid .project-meta,
+  .project-meta {
+    order: -1 !important;
+    width: 100% !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* overview should fill width and wrap nicely */
+  .project-detail .project-overview,
+  .project-overview {
+    order: 0 !important;
+    width: 100% !important;
+    padding: 0 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  .project-overview p {
+    max-width: 100% !important;
+    margin: 0 0 12px !important;
+    line-height: 1.6 !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
 }

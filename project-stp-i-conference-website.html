@@ -7,6 +7,15 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Mobile-only: move Client/Location above Overview and make overview paragraph fill screen */
+    @media (max-width: 768px) {
+      .project-detail-grid { display: flex !important; flex-direction: column !important; gap: 18px !important; align-items: stretch !important; }
+      .project-meta { order: -1 !important; width: 100% !important; margin-bottom: 12px !important; }
+      .project-overview { order: 0 !important; width: 100% !important; }
+      .project-overview p { max-width: 100% !important; margin: 0 0 12px !important; line-height: 1.6 !important; overflow-wrap: break-word !important; word-break: break-word !important; padding: 0 8px !important; box-sizing: border-box !important; }
+    }
+  </style>
 </head>
 <body>
 

@@ -151,6 +151,32 @@
   .project-hero-grid .grid-item img { height: 260px !important; }
 }
 
+/* Stack top hero images and center them on small screens */
+@media (max-width: 768px) {
+  .page-brijbasi .project-hero-grid .grid {
+    display: block !important;
+    gap: 12px !important;
+    margin: 12px 0 !important;
+  }
+
+  .page-brijbasi .project-hero-grid .grid-item {
+    width: 100% !important;
+    max-width: 420px !important;
+    margin: 0 auto 14px !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    display: block !important;
+  }
+
+  .page-brijbasi .project-hero-grid .grid-item img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    display: block !important;
+    border-radius: 12px !important;
+  }
+}
+
 /* Enforce Edikt mobile overrides here (loaded last) */
 @media (max-width: 480px) {
   /* Stack top hero images and center them */
