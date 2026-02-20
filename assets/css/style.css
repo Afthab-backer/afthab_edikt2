@@ -449,6 +449,48 @@ main.stp-narrow .project-summary p {
   .logo { height: 40px; }
   .navbar { padding: 10px; }
   .footer-flag { width:18px; }
+
+  /* Ensure footer bottom is fully visible on small screens (safe-area aware) */
+  .footer {
+    position: relative; /* keep in normal flow but above overlapping elements */
+    z-index: 10010; /* raise above fixed headers/overlays */
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 20px));
+  }
+
+  .footer-bottom {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 20px));
+    font-size: 14px; /* slightly smaller so content fits on narrow screens */
+  }
+
+  /* Strong visibility guard: ensure nothing (fade/header) overlays footer on very small screens */
+  .footer, .footer-bottom {
+    position: relative !important;
+    z-index: 1000001 !important; /* must exceed custom-cursor z-index (999999) */
+    -webkit-transform: translateZ(0); /* create its own stacking context */
+  }
+
+  /* Push the page bottom fade under the footer on mobile so text isn't visually covered */
+  body::after { z-index: 1 !important; }
+
+  /* Make room for footer and mobile browser UI (bottom bars). Allows footer to scroll above UI. */
+  body {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 28px));
+  }
+
+  /* Reduce the bottom fade height on small screens so it doesn't visually cover footer text */
+  body::after {
+    height: 44px !important;
+    bottom: 0;
+    z-index: 1 !important;
+  }
+
+  .footer-links{
+    gap:12px; /* reduce spacing to avoid wrapping issues */
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  .footer-bottom p { width:100%; margin:6px 0; }
 }
 
 /* LINKS */
@@ -795,6 +837,28 @@ main.stp-narrow .project-summary p {
     opacity 1.05s cubic-bezier(0.22, 0.61, 0.36, 1),
     transform 1.05s cubic-bezier(0.22, 0.61, 0.36, 1),
     filter 1.05s ease;
+}
+
+/* Fix: ensure mobile menu button aligns to the right edge and has no extra left margin.
+   Some earlier responsive blocks set `margin-left:0` but a later global rule added
+   `margin-left:12px`, causing a visible blank gap. This final override guarantees
+   correct alignment on narrow screens and respects safe-area insets. */
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex !important;
+    position: absolute !important;
+    right: calc(12px + env(safe-area-inset-right, 0px)) !important;
+    left: auto !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin-left: 0 !important;
+    width: 44px !important;
+    height: 44px !important;
+    z-index: 10001 !important;
+    background: transparent !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
 }
 
 
@@ -3074,12 +3138,12 @@ section {
 /* CLIENT BOX */
 .client-box {
   min-width: 220px;
-  height: 100px;
   margin: 0 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
+  padding: 10px 0;
 }
 
 .logo-track .client-box {
@@ -3131,7 +3195,7 @@ a, button, .job-btn, .magic-btn, img, input, textarea, select, label {
 .client-box img {
   width: 100%;
   max-width: 200px;
-  height: 100%;
+  height: auto;
   object-fit: contain;
 
   /* premium look */
@@ -3139,7 +3203,6 @@ a, button, .job-btn, .magic-btn, img, input, textarea, select, label {
   opacity: 1;
 
   /* clarity */
-  image-rendering: auto;
   backface-visibility: hidden;
   transform: translateZ(0);
 
@@ -3188,12 +3251,12 @@ a, button, .job-btn, .magic-btn, img, input, textarea, select, label {
     margin: 0 20px;
   }
 
-  /* Speed up the continuous client slider on mobile for snappier motion */
+  /* Slow the continuous client slider on mobile for calmer motion */
   .logo-track {
-    animation-duration: 3s !important; /* very fast mobile scroll */
+    animation-duration: 14s !important; /* slower mobile scroll */
   }
   .logo-slider.reverse .logo-track {
-    animation-duration: 3.5s !important; /* very fast mobile reverse scroll */
+    animation-duration: 16s !important; /* slower mobile reverse scroll */
   }
 
   .client-box img {
@@ -3943,13 +4006,28 @@ img.magnetic-target {
   }
 
   /* Always show bio on mobile */
+  /* Mobile: hide bio by default; show when card is activated (tap) */
   .team-bio {
+    opacity: 0;
+    transform: translateY(18px);
+    pointer-events: none;
+  }
+
+  /* When a card is active (tapped) reveal the bio and hide the brief info */
+  .team-card.active .team-bio,
+  .team-card:focus-within .team-bio {
     opacity: 1;
-    transform: none;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .team-info {
-    display: none;
+    display: block;
+    opacity: 1;
+  }
+
+  .team-card.active .team-info {
+    opacity: 0;
   }
 }
 
@@ -4797,8 +4875,8 @@ section {
   html, body { width: 100%; overflow-x: hidden; }
   .container, .page-about .container, .page-services .container, .page-home .container { max-width: 360px !important; padding-left: 8px !important; padding-right: 8px !important; }
 
-  /* Ensure all images never overflow their parents */
-  img, .about-image img, .service-icon img, .orbit-center img, .talk-right img { max-width: 100% !important; height: auto !important; display: block; }
+  /* Ensure all images never overflow their parents (no !important) */
+  img, .about-image img, .service-icon img, .orbit-center img, .talk-right img { max-width: 100%; height: auto; display: block; }
 
   /* Collapse grids and remove unexpected horizontal spacing */
   .about-row, .about-row.reverse, .services-grid, .stats-grid, .project-tiles .grid, .project-hero-grid .grid { display: block !important; grid-template-columns: none !important; gap: 12px !important; }
@@ -4820,8 +4898,7 @@ section {
   /* Tiny typography adjustments */
   body, p, li { font-size: 0.95rem !important; }
 
-  /* If any element still causes overflow, clip visually but keep layout usable */
-  * { max-width: 100vw !important; }
+  /* If any element still causes overflow, handle specific components rather than using a global star rule. */
 }
 
 .career-card:hover {
@@ -5245,6 +5322,17 @@ section {
 .job-modal.active .job-modal-content {
   transform: translateY(0) scale(1);
   opacity: 1;
+}
+
+/* Mobile: make job modal smaller and scrollable inside to avoid overflowing viewport */
+@media (max-width: 420px) {
+  .job-modal-content {
+    max-height: 50vh;
+    width: 92%;
+    padding: 18px;
+    overflow-y: auto;
+    border-radius: 12px;
+  }
 }
 
 /* ===============================
@@ -6161,3 +6249,53 @@ html body main.stp-narrow .project-overview h3 {
       display: block !important;
     }
   }
+
+
+/* ===============================
+   Fluid responsive utilities + breakpoint system (mobile-first)
+   Appended helpers only — no page-specific overrides here.
+   Use these utilities to replace device-specific tweaks like fixed heights/margins.
+   Examples: padding: clamp(16px, 4vw, 40px); font-size: clamp(14px, 2vw, 18px);
+   =============================== */
+
+:root {
+  --fluid-padding: clamp(16px, 4vw, 40px);
+  --fluid-font-sm: clamp(14px, 2vw, 18px);
+  --fluid-gap: clamp(8px, 2vw, 24px);
+}
+
+/* Utility classes */
+.fluid-padding { padding: var(--fluid-padding) !important; box-sizing: border-box !important; }
+.fluid-text { font-size: var(--fluid-font-sm) !important; }
+.max-full { max-width: 100% !important; }
+.minh-40vh { min-height: 40vh !important; }
+.aspect-4-5 { aspect-ratio: 4 / 5 !important; }
+
+/* Prefer layout-driven sizing over per-device hacks
+   Replace isolated rules like `height:520px;` with `.minh-40vh` or `.aspect-4-5` on the same selector. */
+
+/* Breakpoint system (mobile-first) */
+/* Small phones */
+@media (min-width: 360px) { }
+
+/* Large phones */
+@media (min-width: 480px) { }
+
+/* Tablet */
+@media (min-width: 768px) { }
+
+/* Laptop */
+@media (min-width: 1024px) { }
+
+/* Desktop */
+@media (min-width: 1280px) { }
+
+/* Helpful small-target adjustments (non-invasive)
+   These only nudge common trouble sections to use fluid sizing.
+   Remove or adapt selectors if you prefer direct inline replacements. */
+@media (max-width: 900px) {
+  .logo-slider, .logo-track, .client-box { max-width: 100% !important; }
+  .client-box img { width: auto !important; max-width: 100% !important; height: auto !important; }
+  .service-card p { font-size: var(--fluid-font-sm) !important; }
+}
+

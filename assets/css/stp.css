@@ -578,6 +578,14 @@ body.page-stp {
   box-sizing: border-box !important;
 }
 
+/* Compact fluid utilities for STP/Edikt page-scoped CSS */
+.fluid-padding { padding: clamp(16px, 4vw, 40px) !important; box-sizing: border-box !important; }
+.fluid-text { font-size: clamp(14px, 2vw, 18px) !important; }
+.max-full { max-width: 100% !important; }
+.minh-40vh { min-height: 40vh !important; }
+.aspect-4-5 { aspect-ratio: 4 / 5 !important; }
+
+
 .page-edikt-logo .project-overview {
   width: 100% !important;
   max-width: none !important;
@@ -732,7 +740,49 @@ body.page-stp {
 /* Hide the Edikt page's extra gallery on small screens where it's not needed */
 @media (max-width: 768px) {
   .page-edikt-logo .project-gallery-grid {
-    display: none !important;
+    display: block !important;
   }
+}
+
+/* Mobile slider: convert gallery grid into a horizontal scroll-snap slider */
+@media (max-width: 768px) {
+  .page-edikt-logo .project-gallery-grid .gallery-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 12px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .page-edikt-logo .project-gallery-grid .gallery-grid .grid-item {
+    flex: 0 0 86% !important;
+    min-width: 86% !important;
+    scroll-snap-align: center !important;
+    margin: 0 !important;
+    height: 220px !important; /* fixed card height so image matches */
+    min-height: 220px !important;
+  }
+
+  .page-edikt-logo .project-gallery-grid .gallery-grid .grid-item.large {
+    flex: 0 0 92% !important;
+    min-width: 92% !important;
+    height: 260px !important; /* slightly taller for large tile */
+    min-height: 260px !important;
+  }
+
+  .page-edikt-logo .project-gallery-grid .grid-item img {
+    width: 100% !important;
+    height: 100% !important; /* fill the card height */
+    display: block !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+  }
+
+  /* hide default scrollbars a bit (non-invasive) */
+  .page-edikt-logo .project-gallery-grid .gallery-grid::-webkit-scrollbar { height: 8px; }
+  .page-edikt-logo .project-gallery-grid .gallery-grid::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 8px; }
 }
 

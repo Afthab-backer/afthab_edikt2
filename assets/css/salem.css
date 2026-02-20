@@ -363,6 +363,14 @@
   overflow: hidden !important;
 }
 
+/* Compact fluid utilities for Salem page */
+.fluid-padding { padding: clamp(16px, 4vw, 40px) !important; box-sizing: border-box !important; }
+.fluid-text { font-size: clamp(14px, 2vw, 18px) !important; }
+.max-full { max-width: 100% !important; }
+.minh-40vh { min-height: 40vh !important; }
+.aspect-4-5 { aspect-ratio: 4 / 5 !important; }
+
+
 
 
 

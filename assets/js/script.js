@@ -259,6 +259,43 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 
+  /* ===============================
+     TEAM CARD MOBILE TAP HANDLER
+     - On small/touch devices, toggle `.active` on the tapped card so
+       the bio overlay appears only when the user selects the card.
+     =============================== */
+  document.addEventListener('DOMContentLoaded', () => {
+    function isMobileSized() {
+      return window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window && window.innerWidth <= 1024);
+    }
+
+    if (!isMobileSized()) return;
+
+    const teamCards = Array.from(document.querySelectorAll('.team-card'));
+    if (!teamCards.length) return;
+
+    teamCards.forEach(card => {
+      card.addEventListener('click', function (e) {
+        // if clicking an internal link/button, let it proceed
+        if (e.target.closest('a, button')) return;
+
+        const isActive = card.classList.contains('active');
+        // close any open cards
+        teamCards.forEach(c => c.classList.remove('active'));
+        // toggle this card
+        if (!isActive) card.classList.add('active');
+      });
+    });
+
+    // close active card when tapping outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.team-card')) {
+        teamCards.forEach(c => c.classList.remove('active'));
+      }
+    });
+  });
+
+
 /* ===============================
    JOB MODAL (WORK WITH US)
    =============================== */
