@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us – Edikt Media</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,17 +17,25 @@
   <div id="site-header"></div>
 
 <script>
-  fetch('header.html')
+  fetch('header.html?_=' + Date.now())
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-header').innerHTML = html;
+      const container = document.getElementById('site-header');
+      container.innerHTML = html;
+      // execute any scripts included in the fetched header fragment
+      Array.from(container.querySelectorAll('script')).forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+      });
 
-      // 🔥 INIT HEADER LOGIC AFTER HEADER LOADS
-      initHeaderScroll();
+      // Initialize header behaviors
+      if (typeof initHeaderScroll === 'function') initHeaderScroll();
+      if (typeof initMobileMenu === 'function') initMobileMenu();
     });
 </script>
 
-<script src="assets/js/header.js"></script>
+<script src="assets/js/header.js" defer></script>
 
 <!-- ABOUT CONTENT -->
 <section class="about reveal">
@@ -38,7 +47,7 @@
       <!-- TEXT -->
       <div class="about-text">
         <h2 class="section-title reveal">
-          Get to know about “Edikt Media”
+          Get to know about Edikt Media
         </h2>
 
         <p class="reveal delay-1">
@@ -61,7 +70,7 @@
 
       <!-- IMAGE -->
       <div class="about-image reveal delay-2">
-        <img src="assets/images/extras/About us page image 2.png" alt="Edikt Media Office">
+        <img src="assets/images/extras/About us page image 2.png" alt="Edikt Media Office" loading="lazy">
       </div>
     </div>
 
@@ -70,7 +79,7 @@
 
       <!-- IMAGE -->
       <div class="about-image reveal delay-1">
-        <img src="assets/images/extras/About US page image 1.png" alt="Edikt Media Origin Story">
+        <img src="assets/images/extras/About US page image 1.png" alt="Edikt Media Origin Story" loading="lazy">
       </div>
 
       <!-- TEXT -->

@@ -11,7 +11,7 @@
 .page-salem .project-hero-header {
   margin-bottom: 18px;
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* vertically center arrow with title */
   gap: 18px;
 }
 
@@ -326,7 +326,6 @@
 .page-salem .project-summary p,
 .page-salem .project-overview p,
 .page-salem .project-extra p {
-  font-size: 18px !important;
   margin-bottom: 30px !important;
 }
 
@@ -369,6 +368,56 @@
 .max-full { max-width: 100% !important; }
 .minh-40vh { min-height: 40vh !important; }
 .aspect-4-5 { aspect-ratio: 4 / 5 !important; }
+
+
+
+
+/* Page-scoped: left-align hero subtitle to match hero title */
+.page-salem .project-hero-header .hero-subtitle {
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+
+/* Mobile: crop and fit images, disable hover effects for a stable mobile layout */
+@media (max-width: 768px) {
+  .page-salem .project-fullwidth.full-bleed.reduced,
+  .page-salem .project-fullwidth {
+    overflow: hidden !important;
+  }
+
+  .page-salem .salem-overview-img,
+  .page-salem .post1-image {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important; /* allow full image to scale to width */
+    max-height: none !important;
+    object-fit: contain !important; /* show whole image */
+    object-position: center center !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+
+  /* Disable hover/transform animations on mobile for stable rendering */
+  .page-salem .project-fullwidth.full-bleed.reduced .project-fullwidth-wrap:hover .salem-overview-img,
+  .page-salem .project-fullwidth.full-bleed.reduced .project-fullwidth-wrap:focus .salem-overview-img,
+  .page-salem .project-fullwidth .project-fullwidth-wrap.no-overlay:hover .post1-image,
+  .page-salem .project-fullwidth .project-fullwidth-wrap.no-overlay:focus .post1-image {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Reduce decorative scroll/zoom transitions on wrappers */
+  .page-salem .salem-overview-wrap,
+  .page-salem .project-fullwidth-wrap.no-overlay {
+    transition: none !important;
+  }
+
+  /* Disable hero grid hover zoom on mobile */
+  .page-salem .project-hero-grid .grid-item:hover img,
+  .page-salem .project-hero-grid .grid-item:focus img {
+    transform: none !important;
+  }
+}
 
 
 

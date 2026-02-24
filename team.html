@@ -7,6 +7,7 @@
 
   <!-- GLOBAL STYLES -->
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
 
   <!-- GOOGLE FONT (same as other pages) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,13 +20,18 @@
 <div id="site-header"></div>
 
 <script>
-  fetch('header.html')
+  fetch('header.html?_=' + Date.now())
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-header').innerHTML = html;
-
-      // 🔥 INIT HEADER LOGIC AFTER HEADER LOADS
-      initHeaderScroll();
+      const container = document.getElementById('site-header');
+      container.innerHTML = html;
+      // execute any scripts that came with the header fragment
+      Array.from(container.querySelectorAll('script')).forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+      });
+      if (typeof initHeaderScroll === 'function') initHeaderScroll();
     });
 </script>
 
@@ -49,7 +55,7 @@
     <!-- ROW 1 : 2 MEMBERS -->
     <div class="team-row two reveal-stagger">
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Ajay">
+        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Ajay" loading="lazy">
         <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Ajay</h3>
@@ -67,7 +73,7 @@
       </div>
 
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling women.png" alt="Vinita">
+        <img src="assets\images\extras\Smiling women.png" alt="Vinita" loading="lazy">
         <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Vinita</h3>
@@ -89,7 +95,7 @@
     <!-- ROW 2 : 3 MEMBERS -->
     <div class="team-row three reveal-stagger">
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Saif">
+        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Saif" loading="lazy">
          <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Saif</h3>
@@ -108,7 +114,7 @@
       </div>
 
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling women.png" alt="Pooja">
+        <img src="assets\images\extras\Smiling women.png" alt="Pooja" loading="lazy">
          <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Pooja</h3>
@@ -126,7 +132,7 @@
       </div>
 
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling women.png" alt="Janhavi">
+        <img src="assets\images\extras\Smiling women.png" alt="Janhavi" loading="lazy">
          <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Janhavi</h3>
@@ -146,7 +152,7 @@
     <!-- ROW 3 : 3 MEMBERS -->
     <div class="team-row three reveal-stagger">
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Harish">
+        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Harish" loading="lazy">
          <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Harish</h3>
@@ -164,7 +170,7 @@
       </div>
 
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Afthab">
+        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Afthab" loading="lazy">
          <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Afthab</h3>
@@ -182,7 +188,7 @@
       </div>
 
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Fauzan">
+        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Fauzan" loading="lazy">
          <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Fauzan</h3>
@@ -216,9 +222,9 @@
 </script>
 
 <!-- ================= GLOBAL SCRIPT ================= -->
-<script src="assets/js/script.js"></script>
+<script src="assets/js/script.js" defer></script>
 
-<script src="assets/js/scroll-reveal.js"></script>
+<script src="assets/js/scroll-reveal.js" defer></script>
 
 
 </body>

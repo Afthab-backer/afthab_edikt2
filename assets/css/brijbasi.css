@@ -580,4 +580,56 @@
 .minh-40vh { min-height: 40vh !important; }
 .aspect-4-5 { aspect-ratio: 4 / 5 !important; }
 
+/* Mobile-only: make Brijabsi pages full-bleed and left-align text */
+@media (max-width: 820px) {
+  body.page-brijbasi .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* preserve vertical padding, remove horizontal padding only */
+  body.page-brijbasi main.container.project-page {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* make main sections span full width and remove side gutters */
+  body.page-brijbasi .project-hero-header,
+  body.page-brijbasi .project-hero-grid,
+  body.page-brijbasi .project-detail,
+  body.page-brijbasi .project-summary,
+  body.page-brijbasi .project-gallery-grid,
+  body.page-brijbasi .project-fullwidth,
+  body.page-brijbasi .project-fullwidth-image {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* left-align all headings and paragraphs on mobile */
+  body.page-brijbasi h1,
+  body.page-brijbasi h2,
+  body.page-brijbasi h3,
+  body.page-brijbasi h4,
+  body.page-brijbasi h5,
+  body.page-brijbasi h6,
+  body.page-brijbasi p {
+    text-align: left !important;
+  }
+}
+
+/* Shorten the back arrow on Brijabsi project pages (reduce horizontal scale) */
+body.page-brijbasi .project-hero-header .hero-back .hero-arrow,
+body.page-brijbasi .hero-arrow {
+  transform: scaleX(1.15) !important; /* shorter than site default */
+  font-size: 36px !important;
+}
+
 

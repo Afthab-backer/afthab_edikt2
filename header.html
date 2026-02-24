@@ -1,4 +1,28 @@
 <header class="header">
+  <style>
+    /* Inline header-scoped mobile override to ensure fetched header works across pages */
+    @media (max-width: 768px) {
+      header .navbar { display: none; }
+      header .navbar.active {
+        display: flex !important;
+        flex-direction: column !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        pointer-events: auto !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 12px !important;
+        right: 12px !important;
+        margin-top: 8px !important;
+        border-radius: 12px !important;
+        padding: 12px 16px !important;
+        box-shadow: 0 18px 40px rgba(0,0,0,0.08) !important;
+        z-index: 1000 !important;
+      }
+      header .mobile-menu-toggle { display: flex !important; z-index: 1100 !important; pointer-events: auto !important; }
+    }
+  </style>
   <div class="container">
     <div class="header-content">
 
@@ -19,7 +43,7 @@
         <a href="work_with_us.html" class="mobile-only">Work with us</a>
       </nav>
 
-      <!-- MOBILE MENU TOGGLE -->
+      <!-- MOBILE MENU TOGGLE (inline fallback onclick added) -->
       <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span class="menu-icon"></span>
       </button>
@@ -37,3 +61,38 @@
   </div>
 
 </header>
+
+<!-- Inline fallback script: ensures mobile toggle works even if external JS misses binding -->
+<script>
+  (function(){
+    if (window._inlineMobileToggleAdded) return; window._inlineMobileToggleAdded = true;
+    function safeToggle(btn){
+      try {
+        // short debounce to avoid double-toggle when pointerdown and click both fire
+        var now = Date.now();
+        if (btn._lastToggle && (now - btn._lastToggle) < 400) return;
+        btn._lastToggle = now;
+
+        var header = btn.closest ? btn.closest('header') : document.querySelector('header');
+        var nav = (header && header.querySelector('.navbar')) || document.querySelector('.navbar');
+        if (!nav) return;
+        nav.classList.toggle('active');
+        btn.classList.toggle('active');
+        try{ btn.setAttribute('aria-expanded', btn.classList.contains('active') ? 'true' : 'false'); }catch(e){}
+      } catch (e) { console.warn('inline toggle failed', e); }
+    }
+
+    document.addEventListener('click', function(e){
+      var t = e.target && e.target.closest && e.target.closest('.mobile-menu-toggle');
+      if (t) safeToggle(t);
+    }, true);
+
+    // pointerdown as a capture fallback for some mobile browsers
+    document.addEventListener('pointerdown', function(e){
+      var t = e.target && e.target.closest && e.target.closest('.mobile-menu-toggle');
+      if (t) {
+        safeToggle(t);
+      }
+    }, true);
+  })();
+</script>

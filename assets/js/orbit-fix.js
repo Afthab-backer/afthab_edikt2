@@ -6,7 +6,6 @@
   function qa(sel, root=document){ return Array.from((root||document).querySelectorAll(sel)); }
 
   document.addEventListener('DOMContentLoaded', function(){
-    console.log('orbit-fix.js loaded');
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const wrapper = q('.orbit-wrapper');

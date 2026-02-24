@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Edikt Media – Creative Agency | BRAND BUILD BETTER</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
@@ -23,7 +24,7 @@
   <div id="site-header"></div>
 
   <script>
-    fetch('header.html')
+    fetch('header.html?_=' + Date.now())
       .then(res => res.text())
       .then(html => {
         document.getElementById('site-header').innerHTML = html;
@@ -79,7 +80,7 @@
 
   </div>
 
-  <script src="assets/js/scroll-reveal.js"></script>
+  <script src="assets/js/scroll-reveal.js" defer></script>
 
 
 
@@ -98,6 +99,45 @@
               <img src="assets/images/orbit_section/Branding Animation Image.png">
               <span>Branding</span>
             </div>
+
+    <script>
+      window.addEventListener('load', function forceMobileMarquee(){
+          try {
+          if (window.innerWidth > 768) return;
+          const track = document.querySelector('.logo-track');
+          if (!track) return;
+          track.style.animation = 'none';
+          // assume we have 3 cycles (we duplicated server-side). derive original count
+          var total = track.querySelectorAll('.client-box').length;
+          var originalCount = Math.max(1, Math.floor(total / 3));
+          var originals = Array.from(track.querySelectorAll('.client-box')).slice(0, originalCount);
+          var cycleWidth = originals.reduce(function(sum, el){
+            var r = el.getBoundingClientRect();
+            var style = getComputedStyle(el);
+            var mL = parseFloat(style.marginLeft) || 0;
+            var mR = parseFloat(style.marginRight) || 0;
+            return sum + (r.width || el.offsetWidth || 0) + mL + mR;
+          }, 0) || (track.scrollWidth / 3) || window.innerWidth;
+
+          // start JS loop
+          var x = 0;
+          var last = performance.now();
+          var duration = 32; // mobile speed (seconds per cycle)
+          var speed = cycleWidth / duration;
+          function frame(now){
+            var dt = (now - last) / 1000; last = now;
+            x -= speed * dt;
+            if (x <= -cycleWidth) x += cycleWidth;
+            track.style.transform = 'translateX(' + Math.round(x) + 'px)';
+            track._marq = requestAnimationFrame(frame);
+          }
+          if (track._marq) cancelAnimationFrame(track._marq);
+          track._marq = requestAnimationFrame(frame);
+        } catch (e) {
+          console.error('forceMobileMarquee failed', e);
+        }
+      });
+    </script>
           </div>
 
           <div class="orbit" style="--angle:51.428deg">
@@ -149,7 +189,7 @@
   </div>
 </section>
 
-  <script src="assets/js/orbit-fix.js"></script>
+  <script src="assets/js/orbit-fix.js" defer></script>
 
   
 
@@ -381,53 +421,164 @@
   <div class="clients-slider-wrapper reveal delay-2">
     <div class="logo-slider">
       <div class="logo-track">
-            <div class="client-box"><img src="assets\images\clients\allcargo.png"></div>
-            <div class="client-box"><img src="assets\images\clients\amber.png"></div>
-            <div class="client-box"><img src="assets\images\clients\AQUAMETRO.jpeg"></div>
-            <div class="client-box"><img src="assets\images\clients\atlantic.webp"></div>
-            <div class="client-box"><img src="assets\images\clients\atnt.jpeg"></div>
-            <div class="client-box"><img src="assets\images\clients\ATRAC.jpg"></div>
-            <div class="client-box"><img src="assets\images\clients\autodesk.jpg"></div>
-            <div class="client-box"><img src="assets\images\clients\Bhastrik.avif"></div>
-            <div class="client-box"><img src="assets\images\clients\brijbasi.webp"></div>
-            <div class="client-box"><img src="assets\images\clients\bull.jpg"></div>
-            <div class="client-box"><img src="assets\images\clients\canyon.png"></div>
-            <div class="client-box"><img src="assets\images\clients\Chemtrols.png"></div>
-            <div class="client-box"><img src="assets\images\clients\chowgule.png"></div>
-            <div class="client-box"><img src="assets\images\clients\CKA.png"></div>
-            <div class="client-box"><img src="assets\images\clients\DeeTee.jpeg"></div>
-            <div class="client-box"><img src="assets\images\clients\dolphin.jpeg"></div>
-            <div class="client-box"><img src="assets\images\clients\endless.webp"></div>
-            <div class="client-box"><img src="assets\images\clients\firefly.webp"></div>
-            <div class="client-box"><img src="assets\images\clients\HASELMEIER.jpg"></div>
-            <div class="client-box"><img src="assets\images\clients\HHV.png"></div>
-            <div class="client-box"><img src="assets\images\clients\jackson.png"></div>
-            <div class="client-box"><img src="assets\images\clients\madhu.png"></div>
+        <div class="client-box"><img src="assets\images\clients\allcargo.png"></div>
+        <div class="client-box"><img src="assets\images\clients\amber.png"></div>
+        <div class="client-box"><img src="assets\images\clients\AQUAMETRO.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\atlantic.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\atnt.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\ATRAC.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\autodesk.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\Bhastrik.avif"></div>
+        <div class="client-box"><img src="assets\images\clients\brijbasi.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\bull.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\canyon.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Chemtrols.png"></div>
+        <div class="client-box"><img src="assets\images\clients\chowgule.png"></div>
+        <div class="client-box"><img src="assets\images\clients\CKA.png"></div>
+        <div class="client-box"><img src="assets\images\clients\DeeTee.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\dolphin.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\endless.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\firefly.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\HASELMEIER.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\HHV.png"></div>
+        <div class="client-box"><img src="assets\images\clients\jackson.png"></div>
+        <div class="client-box"><img src="assets\images\clients\madhu.png"></div>
 
-          <div class="client-box"><img src="assets\images\clients\Mallak.jpg"></div>
-          <div class="client-box"><img src="assets\images\clients\MARUn PETRO Chemical Group.jpeg"></div>
-          <div class="client-box"><img src="assets\images\clients\micro-tech.jpeg"></div>
-          <div class="client-box"><img src="assets\images\clients\muller.png"></div>
-          <div class="client-box"><img src="assets\images\clients\Nail.jpeg"></div>
-          <div class="client-box"><img src="assets\images\clients\orion.jpeg"></div>
-          <div class="client-box"><img src="assets\images\clients\patidar.png"></div>
-          <div class="client-box"><img src="assets\images\clients\Protia.jpeg"></div>
-          <div class="client-box"><img src="assets\images\clients\ridley.avif"></div>
-          <div class="client-box"><img src="assets\images\clients\Ruhrpumpen.jpeg"></div>
-          <div class="client-box"><img src="assets\images\clients\sailcarb.jpeg"></div>
-          <div class="client-box"><img src="assets\images\clients\SALEM.jpeg"></div>
-          <div class="client-box"><img src="assets\images\clients\Sman.jpg"></div>
-          <div class="client-box"><img src="assets\images\clients\sodick.jpeg"></div>
-          <div class="client-box"><img src="assets\images\clients\SRI DEVARAJA.webp"></div>
-          <div class="client-box"><img src="assets\images\clients\stp.png"></div>
-          <div class="client-box"><img src="assets\images\clients\suncity-sheets.webp"></div>
-          <div class="client-box"><img src="assets\images\clients\The Jackson Laboratory.png"></div>
-          <div class="client-box"><img src="assets\images\clients\Transformers and Rectifiers.jpg"></div>
-          <div class="client-box"><img src="assets\images\clients\unicon.jpg"></div>
-          <div class="client-box"><img src="assets\images\clients\wacom.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\Mallak.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\MARUn PETRO Chemical Group.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\micro-tech.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\muller.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Nail.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\orion.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\patidar.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Protia.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\ridley.avif"></div>
+        <div class="client-box"><img src="assets\images\clients\Ruhrpumpen.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\sailcarb.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\SALEM.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\Sman.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\sodick.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\SRI DEVARAJA.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\stp.png"></div>
+        <div class="client-box"><img src="assets\images\clients\suncity-sheets.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\The Jackson Laboratory.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Transformers and Rectifiers.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\unicon.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\wacom.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\Evvolution.svg"></div>
+        <div class="client-box"><img src="assets\images\clients\Regal stones.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Shivam multi microns.avif"></div>
+        <div class="client-box"><img src="assets\images\clients\Umpire Technologies.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\Umpire cnc.avif"></div>
+        <div class="client-box"><img src="assets\images\clients\CIG.avif"></div>
+
+        <!-- second cycle -->
+        <div class="client-box"><img src="assets\images\clients\allcargo.png"></div>
+        <div class="client-box"><img src="assets\images\clients\amber.png"></div>
+        <div class="client-box"><img src="assets\images\clients\AQUAMETRO.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\atlantic.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\atnt.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\ATRAC.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\autodesk.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\Bhastrik.avif"></div>
+        <div class="client-box"><img src="assets\images\clients\brijbasi.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\bull.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\canyon.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Chemtrols.png"></div>
+        <div class="client-box"><img src="assets\images\clients\chowgule.png"></div>
+        <div class="client-box"><img src="assets\images\clients\CKA.png"></div>
+        <div class="client-box"><img src="assets\images\clients\DeeTee.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\dolphin.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\endless.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\firefly.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\HASELMEIER.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\HHV.png"></div>
+        <div class="client-box"><img src="assets\images\clients\jackson.png"></div>
+        <div class="client-box"><img src="assets\images\clients\madhu.png"></div>
+
+        <div class="client-box"><img src="assets\images\clients\Mallak.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\MARUn PETRO Chemical Group.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\micro-tech.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\muller.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Nail.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\orion.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\patidar.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Protia.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\ridley.avif"></div>
+        <div class="client-box"><img src="assets\images\clients\Ruhrpumpen.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\sailcarb.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\SALEM.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\Sman.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\sodick.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\SRI DEVARAJA.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\stp.png"></div>
+        <div class="client-box"><img src="assets\images\clients\suncity-sheets.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\The Jackson Laboratory.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Transformers and Rectifiers.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\unicon.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\wacom.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\Evvolution.svg"></div>
+        <div class="client-box"><img src="assets\images\clients\Regal stones.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Shivam multi microns.avif"></div>
+        <div class="client-box"><img src="assets\images\clients\Umpire Technologies.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\Umpire cnc.avif"></div>
+        <div class="client-box"><img src="assets\images\clients\CIG.avif"></div>
+
+        <!-- third cycle -->
+        <div class="client-box"><img src="assets\images\clients\allcargo.png"></div>
+        <div class="client-box"><img src="assets\images\clients\amber.png"></div>
+        <div class="client-box"><img src="assets\images\clients\AQUAMETRO.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\atlantic.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\atnt.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\ATRAC.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\autodesk.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\Bhastrik.avif"></div>
+        <div class="client-box"><img src="assets\images\clients\brijbasi.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\bull.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\canyon.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Chemtrols.png"></div>
+        <div class="client-box"><img src="assets\images\clients\chowgule.png"></div>
+        <div class="client-box"><img src="assets\images\clients\CKA.png"></div>
+        <div class="client-box"><img src="assets\images\clients\DeeTee.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\dolphin.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\endless.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\firefly.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\HASELMEIER.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\HHV.png"></div>
+        <div class="client-box"><img src="assets\images\clients\jackson.png"></div>
+        <div class="client-box"><img src="assets\images\clients\madhu.png"></div>
+
+        <div class="client-box"><img src="assets\images\clients\Mallak.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\MARUn PETRO Chemical Group.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\micro-tech.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\muller.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Nail.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\orion.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\patidar.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Protia.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\ridley.avif"></div>
+        <div class="client-box"><img src="assets\images\clients\Ruhrpumpen.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\sailcarb.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\SALEM.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\Sman.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\sodick.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\SRI DEVARAJA.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\stp.png"></div>
+        <div class="client-box"><img src="assets\images\clients\suncity-sheets.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\The Jackson Laboratory.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Transformers and Rectifiers.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\unicon.jpg"></div>
+        <div class="client-box"><img src="assets\images\clients\wacom.jpeg"></div>
+        <div class="client-box"><img src="assets\images\clients\Evvolution.svg"></div>
+        <div class="client-box"><img src="assets\images\clients\Regal stones.png"></div>
+        <div class="client-box"><img src="assets\images\clients\Shivam multi microns.avif"></div>
+        <div class="client-box"><img src="assets\images\clients\Umpire Technologies.webp"></div>
+        <div class="client-box"><img src="assets\images\clients\Umpire cnc.avif"></div>
+        <div class="client-box"><img src="assets\images\clients\CIG.avif"></div>
+
+        </div>
           </div>
         </div>
-      </div>
 
 
 
@@ -779,12 +930,65 @@
     });
 </script>
 
-  <script src="assets/js/script.js"></script>
+  <script src="assets/js/script.js" defer></script>
 
 
 
-<script src="assets/js/scroll-reveal.js"></script>
+<script src="assets/js/scroll-reveal.js" defer></script>
+  </script>
 
+  <script>
+    // Hide any visible "Built with Spline" badge on small screens.
+    (function hideSplineBadgeOnMobile(){
+      if (window.innerWidth > 768) return; // only on mobile sizes
 
-</body>
+      function hideBadges(root=document){
+        try {
+          // hide by known selectors
+          ['.spline-badge', '.built-with-spline', '.spline-credit', '.badge', '.credit'].forEach(sel => {
+            document.querySelectorAll(sel).forEach(el => el.style.display = 'none');
+          });
+
+          // hide anchors linking to spline.design
+          document.querySelectorAll('a[href*="spline"]').forEach(a => a.style.display = 'none');
+
+          // search for any element that contains the text 'Built with Spline' and hide it
+          Array.from((root || document).querySelectorAll('*')).forEach(el => {
+            if (!el || !el.innerText) return;
+            if (/built\s+with\s+spline/i.test(el.innerText)) el.style.display = 'none';
+          });
+        } catch (e) { /* ignore */ }
+      }
+
+      // run immediately
+      hideBadges();
+
+      // observe DOM for injected badges (runs briefly)
+      const obs = new MutationObserver((mutations) => {
+        hideBadges();
+      });
+      obs.observe(document.body, { childList: true, subtree: true });
+
+      // stop observing after 4s
+      setTimeout(() => obs.disconnect(), 4000);
+    })();
+  </script>
+
+  </body>
 </html>
+
+  <script>
+    // Append a visual cover inside the spline wrapper on small screens
+    (function appendSplineBadgeCover(){
+      if (window.innerWidth > 768) return;
+      const wrapper = document.querySelector('.spline-wrapper');
+      if (!wrapper) return;
+      if (wrapper.querySelector('.spline-badge-cover')) return; // already added
+
+      const cover = document.createElement('div');
+      cover.className = 'spline-badge-cover';
+      // ensure it's appended after spline viewer so it sits above
+      wrapper.appendChild(cover);
+    })();
+  </script>
+

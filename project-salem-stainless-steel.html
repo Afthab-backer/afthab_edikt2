@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Event |Edikt Media</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <link rel="stylesheet" href="assets/css/salem.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
@@ -16,11 +17,17 @@
   <div id="site-header"></div>
 
   <script>
-    fetch('header.html')
+    fetch('header.html?_=' + Date.now())
       .then(res => res.text())
       .then(html => {
-        document.getElementById('site-header').innerHTML = html;
-        initHeaderScroll();
+        const container = document.getElementById('site-header');
+        container.innerHTML = html;
+        Array.from(container.querySelectorAll('script')).forEach(s => {
+          const ns = document.createElement('script');
+          if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+          else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+        });
+        if (typeof initHeaderScroll === 'function') initHeaderScroll();
       });
   </script>
 
@@ -29,7 +36,7 @@
   <main class="container">
     <div class="project-hero-header">
       <a href="project.html" class="hero-back" aria-label="Back to projects" title="Back to projects">
-        <span class="hero-arrow-large" aria-hidden="true">←</span>
+        <span class="hero-arrow-large" aria-hidden="true" style="transform:translateY(-50%) scaleX(0.95);">←</span>
       </a>
 
       <div class="hero-texts">

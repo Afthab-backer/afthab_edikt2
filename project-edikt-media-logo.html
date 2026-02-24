@@ -6,6 +6,7 @@
   <title>Event |Edikt Media</title>
 
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <link rel="stylesheet" href="assets/css/project.css">
   <link rel="stylesheet" href="assets/css/edikt.css">
   <link rel="stylesheet" href="assets/css/stp.css">
@@ -14,7 +15,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
-  <!-- Inline styles moved to assets/css/stp.css -->
+  <!-- Page-specific mobile CSS moved to assets/css/edikt.css -->
 </head>
 
 <body class="page-edikt-logo">
@@ -22,12 +23,12 @@
   <div id="site-header"></div>
 
   <script>
-    fetch('header.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('site-header').innerHTML = html;
-        initHeaderScroll();
-      });
+      fetch('header.html?_=' + Date.now())
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('site-header').innerHTML = html;
+          initHeaderScroll();
+        });
   </script>
 
   <script src="assets/js/header.js"></script>

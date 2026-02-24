@@ -7,6 +7,7 @@
 
   <!-- GLOBAL STYLES -->
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
 
   <!-- GOOGLE FONT (same as other pages) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,16 +19,19 @@
 <!-- ================= HEADER ================= -->
 <div id="site-header"></div>
 
-<script>
-  fetch('header.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('site-header').innerHTML = html;
-
-      // 🔥 INIT HEADER LOGIC AFTER HEADER LOADS
-      initHeaderScroll();
-    });
-</script>
+  <script>
+    fetch('header.html?_=' + Date.now())
+      .then(res => res.text())
+      .then(html => {
+        const container = document.getElementById('site-header');
+        container.innerHTML = html;
+        Array.from(container.querySelectorAll('script')).forEach(s => {
+          const ns = document.createElement('script');
+          if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+          else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+        });
+      });
+  </script>
 
 <script src="assets/js/header.js"></script>
 
@@ -92,6 +96,12 @@
 <div class="client-card fade-in"><img src="assets\images\clients\Transformers and Rectifiers.jpg" loading="lazy"></div>
 <div class="client-card fade-in"><img src="assets\images\clients\unicon.jpg" loading="lazy"></div>
 <div class="client-card fade-in"><img src="assets\images\clients\wacom.jpeg" loading="lazy"></div>
+<div class="client-card fade-in"><img src="assets\images\clients\Evvolution.svg" loading="lazy"></div>
+<div class="client-card fade-in"><img src="assets\images\clients\Regal stones.png" loading="lazy"></div>
+<div class="client-card fade-in"><img src="assets\images\clients\Shivam multi microns.avif" loading="lazy"></div>
+<div class="client-card fade-in"><img src="assets\images\clients\Umpire Technologies.webp" loading="lazy"></div>
+<div class="client-card fade-in"><img src="assets\images\clients\Umpire cnc.avif" loading="lazy"></div>
+<div class="client-card fade-in"><img src="assets\images\clients\CIG.avif" loading="lazy"></div>
 
 
 

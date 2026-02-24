@@ -3,6 +3,17 @@
 
   <div class="container">
 
+    <style>
+      /* Footer - reduce social SVG sizes and keep touch target comfortable */
+      .footer-socials a { display: inline-flex; align-items: center; justify-content: center; padding: 6px; }
+      .footer-socials svg { width: 22px; height: 22px; display: block; }
+      @media (max-width:480px) { .footer-socials svg { width: 20px; height: 20px; } }
+
+      /* Slightly reduce footer logo to improve balance */
+      .footer-logo { max-width: 150px; width: auto; height: auto; display: block; }
+      @media (max-width:480px) { .footer-logo { max-width: 120px; } }
+    </style>
+
     <div class="footer-content reveal-stagger">
 
       <!-- BRAND COLUMN -->

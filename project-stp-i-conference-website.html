@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Event |Edikt Media</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
@@ -14,6 +15,35 @@
       .project-meta { order: -1 !important; width: 100% !important; margin-bottom: 12px !important; }
       .project-overview { order: 0 !important; width: 100% !important; }
       .project-overview p { max-width: 100% !important; margin: 0 0 12px !important; line-height: 1.6 !important; overflow-wrap: break-word !important; word-break: break-word !important; padding: 0 8px !important; box-sizing: border-box !important; }
+      /* Hide the top 3 tiles on mobile only (left, center, right) */
+      .project-tiles .tiles-row.tiles-top { display: none !important; }
+    }
+      /* Page-scoped: reduce tile heights and inner padding to remove empty space below */
+      .project-tiles .tile { min-height: 0 !important; }
+      .project-tiles .tile-left,
+      .project-tiles .tile-right .tile-top,
+      .project-tiles .tile-bottom { min-height: 0 !important; }
+      .project-tiles .tile-inner { padding: 12px 16px !important; }
+      .project-tiles .tiles-top .tile-left .tile-inner { padding-bottom: 12px !important; }
+      .project-tiles .tile-inner.logo-circle img { max-height: 140px !important; width: auto !important; }
+      .project-tiles .tile-bottom .right-bottom img { height: auto !important; max-height: 160px !important; object-fit: cover !important; }
+  </style>
+  <style>
+    /* Tighten the brand-spec tile on small screens to remove empty purple space */
+    @media (max-width: 768px) {
+      .project-tiles .brand-spec {
+        flex: 1 1 auto !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 12px !important;
+        min-height: 0 !important;
+      }
+
+      .project-tiles .brand-columns { display: block !important; gap: 12px !important; }
+      .project-tiles .brand-col { padding: 8px 0 !important; }
+      .project-tiles .brand-title { font-size: 1.35rem !important; }
+      .project-tiles .brand-sample { font-size: 0.95rem !important; }
+      .project-tiles .brand-font { font-size: 1rem !important; }
     }
   </style>
 </head>
@@ -24,11 +54,17 @@
   <div id="site-header"></div>
 
   <script>
-    fetch('header.html')
+    fetch('header.html?_=' + Date.now())
       .then(res => res.text())
       .then(html => {
-        document.getElementById('site-header').innerHTML = html;
-        initHeaderScroll();
+        const container = document.getElementById('site-header');
+        container.innerHTML = html;
+        Array.from(container.querySelectorAll('script')).forEach(s => {
+          const ns = document.createElement('script');
+          if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+          else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+        });
+        if (typeof initHeaderScroll === 'function') initHeaderScroll();
       });
   </script>
 
@@ -37,12 +73,12 @@
   <main class="container stp-narrow" style="padding:60px 0;">
     <div class="project-hero-header" style="margin-bottom:18px; display:flex; align-items:flex-start; gap:18px;">
       <a href="project.html" class="hero-back" aria-label="Back to projects" title="Back to projects" style="text-decoration:none; color:inherit;">
-        <span class="hero-arrow-large" aria-hidden="true" style="color:#14A44D; font-size:40px; transform:scaleX(2); display:inline-block; line-height:1; vertical-align:middle; pointer-events:none;">←</span>
+        <span class="hero-arrow-large" aria-hidden="true" style="color:#14A44D; font-size:40px; transform:scaleX(1.15); display:inline-block; line-height:1; vertical-align:middle; pointer-events:none;">←</span>
       </a>
 
-      <div class="hero-texts">
+      <div class="hero-texts" style="text-align:left;">
         <h1 class="hero-title reveal delay-1">STP-I Conference Website</h1>
-        <p class="hero-subtitle reveal delay-2">Designing a Seamless Registration &amp; Information Hub for Scientific Minds</p>
+        <p class="hero-subtitle reveal delay-2" style="text-align:left;">Designing a Seamless Registration &amp; Information Hub for Scientific Minds</p>
       </div>
     </div>
 

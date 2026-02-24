@@ -6,6 +6,7 @@
   <title>Event |Edikt Media</title>
 
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <!-- page-specific sizing (use style.css as main source; avoid project.css for this page) -->
   <link rel="stylesheet" href="assets/css/brijbasi.css">
 
@@ -20,11 +21,17 @@
   <div id="site-header"></div>
 
   <script>
-    fetch('header.html')
+    fetch('header.html?_=' + Date.now())
       .then(res => res.text())
       .then(html => {
-        document.getElementById('site-header').innerHTML = html;
-        initHeaderScroll();
+        const container = document.getElementById('site-header');
+        container.innerHTML = html;
+        Array.from(container.querySelectorAll('script')).forEach(s => {
+          const ns = document.createElement('script');
+          if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+          else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+        });
+        if (typeof initHeaderScroll === 'function') initHeaderScroll();
       });
   </script>
 

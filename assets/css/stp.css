@@ -65,13 +65,12 @@ body.page-stp {
 
 .page-stp .hero-title {
   font-family: 'Outfit', sans-serif !important;
-  font-size: 42px !important;
   margin: 0 !important;
 }
 
 .page-stp .hero-subtitle {
   margin-top: 8px !important;
-  font-size: 18px !important;
+  font-size: 16px !important;
   color: #666 !important;
 }
 
@@ -276,7 +275,7 @@ body.page-stp {
 
 /* Force STP-like typography and sizing for this page */
 .page-edikt-logo { font-family: 'Poppins', sans-serif !important; color: #111 !important; }
-.page-edikt-logo .hero-title { font-family: 'Outfit', sans-serif !important; font-size: 42px !important; margin: 0 !important; }
+.page-edikt-logo .hero-title { font-family: 'Outfit', sans-serif !important; margin: 0 !important; }
 .page-edikt-logo .hero-subtitle { font-size: 18px !important; color: #666 !important; margin-top: 8px !important; }
 
 .page-edikt-logo .project-overview p,
@@ -785,4 +784,26 @@ body.page-stp {
   .page-edikt-logo .project-gallery-grid .gallery-grid::-webkit-scrollbar { height: 8px; }
   .page-edikt-logo .project-gallery-grid .gallery-grid::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 8px; }
 }
+
+
+/* STP page: shorten the back-arrow only — do NOT change its vertical position. */
+.page-stp .project-hero-header {
+  /* keep original alignment from inline HTML (flex-start) */
+  align-items: flex-start !important;
+  gap: 18px !important;
+}
+
+.page-stp .project-hero-header .hero-back {
+  display: inline-block !important; /* preserve original inline flow/position */
+}
+
+.page-stp .project-hero-header .hero-arrow-large {
+  font-size: 28px !important;         /* reduce visual size */
+  transform: scaleX(1.15) !important; /* shorten horizontal stretch only */
+  margin-right: 8px !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+  pointer-events: none !important;
+}
+
 

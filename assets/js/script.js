@@ -56,6 +56,94 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => observer.disconnect(), 5000);
 });
 
+// Bulletproof delegated toggle: works even when header is injected later
+if (!window._mobileMenuDelegateAdded) {
+  document.addEventListener('click', function (e) {
+    const toggle = e.target && e.target.closest && e.target.closest('.mobile-menu-toggle');
+    if (!toggle) return;
+
+    // prefer navbar inside same header if present
+    const header = toggle.closest && toggle.closest('.header');
+    const navbar = (header && header.querySelector('.navbar')) || document.querySelector('.navbar');
+    if (!navbar) return;
+
+    navbar.classList.toggle('active');
+    toggle.classList.toggle('active');
+    try { toggle.setAttribute('aria-expanded', toggle.classList.contains('active') ? 'true' : 'false'); } catch (e) {}
+  }, false);
+  window._mobileMenuDelegateAdded = true;
+}
+
+
+/* ==================================================================
+   Watch for injected header fragment and execute any inline scripts
+   This solves the common issue where pages fetch('header.html') and
+   assign innerHTML — script tags inside innerHTML don't execute.
+   ================================================================== */
+(function watchInjectedHeader(){
+  if (window._headerWatcherAdded) return; window._headerWatcherAdded = true;
+
+  const runScriptsInNode = (node) => {
+    try {
+      const scripts = Array.from(node.querySelectorAll('script'));
+      scripts.forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) {
+          ns.src = s.src;
+          if (s.type) ns.type = s.type;
+          if (s.defer) ns.defer = true;
+          document.head.appendChild(ns);
+        } else {
+          ns.textContent = s.textContent;
+          document.body.appendChild(ns);
+        }
+      });
+    } catch (e) { console.warn('runScriptsInNode failed', e); }
+  };
+
+  const observer = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+      for (const n of m.addedNodes) {
+        if (n.nodeType !== 1) continue;
+        // header could be inserted as <header class="header"> or inside #site-header container
+        if (n.matches && (n.matches('header.header') || n.matches('#site-header'))) {
+          const headerEl = n.matches('header.header') ? n : n.querySelector('header.header');
+          if (headerEl) {
+            runScriptsInNode(headerEl);
+            // re-run mobile menu init to bind listeners if needed
+            try { initMobileMenu(); } catch (e) {}
+          }
+        }
+        // also handle the case where header is nested deeper
+        const headerChild = n.querySelector && n.querySelector('header.header');
+        if (headerChild) {
+          runScriptsInNode(headerChild);
+          try { initMobileMenu(); } catch (e) {}
+        }
+      }
+    }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // if header already present on load, ensure scripts run
+  // If the header was injected before this script ran, run scripts immediately
+  const existingNow = document.querySelector('header.header') || document.querySelector('#site-header');
+  if (existingNow) {
+    runScriptsInNode(existingNow);
+    try { initMobileMenu(); } catch (e) {}
+  } else {
+    document.addEventListener('DOMContentLoaded', () => {
+      const existing = document.querySelector('header.header') || document.querySelector('#site-header');
+      if (existing) {
+        runScriptsInNode(existing);
+        try { initMobileMenu(); } catch (e) {}
+      }
+    });
+  }
+
+})();
+
 
 /* ===============================
    CONTACT FORM
@@ -103,6 +191,20 @@ if (contactForm) {
   });
 })();
 
+// Ensure hero and orbit elements are visible immediately on small viewports
+// This prevents a rare case where the IntersectionObserver doesn't trigger
+// for certain device-emulation sizes (e.g. 430x932) and elements remain hidden.
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    if (window.matchMedia && window.matchMedia('(max-width: 768px)').matches) {
+      const forceShow = document.querySelectorAll('.hero, .hero-title, .hero-subtitle, .orbit-wrapper');
+      forceShow.forEach(el => el.classList.add('revealed'));
+    }
+  } catch (e) {
+    // defensive: do not interrupt other scripts
+    console.warn('force reveal failed', e);
+  }
+});
 
 /* ===============================
    ACTIVE NAV LINK
@@ -257,6 +359,145 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('touchend', () => blob.classList.remove('blob--active'));
 
 })();
+
+
+/* ===============================
+   DUPLICATE LOGO TRACK FOR MARQUEE (robust)
+   Duplicate logos until the track's width comfortably exceeds the
+   container width so the CSS marquee can loop without gaps. Waits
+   for images to load before measuring, and avoids infinite loops.
+   =============================== */
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.logo-track').forEach(function (track) {
+    try {
+    if (track.dataset.duplicated === 'true') return;
+
+      // container that masks/frames the track (used to measure visible width)
+      var container = track.parentElement;
+      var containerWidth = container ? container.clientWidth : track.clientWidth;
+
+      // limit duplications to avoid runaway loops
+      var maxIterations = 12;
+
+      // snapshot the original set once (avoid re-duplicating clones)
+      var originalSnapshot = Array.from(track.querySelectorAll(':scope > .client-box'));
+      if (originalSnapshot.length === 0) originalSnapshot = Array.from(track.children);
+
+      function duplicateOnce() {
+        originalSnapshot.forEach(function (it) { track.appendChild(it.cloneNode(true)); });
+      }
+
+      function ensureWidth() {
+        
+        // compute width of a single original cycle (sum of original items)
+        var originalWidth = originalSnapshot.reduce(function (sum, el) {
+          var r = el.getBoundingClientRect();
+          var style = window.getComputedStyle(el);
+          var marginLeft = parseFloat(style.marginLeft) || 0;
+          var marginRight = parseFloat(style.marginRight) || 0;
+          // include margins in the per-item width so scroll-distance matches track.scrollWidth
+          return sum + (r.width || el.offsetWidth || 0) + marginLeft + marginRight;
+        }, 0) || 0;
+
+        // If we couldn't measure, fallback to container width
+        if (originalWidth <= 0) originalWidth = containerWidth || window.innerWidth;
+
+        // ensure at least two copies of the original cycle exist so the loop can be seamless
+        var currentCopies = Math.max(1, Math.floor(track.querySelectorAll(':scope > .client-box').length / Math.max(1, originalSnapshot.length)));
+
+        while (currentCopies < 2 && maxIterations-- > 0) {
+          duplicateOnce();
+          currentCopies++;
+        }
+
+        // Now ensure the track is wide enough for the container (avoid visible empty space during animation)
+        var iter = 0;
+        var multiplier = 2; // we need at least two cycles; multiplier 2 is sufficient
+        var target = (containerWidth > 0) ? containerWidth * multiplier : window.innerWidth * multiplier;
+        while (track.scrollWidth < target && iter < maxIterations) {
+          duplicateOnce();
+          iter++;
+        }
+        
+
+        // set the scroll distance to exactly one original cycle for seamless looping
+        // add a tiny fudge (2px) to avoid off-by-sub-pixel gaps in certain browsers
+        var scrollDistance = Math.round(originalWidth) + 2;
+        track.style.setProperty('--scroll-distance', `-${scrollDistance}px`);
+
+        // ensure at least 3 cycles so JS-driven loop can slide smoothly without visible reset
+        var currentCopies = Math.max(1, Math.floor(track.querySelectorAll(':scope > .client-box').length / Math.max(1, originalSnapshot.length)));
+        while (currentCopies < 3 && maxIterations-- > 0) {
+          duplicateOnce();
+          currentCopies++;
+        }
+
+        track.dataset.duplicated = 'true';
+
+        // JS-driven marquee to avoid CSS animation seam: move by pixels each frame
+        (function startJsMarquee(trackEl, cycleWidth) {
+          if (trackEl._marqueeStarted) return;
+          trackEl._marqueeStarted = true;
+
+          // disable CSS animation to avoid conflict
+          trackEl.style.animation = 'none';
+
+          var x = 0;
+          var last = performance.now();
+          // duration in seconds for one cycle (match previous desktop timing)
+          var duration = (window.matchMedia && window.matchMedia('(max-width: 768px)').matches) ? 32 : 60;
+          var speed = cycleWidth / duration; // pixels per second
+
+          function frame(now) {
+            var dt = (now - last) / 1000;
+            last = now;
+            // pause when hovered
+            if (!trackEl.parentElement.matches(':hover')) {
+              x -= speed * dt;
+              // when we've moved one full cycle, wrap by adding cycleWidth
+              if (x <= -cycleWidth) x += cycleWidth;
+              trackEl.style.transform = `translateX(${Math.round(x)}px)`;
+            }
+            trackEl._marqueeRaf = requestAnimationFrame(frame);
+          }
+
+          trackEl._marqueeRaf = requestAnimationFrame(frame);
+
+          // clean up on page unload
+          window.addEventListener('beforeunload', function () {
+            if (trackEl._marqueeRaf) cancelAnimationFrame(trackEl._marqueeRaf);
+          });
+        })(track, scrollDistance);
+      }
+
+      // Wait for images to load before measuring widths
+      var imgs = track.querySelectorAll('img');
+      if (imgs.length === 0) {
+        ensureWidth();
+      } else {
+        var loaded = 0;
+        var checkLoaded = function () {
+          loaded++;
+          if (loaded >= imgs.length) ensureWidth();
+        };
+        imgs.forEach(function (img) {
+          if (img.complete) {
+            loaded++;
+          } else {
+            img.addEventListener('load', checkLoaded);
+            img.addEventListener('error', checkLoaded);
+          }
+        });
+        if (loaded >= imgs.length) ensureWidth();
+        // safety: if images hang, ensure duplication after 2s
+        setTimeout(function () { if (track.dataset.duplicated !== 'true') ensureWidth(); }, 2000);
+      }
+
+    } catch (e) {
+      console.error('logo-track duplication failed', e);
+    }
+  });
+});
 
 
   /* ===============================
