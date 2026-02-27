@@ -1,36 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Edikt Media Privacy Policy — how we collect, use and protect personal information when you use our website and services.">
+  <link rel="canonical" href="https://edikt.in/privacy-policy.html">
+  <meta property="og:title" content="Edikt Media — Privacy Policy">
+  <meta property="og:description" content="Edikt Media Privacy Policy — how we collect, use and protect personal information when you use our website and services.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://edikt.in/privacy-policy.html">
+  <meta property="og:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Edikt Media — Privacy Policy">
+  <meta name="twitter:description" content="Edikt Media Privacy Policy — how we collect, use and protect personal information when you use our website and services.">
+  <meta name="twitter:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <title>Privacy Policy – Edikt Media</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css">
   <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 </head>
 <body class="page-privacy">
 
   <!-- HEADER -->
   <div id="site-header"></div>
-
-<script>
-  fetch('header.html?_=' + Date.now())
-    .then(res => res.text())
-    .then(html => {
-      const container = document.getElementById('site-header');
-      container.innerHTML = html;
-      Array.from(container.querySelectorAll('script')).forEach(s => {
-        const ns = document.createElement('script');
-        if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
-        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
-      });
-      if (typeof initHeaderScroll === 'function') initHeaderScroll();
-    });
-</script>
-
-<script src="assets/js/header.js"></script>
+  <script src="assets/js/header-loader.js" defer></script>
+  <script src="assets/js/header.js" defer=""></script>
 
 <!-- PRIVACY POLICY CONTENT -->
 <section class="privacy reveal">
@@ -131,24 +125,20 @@
   fetch('footer.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
-    });
-</script>
-
-  fetch('header.html?_=' + Date.now())
-    .then(res => res.text())
-    .then(html => {
-      const container = document.getElementById('site-header');
+      const container = document.getElementById('site-footer');
       container.innerHTML = html;
       Array.from(container.querySelectorAll('script')).forEach(s => {
         const ns = document.createElement('script');
-        if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
         else { ns.textContent = s.textContent; document.body.appendChild(ns); }
       });
+      try { const stagger = container.querySelector('.footer-content.reveal-stagger'); if (stagger) Array.from(stagger.children).forEach((child, i) => setTimeout(() => child.classList.add('revealed'), i * 80)); } catch (e) {}
     });
-<script src="assets/js/script.js"></script>
+</script>
+
+<script src="assets/js/script.js" defer=""></script>
 
 <script src="assets/js/scroll-reveal.js"></script>
 
-</body>
-</html>
+
+</body></html>

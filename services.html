@@ -1,39 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Services by Edikt Media — branding, web, events, motion graphics, video production and digital strategy to grow your brand.">
+  <link rel="canonical" href="https://edikt.in/services.html">
+  <meta property="og:title" content="Edikt Media Services — Branding, Events &amp; Digital">
+  <meta property="og:description" content="Services by Edikt Media — branding, web, events, motion graphics, video production and digital strategy to grow your brand.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://edikt.in/services.html">
+  <meta property="og:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Edikt Media Services — Branding, Events &amp; Digital">
+  <meta name="twitter:description" content="Services by Edikt Media — branding, web, events, motion graphics, video production and digital strategy to grow your brand.">
+  <meta name="twitter:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <title>Services – Edikt Media</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 </head>
 <body class="page-services">
 
 <!-- ================= HEADER ================= -->
-<div id="site-header"></div>
-
-<script>
-  fetch('header.html?_=' + Date.now())
-    .then(res => res.text())
-    .then(html => {
-      const container = document.getElementById('site-header');
-      container.innerHTML = html;
-      Array.from(container.querySelectorAll('script')).forEach(s => {
-        const ns = document.createElement('script');
-        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
-        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
-      });
-      if (typeof initHeaderScroll === 'function') initHeaderScroll();
-      if (typeof initMobileMenu === 'function') initMobileMenu();
-    });
-</script>
-<script src="assets/js/header.js" defer></script>
-
+  <div id="site-header"></div>
+  <script src="assets/js/header-loader.js" defer></script>
+  <script src="assets/js/header.js"></script>
 <!-- ================= SERVICES 360 ================= -->
 <section class="services-360 reveal">
   <div class="container">
@@ -55,9 +48,9 @@
       <div class="col-lg-4 col-md-6">
         <div class="service-360-card">
                     <div class="service-image">
-                      <img src="assets/images/services/Event.png" alt="Corporate Events & Exhibition" loading="lazy">
+                      <picture><picture><img src="/assets/images/services/Event.webp" alt="Corporate Events &amp; Exhibition" lazy=""></picture></picture>
                     </div>
-          <h3>Corporate Events & Exhibition</h3>
+          <h3>Corporate Events &amp; Exhibition</h3>
           <p>From concept to construction — we plan, design, and execute exhibition stands and brand activations that leave a lasting impact.</p>
         </div>
       </div>
@@ -65,9 +58,9 @@
       <div class="col-lg-4 col-md-6">
         <div class="service-360-card">
           <div class="service-image">
-            <img src="assets/images/services/Motion Graphics.png" alt="UI/UX & Website Development" loading="lazy">
+            <picture><picture><img src="/assets/images/services/Motion Graphics.webp" alt="UI/UX &amp; Website Development" lazy=""></picture></picture>
           </div>
-          <h3>UI/UX & Website Development</h3>
+          <h3>UI/UX &amp; Website Development</h3>
           <p>We design and develop user-centric websites and digital interfaces that are modern, intuitive, and conversion-focused perform across all devices.</p>
         </div>
       </div>
@@ -75,9 +68,9 @@
       <div class="col-lg-4 col-md-6">
         <div class="service-360-card">
           <div class="service-image">
-            <img src="assets/images/services/branding.png" alt="Creative Branding" loading="lazy">
+            <picture><picture><img src="/assets/images/services/branding.webp" alt="Creative Branding" lazy=""></picture></picture>
           </div>
-          <h3>Creative Design & Branding</h3>
+          <h3>Creative Design &amp; Branding</h3>
           <p>We build powerful brand identities with thoughtful design that speaks your story — logos, brand kits, packaging, brochures, and everything in between.</p>
         </div>
       </div>
@@ -88,9 +81,9 @@
       <div class="col-lg-4 col-md-6">
         <div class="service-360-card">
           <div class="service-image">
-            <img src="assets/images/services/Photography.png" alt="Photography & Video" loading="lazy">
+            <picture><picture><img src="/assets/images/services/Photography.webp" alt="Photography &amp; Video" lazy=""></picture></picture>
           </div>
-          <h3>Photography & Video</h3>
+          <h3>Photography &amp; Video</h3>
           <p>We capture moments that tell your brand’s story. From product shoots to event coverage, our photography delivers striking visuals.</p>
         </div>
       </div>
@@ -98,9 +91,9 @@
       <div class="col-lg-4 col-md-6">
         <div class="service-360-card">
           <div class="service-image">
-            <img src="assets/images/services/VFX & Animation.png" alt="VFX & Animation" loading="lazy">
+            <picture><picture><img src="/assets/images/services/VFX &amp; Animation.webp" alt="VFX &amp; Animation" lazy=""></picture></picture>
           </div>
-          <h3>VFX & Animation</h3>
+          <h3>VFX &amp; Animation</h3>
           <p>We build powerful brand identities with thoughtful design that speaks your story — logos, brand kits, packaging, brochures, and everything in between.</p>
         </div>
       </div>
@@ -108,9 +101,9 @@
       <div class="col-lg-4 col-md-6">
         <div class="service-360-card">
           <div class="service-image">
-            <img src="assets/images/services/Digital Marketing.png" alt="Digital Marketing" loading="lazy">
+            <picture><picture><img src="/assets/images/services/Digital Marketing.webp" alt="Digital Marketing" lazy=""></picture></picture>
           </div>
-          <h3>Digital Marketing & CGI Ads</h3>
+          <h3>Digital Marketing &amp; CGI Ads</h3>
           <p>From social media strategy to performance campaigns, we help your brand cut through the noise with content that connects and results.</p>
         </div>
       </div>
@@ -121,7 +114,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="service-360-card">
           <div class="service-image">
-            <img src="assets/images/services/corporate gifts.png" alt="Corporate Gifts" loading="lazy">
+            <picture><picture><img src="/assets/images/services/corporate gifts.webp" alt="Corporate Gifts" lazy=""></picture></picture>
           </div>
           <h3>Corporate Gifts</h3>
           <p>We create thoughtful corporate gifts — from premium hampers to branded merchandise that strengthen connections.</p>
@@ -131,7 +124,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="service-360-card">
           <div class="service-image">
-            <img src="assets/images/services/Motion Graphics.png" alt="Motion Graphics" loading="lazy">
+            <picture><picture><img src="/assets/images/services/Motion Graphics.webp" alt="Motion Graphics" lazy=""></picture></picture>
           </div>
           <h3>Motion Graphics</h3>
           <p>We design motion graphics that captivate — from product explainers to social media reels that bring ideas alive.</p>
@@ -149,12 +142,20 @@
   fetch('footer.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
+      const container = document.getElementById('site-footer');
+      container.innerHTML = html;
+      Array.from(container.querySelectorAll('script')).forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+      });
+      try { const stagger = container.querySelector('.footer-content.reveal-stagger'); if (stagger) Array.from(stagger.children).forEach((child, i) => setTimeout(() => child.classList.add('revealed'), i * 80)); } catch (e) {}
     });
 </script>
 
-<script src="assets/js/script.js" defer></script>
-<script src="assets/js/scroll-reveal.js" defer></script>
+<script src="assets/js/script.js" defer=""></script>
+<script src="assets/js/scroll-reveal.js" defer=""></script>
 
-</body>
-</html>
+
+
+</body></html>

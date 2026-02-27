@@ -1,36 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Disclaimer — legal notices about trademarks, content and liability for Edikt Media's website.">
+  <link rel="canonical" href="https://edikt.in/disclaimer.html">
+  <meta property="og:title" content="Edikt Media — Disclaimer">
+  <meta property="og:description" content="Disclaimer — legal notices about trademarks, content and liability for Edikt Media's website.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://edikt.in/disclaimer.html">
+  <meta property="og:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Edikt Media — Disclaimer">
+  <meta name="twitter:description" content="Disclaimer — legal notices about trademarks, content and liability for Edikt Media's website.">
+  <meta name="twitter:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <title>Disclaimer – Edikt Media</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css">
   <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <link rel="stylesheet" href="assets/css/disclaimer.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 </head>
 <body class="page-disclaimer">
 
   <!-- HEADER -->
   <div id="site-header"></div>
-
-<script>
-  fetch('header.html?_=' + Date.now())
-    .then(res => res.text())
-    .then(html => {
-      const container = document.getElementById('site-header');
-      container.innerHTML = html;
-      Array.from(container.querySelectorAll('script')).forEach(s => {
-        const ns = document.createElement('script');
-        if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
-        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
-      });
-    });
-</script>
-
-<script src="assets/js/header.js"></script>
+  <script src="assets/js/header-loader.js" defer></script>
+  <script src="assets/js/header.js" defer=""></script>
 
 <!-- DISCLAIMER CONTENT -->
 <section class="disclaimer reveal">
@@ -56,7 +51,7 @@
 
       <!-- RIGHT: illustration -->
       <div class="disclaimer-illustration reveal delay-1">
-        <img src="assets\images\extras\Disclaimer NDA.svg" alt="Disclaimer illustration">
+        <picture><picture><img src="/assets\images\extras\Disclaimer NDA.svg" alt="Disclaimer illustration" lazy=""></picture></picture>
       </div>
 
     </div>
@@ -71,13 +66,20 @@
   fetch('footer.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
+      const container = document.getElementById('site-footer');
+      container.innerHTML = html;
+      Array.from(container.querySelectorAll('script')).forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+      });
+      try { const stagger = container.querySelector('.footer-content.reveal-stagger'); if (stagger) Array.from(stagger.children).forEach((child, i) => setTimeout(() => child.classList.add('revealed'), i * 80)); } catch (e) {}
     });
 </script>
 
-<script src="assets/js/script.js"></script>
+<script src="assets/js/script.js" defer=""></script>
 
 <script src="assets/js/scroll-reveal.js"></script>
 
-</body>
-</html>
+
+</body></html>

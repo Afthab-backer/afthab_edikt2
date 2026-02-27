@@ -354,18 +354,21 @@ body {
 
 
 .project-fullwidth-image img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 820px; /* increased height */
+  height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1);
   transform-origin: center center;
-  transition: transform 4s cubic-bezier(.2,.8,.2,.9), filter 3s ease; /* faster */
+  transition: transform 1.2s cubic-bezier(.2,.8,.2,.9), filter 0.6s;
   will-change: transform;
 }
 
-/* Faster, stronger cinematic zoom on hover */
+/* Contain the zoom inside the card; smoother, quicker zoom */
 .project-fullwidth-image:hover img {
-  transform: scale(1.15); /* stronger zoom */
+  transform: scale(1.08) translateZ(0);
 }
 
 /* Respect users who prefer reduced motion */
@@ -404,18 +407,17 @@ body {
 
 .project-fullscreen-image img {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
   width: 100%;
   height: 100%;
-  transform: translate(-50%, -50%) scale(1);
+  transform: scale(1);
   object-fit: cover;
   will-change: transform;
-  transition: transform 6s cubic-bezier(.2,.8,.2,.9), filter 3s ease;
+  transition: transform 3s cubic-bezier(.2,.8,.2,.9), filter 1.5s ease;
 }
 
 .project-fullscreen-image:hover img {
-  transform: translate(-50%, -50%) scale(1.18); /* stronger zoom on hover */
+  transform: scale(1.12) translateZ(0);
 }
 
 @media (max-width: 992px) {
@@ -627,17 +629,17 @@ body {
   object-fit: cover;
   display: block;
   box-shadow: 0 18px 40px rgba(19,19,19,0.06);
-  /* start zoomed-in (stationary) and gently zoom OUT on sustained hover */
-  transform: scale(1.18);
-  transition: transform 3s cubic-bezier(.2,.8,.2,.9), filter 0.4s;
+  /* default: natural scale. hover will zoom-in inside the card (clipped by container) */
+  transform: scale(1);
+  transition: transform 0.6s cubic-bezier(.2,.8,.2,.9), filter 0.4s;
   transform-origin: center center;
   will-change: transform;
 }
 
 /* Hover: image shrinks and shifts slightly to the right while card stays */
 .aim-image:hover img {
-  /* on hover, zoom OUT back toward natural scale */
-  transform: scale(1) translateZ(0);
+  /* on hover, zoom IN slightly (contained by .aim-image overflow:hidden) */
+  transform: scale(1.12) translateZ(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -658,6 +660,48 @@ body {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+
+/* ===============================
+   Page-scoped: contained zoom-in for cards (Edikt page)
+   Ensures images zoom inside their card and are clipped by the container.
+================================= */
+.page-edikt-logo .gallery-item,
+.page-edikt-logo .project-fullwidth-image,
+.page-edikt-logo .project-fullscreen-image,
+.page-edikt-logo .aim-image,
+.page-edikt-logo .project-gallery-grid .grid-item,
+.page-edikt-logo .project-hero-grid .grid-item {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.page-edikt-logo .gallery-item img,
+.page-edikt-logo .project-fullwidth-image img,
+.page-edikt-logo .project-fullscreen-image img,
+.page-edikt-logo .aim-image img,
+.page-edikt-logo .project-gallery-grid .grid-item img,
+.page-edikt-logo .project-hero-grid .grid-item img {
+  transform-origin: center center !important;
+  transition: transform 0.6s cubic-bezier(.2,.8,.2,.9) !important;
+  will-change: transform !important;
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+}
+
+/* Slight zoom for gallery / card images */
+.page-edikt-logo .gallery-item:hover img,
+.page-edikt-logo .project-fullwidth-image:hover img,
+.page-edikt-logo .project-gallery-grid .grid-item:hover img,
+.page-edikt-logo .project-hero-grid .grid-item:hover img {
+  transform: scale(1.08) translateZ(0) !important;
+}
+
+/* Aim image: stronger zoom on hover but contained */
+.page-edikt-logo .aim-image:hover img,
+.page-edikt-logo .aim-image:focus img {
+  transform: scale(1.12) translateZ(0) !important;
+}
+
 
 .aim-content .aim-block {
   margin-bottom: 28px;
@@ -709,7 +753,7 @@ body {
   align-items: stretch;
   justify-content: center;
 }
-}
+
 
 .card-typography {
   text-align: left;

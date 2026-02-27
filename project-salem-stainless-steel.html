@@ -1,37 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Salem Stainless Steel — event case study: execution and design for a high-profile industrial event.">
+  <link rel="canonical" href="https://edikt.in/project-salem-stainless-steel.html">
+  <meta property="og:title" content="Salem Stainless Steel — Event Case Study | Edikt Media">
+  <meta property="og:description" content="Salem Stainless Steel — event case study: execution and design for a high-profile industrial event.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://edikt.in/project-salem-stainless-steel.html">
+  <meta property="og:image" content="https://edikt.in/assets/images/Projects/Salem%20stainless/Salem%20stainless%201.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Salem Stainless Steel — Event Case Study | Edikt Media">
+  <meta name="twitter:description" content="Salem Stainless Steel — event case study: execution and design for a high-profile industrial event.">
+  <meta name="twitter:image" content="https://edikt.in/assets/images/Projects/Salem%20stainless/Salem%20stainless%201.webp">
   <title>Event |Edikt Media</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/salem.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/assets/images/Projects/Salem%20stainless/Salem%20stainless%201.webp">
 </head>
 <body class="page-salem">
 
 
   <!-- ================= HEADER ================= -->
   <div id="site-header"></div>
-
-  <script>
-    fetch('header.html?_=' + Date.now())
-      .then(res => res.text())
-      .then(html => {
-        const container = document.getElementById('site-header');
-        container.innerHTML = html;
-        Array.from(container.querySelectorAll('script')).forEach(s => {
-          const ns = document.createElement('script');
-          if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
-          else { ns.textContent = s.textContent; document.body.appendChild(ns); }
-        });
-        if (typeof initHeaderScroll === 'function') initHeaderScroll();
-      });
-  </script>
-
-  <script src="assets/js/header.js"></script>
+  <script src="assets/js/header-loader.js" defer></script>
+  <script src="assets/js/header.js" defer=""></script>
 
   <main class="container">
     <div class="project-hero-header">
@@ -49,10 +43,14 @@
     <section class="project-hero-grid reveal delay-2">
       <div class="grid">
         <div class="grid-item">
-          <img src="assets\images\Projects\Salem stainless\Salem stainless 1.avif" alt="Salem Stainless Steel 1" loading="lazy">
+          <picture>
+            <picture><img src="/assets/images/Projects/Salem stainless/Salem stainless 1.webp" alt="Salem Stainless Steel 1" eager=""></picture>
+          </picture>
         </div>
         <div class="grid-item">
-          <img src="assets\images\Projects\Salem stainless\Salem stainless 2.avif" alt="Salem Stainless Steel 2" loading="lazy">
+          <picture>
+            <picture><img src="/assets/images/Projects/Salem stainless/Salem stainless 2.webp" alt="Salem Stainless Steel 2" lazy=""></picture>
+          </picture>
         </div>
       </div>
     </section>
@@ -89,7 +87,9 @@
       <div class="project-fullwidth full-bleed reduced reveal delay-3">
         <div class="project-fullwidth-wrap salem-overview-wrap">
 
-          <img class="salem-overview-img" src="assets/images/Projects/Salem stainless/salem stainless 3.avif" alt="Salem Stainless Steel full" loading="lazy">
+          <picture>
+            <picture><img src="/assets/images/Projects/Salem stainless/salem stainless 3.webp" alt="Salem Stainless Steel full" class="salem-overview-img" lazy=""></picture>
+          </picture>
         </div>
       </div>
 
@@ -107,14 +107,16 @@
             <!-- full-width Post 1 image added after Overview -->
       <div class="project-fullwidth reveal delay-3" style="margin-top:28px;">
         <div class="project-fullwidth-wrap no-overlay" tabindex="0">
-          <img class="post1-image" src="assets/images/Projects/Salem stainless/Salem stainless 4.avif" alt="Salem Stainless Steel 3" loading="lazy">
+          <picture>
+            <picture><img src="/assets/images/Projects/Salem stainless/Salem stainless 4.webp" alt="Salem Stainless Steel 3" class="post1-image" lazy=""></picture>
+          </picture>
         </div>
       </div>
       
 
       <!-- Additional project copy inserted below the tiles -->
       <section class="project-extra reveal delay-6" style="margin-top:36px;">
-        <h2 style="color:#2e7d32;margin-bottom:12px;">Lights, Sound & Lens – Crafting an Immersive Experience</h2>
+        <h2 style="color:#2e7d32;margin-bottom:12px;">Lights, Sound &amp; Lens – Crafting an Immersive Experience</h2>
         <p>
           At the SSSS event, we delivered a complete 360-degree experience that reflected top-tier quality in every detail. From vibrant lighting that enhanced the visual appeal, to crisp, immersive sound that filled the entire space — every element was thoughtfully executed. Our team made sure the stage setup, ambiance, and technical support aligned perfectly to create an unforgettable experience.
         </p>
@@ -123,10 +125,11 @@
           We believe that perfection lies in the details, and that’s exactly what we focused on — clean installation, premium-grade equipment, professional photography, and seamless coordination. The entire event was a reflection of our promise to deliver not just an event, but an experience that speaks of quality and precision from every angle.
         </p>
       </section>
+       </section>
       <!-- Post 4 image (added as requested) -->
       <div class="project-fullwidth full-bleed reduced reveal delay-7" style="margin-top:24px;">
         <div class="project-fullwidth-wrap no-effect" tabindex="0" style="padding:0;">
-          <img src="assets/images/Projects/Salem stainless/Salem stainless logo.webp" alt="STP-I Post 4" loading="lazy" style="display:block; margin:0 auto;">
+          <img src="assets\images\Projects\Salem stainless\Salem stainless logo (1).webp" alt="STP-I Post 4" loading="lazy" style="display:block; margin:0 auto;">
         </div>
       </div>
 
@@ -145,8 +148,7 @@
       just hit the button below and start your journey with Edikt Media.
     </p>
 
-    <a href="contact.html" 
-   class="btn magic-btn btn-primary btn-large reveal delay-2">
+    <a href="contact.html" class="btn magic-btn btn-primary btn-large reveal delay-2">
 
   <span class="button__text">Talk to us</span>
   <div class="button__filler"></div>
@@ -166,14 +168,21 @@
   fetch('footer.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
+      const container = document.getElementById('site-footer');
+      container.innerHTML = html;
+      Array.from(container.querySelectorAll('script')).forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+      });
+      try { const stagger = container.querySelector('.footer-content.reveal-stagger'); if (stagger) Array.from(stagger.children).forEach((child, i) => setTimeout(() => child.classList.add('revealed'), i * 80)); } catch (e) {}
     });
 </script>
 
-  <script src="assets/js/script.js"></script>
+  <script src="assets/js/script.js" defer=""></script>
 
 
 
 <script src="assets/js/scroll-reveal.js"></script>
-</body>
-</html>
+
+</body></html>

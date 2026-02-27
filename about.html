@@ -1,41 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Edikt Media — multidisciplinary creative agency specializing in branding, events, digital design and integrated media solutions.">
+  <link rel="canonical" href="https://edikt.in/about.html">
+  <meta property="og:title" content="About Edikt Media — Creative Agency">
+  <meta property="og:description" content="About Edikt Media — multidisciplinary creative agency specializing in branding, events, digital design and integrated media solutions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://edikt.in/about.html">
+  <meta property="og:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About Edikt Media — Creative Agency">
+  <meta name="twitter:description" content="About Edikt Media — multidisciplinary creative agency specializing in branding, events, digital design and integrated media solutions.">
+  <meta name="twitter:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <title>About Us – Edikt Media</title>
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 
 </head>
 <body class="page-about">
 
     <!-- HEADER -->
   <div id="site-header"></div>
+  <script src="assets/js/header-loader.js" defer></script>
 
-<script>
-  fetch('header.html?_=' + Date.now())
-    .then(res => res.text())
-    .then(html => {
-      const container = document.getElementById('site-header');
-      container.innerHTML = html;
-      // execute any scripts included in the fetched header fragment
-      Array.from(container.querySelectorAll('script')).forEach(s => {
-        const ns = document.createElement('script');
-        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
-        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
-      });
-
-      // Initialize header behaviors
-      if (typeof initHeaderScroll === 'function') initHeaderScroll();
-      if (typeof initMobileMenu === 'function') initMobileMenu();
-    });
-</script>
-
-<script src="assets/js/header.js" defer></script>
+<script src="assets/js/header.js" defer=""></script>
 
 <!-- ABOUT CONTENT -->
 <section class="about reveal">
@@ -53,7 +44,7 @@
         <p class="reveal delay-1">
           At Edikt Media, we craft immersive brand experiences that
           blend creativity, strategy, and technology. Headquartered in Pune, we are a
-          multidisciplinary creative agency specializing in events & exhibitions,
+          multidisciplinary creative agency specializing in events &amp; exhibitions,
           UI/UX, digital design, branding, and integrated media solutions.
         </p>
 
@@ -70,7 +61,7 @@
 
       <!-- IMAGE -->
       <div class="about-image reveal delay-2">
-        <img src="assets/images/extras/About us page image 2.png" alt="Edikt Media Office" loading="lazy">
+        <picture><picture><img src="/assets/images/extras/About us page image 2.webp" alt="Edikt Media Office" lazy=""></picture></picture>
       </div>
     </div>
 
@@ -79,7 +70,7 @@
 
       <!-- IMAGE -->
       <div class="about-image reveal delay-1">
-        <img src="assets/images/extras/About US page image 1.png" alt="Edikt Media Origin Story" loading="lazy">
+        <picture><picture><img src="/assets/images/extras/About US page image 1.webp" alt="Edikt Media Origin Story" lazy=""></picture></picture>
       </div>
 
       <!-- TEXT -->
@@ -106,11 +97,11 @@
 </section>
 
 
-<!-- GLOBAL STATS SECTION -->
-<section class="global-stats reveal">
+<!-- STATS SECTION (consolidated to index pattern) -->
+<section class="stats reveal">
   <div class="container">
 
-    <h2 class="stats-title reveal">
+    <h2 class="section-title stats-title-luxury reveal">
       Delivering Excellence Globally
     </h2>
 
@@ -124,18 +115,18 @@
 
     <div class="stats-grid">
       <div class="stat-item reveal delay-1">
-        <h3>100+</h3>
-        <p>Clients</p>
+        <div class="stat-number">100+</div>
+        <div class="stat-label">Clients</div>
       </div>
 
       <div class="stat-item reveal delay-2">
-        <h3>Global</h3>
-        <p>Presence</p>
+        <div class="stat-number">Global</div>
+        <div class="stat-label">Presence</div>
       </div>
 
       <div class="stat-item reveal delay-3">
-        <h3>90%</h3>
-        <p>Retention</p>
+        <div class="stat-number">90%</div>
+        <div class="stat-label">Retention</div>
       </div>
     </div>
 
@@ -148,11 +139,7 @@
 
     <!-- LEFT CONTENT -->
     <div class="talk-left">
-      <img
-        src="assets\images\edikt logo\edikt media logo png.png"
-        alt="Edikt Media Logo"
-        class="talk-logo reveal"
-      >
+      <picture><picture><img src="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" alt="Edikt Media Logo" class="talk-logo reveal" loading="lazy"></picture></picture>
 
       <h2 class="talk-title reveal delay-1">
         Let’s Talk About<br>
@@ -162,10 +149,7 @@
 
     <!-- RIGHT IMAGE -->
     <div class="talk-right reveal delay-2">
-      <img
-        src="assets/images/extras/About us page image 3.jpeg"
-        alt="Global Connectivity"
-      >
+      <picture><picture><img src="/assets/images/extras/About us page image 3.webp" alt="Global Connectivity" lazy=""></picture></picture>
     </div>
 
   </div>
@@ -184,7 +168,31 @@
   fetch('footer.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
+      const container = document.getElementById('site-footer');
+      container.innerHTML = html;
+
+      // execute any scripts included in the fetched footer fragment
+      Array.from(container.querySelectorAll('script')).forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) {
+          ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns);
+        } else {
+          ns.textContent = s.textContent; document.body.appendChild(ns);
+        }
+      });
+
+      // If the footer uses `.reveal-stagger`, ensure its children become visible
+      // immediately on pages where the footer may be below the fold and not
+      // trigger the IntersectionObserver. This preserves the stagger but avoids
+      // leaving the footer fully hidden.
+      try {
+        const stagger = container.querySelector('.footer-content.reveal-stagger');
+        if (stagger) {
+          Array.from(stagger.children).forEach((child, i) => {
+            setTimeout(() => child.classList.add('revealed'), i * 80);
+          });
+        }
+      } catch (e) { /* defensive */ }
     });
 </script>
 
@@ -192,6 +200,7 @@
 
 <script src="assets/js/scroll-reveal.js"></script>
 
-</body>
-</html>
 
+
+
+</body></html>

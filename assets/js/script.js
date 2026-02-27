@@ -558,7 +558,7 @@ const jobs = {
     <p>Edikt Media offers a collaborative office environment, opportunities for career growth, exposure to diverse projects and industries, creative freedom and ownership of work, and learning and development support.</p>
 
     <h4>to Apply</h4>
-    <p> kindly send us Resume & CV to us at:
+    <p> kindly send your Resume & CV to us at:
     <strong>contactus@edikt.in</strong>
     </p>
   `,
@@ -579,7 +579,7 @@ const jobs = {
     <p>Edikt Media offers exposure to innovative projects, opportunities for professional growth, creative freedom, a collaborative environment, and ongoing learning and development support.</p>
 
     <h4>to Apply</h4>
-    <p> kindly send us Resume & CV to us at:
+    <p> kindly send your Resume & CV to us at:
     <strong>contactus@edikt.in</strong>
     </p>
   `,
@@ -610,7 +610,7 @@ teams.</p>
 collaborative and supportive culture, and recognition for performance.</p>
 
     <h4>to Apply</h4>
-    <p> kindly send us Resume & CV to us at:
+    <p> kindly send your Resume & CV to us at:
     <strong>contactus@edikt.in</strong>
     </p>
   `,
@@ -618,7 +618,7 @@ collaborative and supportive culture, and recognition for performance.</p>
     <h2>Backend Developer</h2>
     <p>📍 remote | 🧳 Full-time</p>
     <h4>About the Role</h4>
-    <pWe're hiring a Backend Developer to build and maintain the server-side logic,
+    <p>We're hiring a Backend Developer to build and maintain the server-side logic,
 databases, and APIs that power our digital platforms. You'll ensure our applications are
 fast, reliable, and scalable while collaborating with other teams to deliver seamless
 experiences.
@@ -639,7 +639,7 @@ GraphQL, version control systems, and cloud platforms is preferred.</p>
 challenging projects, a collaborative environment, and career growth support.</p>
 
     <h4>to Apply</h4>
-    <p> kindly send us Resume & CV to us at:
+    <p> kindly send your Resume & CV to us at:
     <strong>contactus@edikt.in</strong>
     </p>
   `,
@@ -668,7 +668,7 @@ telecalling or customer service experience is preferred.</p>
 exposure to event management processes, and opportunities for career growth.</p>
 
     <h4>to Apply</h4>
-    <p> kindly send us Resume & CV to us at:
+    <p> kindly send your Resume & CV to us at:
     <strong>contactus@edikt.in</strong>
     </p>
   `,
@@ -697,7 +697,7 @@ and operations management tools is a plus.</p>
 collaborative work culture, and performance-driven career growth.</p>
 
     <h4>to Apply</h4>
-    <p> kindly send us Resume & CV to us at:
+    <p> kindly send your Resume & CV to us at:
     <strong>contactus@edikt.in</strong>
     </p>
   `,
@@ -726,7 +726,7 @@ Knowledge of the creative and digital industries is an added advantage.</p>
 exposure to diverse industries, and continuous learning support.</p>
 
     <h4>to Apply</h4>
-    <p> kindly send us Resume & CV to us at:
+    <p> kindly send your Resume & CV to us at:
     <strong>contactus@edikt.in</strong>
     </p>
   `,
@@ -755,7 +755,7 @@ industries is an added advantage.</p>
 professional growth, and continuous learning support.</p>
 
     <h4>to Apply</h4>
-    <p> kindly send us Resume & CV to us at:
+    <p> kindly send your Resume & CV to us at:
     <strong>contactus@edikt.in</strong>
     </p>
   `,
@@ -782,7 +782,34 @@ and prior experience in sales or customer service is a plus.</p>
 clients.</p>
 
     <h4>to Apply</h4>
-    <p> kindly send us Resume & CV to us at:
+    <p> kindly send your Resume & CV to us at:
+    <strong>contactus@edikt.in</strong>
+    </p>
+  `,
+
+  accounts: `
+    <h2>Account Executive</h2>
+    <p>📍 remote | 🧳 Full-time</p>
+    <h4>About the Role</h4>
+    <p>We're seeking an Account Executive to manage client accounts, strengthen relationships, 
+    and ensure effective communication between clients and our internal teams. You'll play an
+    important role in client satisfaction and long-term retention.
+</p>
+
+    <h4>Key Responsibilities</h4>
+    <p>The executive will manage day-to-day client communications, understand client requirements,
+     track project timelines, assist in preparing proposals and reports, and maintain long term partnerships 
+     through excellent servicing.</p>
+
+    <h4>Requirements</h4>
+    <p>Candidates should have strong communication and negotiation skills, organizational abilities, 
+    and prior experience in account management or client servicing. Familiarity with CRM tools and MS Office is an added advantage.</p>
+
+    <h4>Perks & Benefits</h4>
+    <p>Edikt Media provides client-facing exposure, career growth opportunities, collaborative projects, and professional development support.</p>
+
+    <h4>to Apply</h4>
+    <p> kindly send your Resume & CV to us at:
     <strong>contactus@edikt.in</strong>
     </p>
   `,
@@ -810,7 +837,7 @@ and compliance; attention to detail and organizational skills.</p>
 corporate operations.</p>
 
     <h4>to Apply</h4>
-    <p> kindly send us Resume & CV to us at:
+    <p> kindly send your Resume & CV to us at:
     <strong>contactus@edikt.in</strong>
     </p>
   `,
@@ -905,20 +932,55 @@ document.addEventListener("DOMContentLoaded", () => {
 // MAGIC BUTTON HOVER (GLOBAL)
 // ===============================
 
-document.addEventListener("mouseover", (e) => {
-  const btn = e.target.closest(".magic-btn");
-  if (!btn) return;
+// Enhance magic buttons so effect survives CSS purge and works on touch
+function applyMagicBtnState(btn, state) {
+  try {
+    const filler = btn.querySelector('.button__filler');
+    const text = btn.querySelector('.button__text');
+    const cs = getComputedStyle(btn);
+    const hoverColor = cs.getPropertyValue('--hoverTextColor') || cs.getPropertyValue('--baseTextColor') || '#fff';
+    const baseColor = cs.getPropertyValue('--baseTextColor') || '#fff';
 
-  btn.classList.remove("hover-out");
-  btn.classList.add("hover-in");
+    if (state === 'in') {
+      btn.classList.remove('hover-out');
+      btn.classList.add('hover-in');
+      if (filler) filler.style.transform = 'translateY(0%)';
+      if (text) text.style.color = hoverColor.trim();
+    } else {
+      btn.classList.remove('hover-in');
+      btn.classList.add('hover-out');
+      if (filler) filler.style.transform = 'translateY(-75%)';
+      if (text) text.style.color = baseColor.trim();
+    }
+  } catch (e) { /* defensive */ }
+}
+
+document.addEventListener('mouseover', (e) => {
+  const btn = e.target && e.target.closest && e.target.closest('.magic-btn');
+  if (!btn) return;
+  applyMagicBtnState(btn, 'in');
 });
 
-document.addEventListener("mouseout", (e) => {
-  const btn = e.target.closest(".magic-btn");
+document.addEventListener('mouseout', (e) => {
+  const btn = e.target && e.target.closest && e.target.closest('.magic-btn');
   if (!btn) return;
+  applyMagicBtnState(btn, 'out');
+});
 
-  btn.classList.remove("hover-in");
-  btn.classList.add("hover-out");
+// touch support and initial state
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    document.querySelectorAll('.magic-btn').forEach(btn => {
+      // ensure an initial out state so CSS animations have a baseline
+      btn.classList.add('hover-out');
+      const filler = btn.querySelector('.button__filler');
+      if (filler && !filler.style.transform) filler.style.transform = 'translateY(75%)';
+
+      // on touch, toggle briefly
+      btn.addEventListener('touchstart', (ev) => { applyMagicBtnState(btn, 'in'); }, { passive: true });
+      btn.addEventListener('touchend', (ev) => { applyMagicBtnState(btn, 'out'); }, { passive: true });
+    });
+  } catch (e) { /* ignore */ }
 });
 
 /* ===============================

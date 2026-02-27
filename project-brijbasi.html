@@ -1,41 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Brijabsi — branding case study: building safety into identity. See our branding process and outcomes for Brijabsi.">
+  <link rel="canonical" href="https://edikt.in/project-brijbasi.html">
+  <meta property="og:title" content="Brijabsi — Branding Case Study | Edikt Media">
+  <meta property="og:description" content="Brijabsi — branding case study: building safety into identity. See our branding process and outcomes for Brijbasi.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://edikt.in/project-brijbasi.html">
+  <meta property="og:image" content="https://edikt.in/assets/images/Projects/Brijabsi/Brijbasi%201.avif">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Brijabsi — Branding Case Study | Edikt Media">
+  <meta name="twitter:description" content="Brijabsi — branding case study: building safety into identity. See our branding process and outcomes for Brijbasi.">
+  <meta name="twitter:image" content="https://edikt.in/assets/images/Projects/Brijabsi/Brijbasi%201.avif">
   <title>Event |Edikt Media</title>
 
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css">
   <!-- page-specific sizing (use style.css as main source; avoid project.css for this page) -->
   <link rel="stylesheet" href="assets/css/brijbasi.css">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&amp;display=swap" rel="stylesheet">
 </head>
 
 <body class="page-brijbasi">
 
 <!-- ================= HEADER ================= -->
   <div id="site-header"></div>
-
-  <script>
-    fetch('header.html?_=' + Date.now())
-      .then(res => res.text())
-      .then(html => {
-        const container = document.getElementById('site-header');
-        container.innerHTML = html;
-        Array.from(container.querySelectorAll('script')).forEach(s => {
-          const ns = document.createElement('script');
-          if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
-          else { ns.textContent = s.textContent; document.body.appendChild(ns); }
-        });
-        if (typeof initHeaderScroll === 'function') initHeaderScroll();
-      });
-  </script>
-
-  <script src="assets/js/header.js"></script>
+  <script src="assets/js/header-loader.js" defer></script>
+    <script src="assets/js/header.js" defer=""></script>
 
 <main class="container project-page">
 
@@ -47,7 +40,7 @@
     </a>
 
     <div>
-      <h1 class="hero-title">Brijabsi</h1>
+      <h1 class="hero-title">Brijbasi</h1>
       <p class="hero-subtitle">
         Building Safety into Identity – Our Branding Journey with Brijbasi
       </p>
@@ -60,10 +53,10 @@
   <section class="project-hero-grid">
     <div class="grid">
       <div class="grid-item">
-        <img src="assets\images\Projects\Brijabsi\Brijbasi 1.avif" alt="Brijabsi image 1">
+        <picture><picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 1.avif" alt="Brijabsi image 1" eager=""></picture></picture>
       </div>
       <div class="grid-item">
-        <img src="assets\images\Projects\Brijabsi\Brijbasi 2.avif" alt="">
+        <picture><picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 2.avif" alt="brijabsi image 2" lazy=""></picture></picture>
       </div>
     </div>
   </section>
@@ -103,7 +96,7 @@
     <!-- Full Width Image -->
     <div class="project-fullwidth">
       <div class="project-fullwidth-wrap no-effect pan variant-a" tabindex="0">
-          <img src="assets\images\Projects\Brijabsi\Brijbasi 3.avif" alt="Brijabsi full width image" class="pan">
+          <picture><picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 3.avif" alt="Brijabsi full width image" class="pan" lazy=""></picture></picture>
       </div>
     </div>
 
@@ -134,14 +127,14 @@
       </div>
     </div>
 
-  </section>
+  
 
   <!-- Full Width Image -->
     <div class="project-fullwidth">
-      <img src="assets\images\Projects\Brijabsi\Brijbasi 5.avif" alt="Brijabsi full width image">
+      <picture><picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 5.avif" alt="Brijabsi full width image" lazy=""></picture></picture>
     </div>
 
-  </section>
+  
 
 
   <!-- ================= EXPERIENCE SECTION ================= -->
@@ -163,7 +156,7 @@
   <!-- ================= FULL WIDTH IMAGE ================= -->
 
   <section class="project-fullwidth-image">
-    <img src="assets\images\Projects\Brijabsi\Brijbasi 6.avif" alt="Brijbasi full width image">
+    <picture><picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 6.avif" alt="Brijbasi full width image" lazy=""></picture></picture>
   </section>
 
 
@@ -180,8 +173,7 @@
       just hit the button below and start your journey with Edikt Media.
     </p>
 
-    <a href="contact.html" 
-   class="btn magic-btn btn-primary btn-large reveal delay-2">
+    <a href="contact.html" class="btn magic-btn btn-primary btn-large reveal delay-2">
 
   <span class="button__text">Talk to us</span>
   <div class="button__filler"></div>
@@ -201,14 +193,23 @@
   fetch('footer.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
+      const container = document.getElementById('site-footer');
+      container.innerHTML = html;
+      Array.from(container.querySelectorAll('script')).forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+      });
+      try { const stagger = container.querySelector('.footer-content.reveal-stagger'); if (stagger) Array.from(stagger.children).forEach((child, i) => setTimeout(() => child.classList.add('revealed'), i * 80)); } catch (e) {}
     });
 </script>
 
+<script src="assets/js/script.js" defer=""></script>
   <script src="assets/js/script.js"></script>
 
 
 
 <script src="assets/js/scroll-reveal.js"></script>
-</body>
-</html>
+
+
+</body></html>

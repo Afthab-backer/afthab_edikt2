@@ -1,3 +1,15 @@
+/* Final projects row: center single card and constrain width */
+.projects-row.projects-final-row {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* vertical centering */
+  min-height: 60vh; /* occupy a viewport portion so centering is visible */
+}
+.projects-row.projects-final-row .project-item { margin: 0 auto; }
+@media (max-width: 820px) {
+  .projects-row.projects-final-row { padding: 0 16px; min-height: 40vh; }
+  .projects-row.projects-final-row .project-item { flex: 1 1 100%; max-width: 100%; }
+}
 
 
 html, body {
@@ -46,6 +58,11 @@ body {
 
 
 
+
+
+
+
+
 /* push page content below fixed header */
 body {
   padding-top: var(--header-height);
@@ -75,7 +92,23 @@ body {
   color: #000;
   overflow-x: hidden;
   padding-top: 80px;
-  background: #fff;
+  /* Page background: use the site's soft gradient so sides are filled */
+  background: linear-gradient(120deg,#fdf2f2,#f0fdf4);
+  background-color: #f0fdf4;
+}
+
+/* Ensure no white pseudo-element overlays hide the page background */
+body:before, body:after {
+  background: none !important;
+  content: "" !important;
+  pointer-events: none !important;
+}
+
+/* Guarantee viewport fills with our background color */
+html, body {
+  width: 100% !important;
+  min-height: 100% !important;
+  overflow-x: hidden !important;
 }
 /* ===============================
    GLOBAL TYPOGRAPHY – PREMIUM
@@ -404,12 +437,25 @@ main.stp-narrow .project-summary p {
 }
 
 /* Desktop: keep nav pill perfectly centered in viewport between logo and CTA */
-@media (min-width: 769px) {
+@media (min-width: 821px) {
   .navbar {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
+    /* allow full nav text to show on wider screens */
+    overflow: visible;
+    white-space: normal;
+    max-width: none;
+  }
+
+  .navbar a {
+    display: inline-block;
+    max-width: none;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    padding: 8px 12px;
   }
 }
 
@@ -426,7 +472,7 @@ main.stp-narrow .project-summary p {
   .navbar { padding: 10px 20px; gap: 16px; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .container { padding: 0 18px; }
   .container, body { font-size: 16px; }
 
@@ -525,7 +571,7 @@ main.stp-narrow .project-summary p {
 /* Show/hide specific nav items only for mobile menu */
 .navbar a.mobile-only { display: none; }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .navbar a.mobile-only { display: block; }
 }
 
@@ -580,7 +626,7 @@ main.stp-narrow .project-summary p {
 
 /* Mobile menu CTA: hide duplicate in desktop, show inside mobile nav */
 .navbar .mobile-cta { display: none; }
-@media (max-width: 900px) {
+@media (max-width: 820px) {
   .navbar .mobile-cta {
     display: flex;
     margin-top: 12px;
@@ -2235,6 +2281,7 @@ section {
 /* Old mobile scaling rules removed — replaced with modern responsive sizing
    further down the file to avoid transform-based scaling which caused
    clipping and coordinate mismatches on smaller screens. */
+ /* ===============================
    ORIGIN STORY CARD
    =============================== */
 
@@ -2330,7 +2377,7 @@ section {
 }
 
 /* Make the stats sub-line fit on small screens in a single line */
-@media (max-width: 420px) {
+@media (max-width: 640px) {
   .stats-sub {
     gap: 8px !important;
     font-size: 0.95rem !important;
@@ -2351,18 +2398,45 @@ section {
   gap: 120px;
 }
 
-/* ITEM */
-.stat-item h3 {
-  font-size: 5rem;
-  font-weight: 900;
-  color: #2e7d32;
-  margin-bottom: 10px;
+/* Mobile overrides: ensure stats subtitle fits and remove white 'card' look
+   on narrow screens. Use 390px breakpoint per request. */
+@media (max-width:390px) {
+  .global-stats {
+    padding: 40px 0 !important;
+    background: linear-gradient(90deg,#fdf2f2,#f0fdf4) !important;
+  }
+
+  /* Make the subtitle wrap/scale so "Digital / Designed / Delivered" fits */
+  .stats-sub {
+    gap: 8px !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 24px !important;
+    white-space: normal !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+  .stats-sub .dot,
+  .stats-sub span { flex-shrink: 0 !important; }
+
+  /* Remove white card appearance so background fills viewport */
+  .stat-item {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 18px !important;
+  }
+
+  /* Let containers use full mobile width */
+  .container, .page-about .container, .page-services .container, .page-home .container {
+    max-width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
 }
 
-.stat-item p {
-  font-size: 1.5rem;
-  color: #555;
-}
+/* ITEM (stat-number / stat-label used instead of h3/p) */
+/* Consolidated markup uses `.stat-number` and `.stat-label`. */
 
 /* RESPONSIVE */
 @media (max-width: 1024px) {
@@ -2483,19 +2557,7 @@ section {
   gap: 90px;
 }
 
-/* Big Numbers */
-.stat-item h3 {
-  font-size: 4.6rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-}
-
-/* Labels */
-.stat-item p {
-  font-size: 1.25rem;
-  font-weight: 500;
-  margin-top: 6px;
-}
+/* Old .stat-item h3 / p rules removed — `.stat-number` / `.stat-label` provide the styles. */
 
 /* ===============================
    UNIVERSAL REVEAL BASE
@@ -2614,14 +2676,6 @@ section {
   }
 }
 
-
-/* ===============================
-   PROJECTS PAGE STYLES (SMOOTH & OPTIMIZED)
-   =============================== */
-
-/* ===============================
-   GLOBAL PAGE HERO
-   =============================== */
 
 /* ===============================
    GLOBAL PAGE HERO (TIGHT & CLEAN)
@@ -2766,24 +2820,26 @@ section {
   position: relative; /* important */
 }
 
-.project-image .project-tag{
-  position: absolute;
-  top: 18px;
-  left: 18px;
+.project-item .project-tag{
+  display: inline-block;
+  margin: 0 0 16px 0;
 
-  background: rgba(255,255,255,0.95);
+  background: transparent;
   color: #166534;
 
-  padding: 8px 14px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  padding: 14px 24px;
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 
-  border-radius: 999px;
-  z-index: 3;
+  border-radius: 0;
 
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  box-shadow: none;
   pointer-events: none;
+}
+
+@media (max-width:600px){
+  .project-item .project-tag{ font-size:20px; padding:10px 16px; }
 }
 
 
@@ -2849,70 +2905,6 @@ section {
   .project-item {
     opacity: 1;
     transform: none;
-  }
-}
-
-
-
-/* TYPING INTRO - match About page typography & spacing */
-.typing-intro {
-  max-width: 900px;
-  margin: 0 auto;
-  color: #000;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.8;
-  text-align: left;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 260ms ease, transform 260ms ease;
-  pointer-events: none;
-  padding: 0;
-}
-
-/* reveal container once typing starts */
-.typing-intro.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===============================
-   HOME PAGE – TYPING INTRO
-   =============================== */
-
-.page-home .typing-intro br {
-  display: block;
-  margin-bottom: 18px;
-}
-
-.page-home .typing-intro .typed {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.page-home .typing-caret {
-  display: inline-block;
-  width: 2px;
-  height: 1.1em;
-  margin-left: 8px;
-  background: var(--accent-color, #22c55e);
-  vertical-align: middle;
-  animation: blink-caret 900ms steps(1) infinite;
-  border-radius: 1px;
-}
-
-@keyframes blink-caret {
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@media (max-width: 768px) {
-  .page-home .typing-intro {
-    padding: 0 18px;
-    font-size: 1rem;
   }
 }
 
@@ -3227,8 +3219,11 @@ a, button, .job-btn, .magic-btn, img, input, textarea, select, label {
 
 /* LOGO IMAGE */
 .client-box img {
-  width: 100%;
+  /* keep logos their natural aspect ratio and avoid forcing a full-width stretch */
+  display: block;
+  width: auto;
   max-width: 200px;
+  max-height: 80px;
   height: auto;
   object-fit: contain;
 
@@ -3280,22 +3275,35 @@ a, button, .job-btn, .magic-btn, img, input, textarea, select, label {
 
 @media (max-width: 768px) {
   .client-box {
-    min-width: 160px;
+    /* allow flexible width on small screens so logos don't overflow */
+    min-width: 0;
     height: 70px;
-    margin: 0 20px;
+    margin: 0 12px;
+    padding: 6px 8px;
+    overflow: hidden;
   }
 
   /* Slow the continuous client slider on mobile for calmer motion */
   .logo-track {
-    animation-duration: 32s !important; /* mobile scroll (slower) */
+    animation-duration: 48s !important; /* mobile scroll (slower) */
   }
   .logo-slider.reverse .logo-track {
-    animation-duration: 36s !important; /* mobile reverse scroll (slower) */
+    animation-duration: 54s !important; /* mobile reverse scroll (slower) */
   }
 
+  /* Constrain logos on small screens so they fit the card */
   .client-box img {
-    max-width: 85%;
-    max-height: 60%;
+    max-width: 120px;
+    max-height: 60px;
+    width: auto;
+    height: auto;
+  }
+
+  /* Disable hover/scale effects on touch devices / small screens */
+  .client-box:hover,
+  .client-box:hover img {
+    transform: none !important;
+    box-shadow: none !important;
   }
 }
 
@@ -3417,6 +3425,11 @@ input, textarea, select {
 /* Hide the ring-and-dot cursor implementation so only the trailing blob appears */
 .custom-cursor {
   display: none !important;
+}
+
+/* Ensure bubble cursor is hidden on mobile/responsive screens */
+@media (max-width: 820px) {
+  .cursor-blob { display: none !important; }
 }
 
 /* magnetic-target: subtle lift + color ring */
@@ -3650,8 +3663,6 @@ img.magnetic-target {
 }
 
 /* ===============================
-   🔥 CRITICAL FIX 🔥
-   CONTENT COUNTER-ROTATES
    =============================== */
 
 .orbit-content {
@@ -4116,7 +4127,6 @@ img.magnetic-target {
     font-size: 2.4rem;
   }
 
-  /* Always show bio on mobile */
   /* Mobile: hide bio by default; show when card is activated (tap) */
   .team-bio {
     opacity: 0;
@@ -4357,11 +4367,6 @@ img.magnetic-target {
 }
 
 /* ===============================
-   GRID
-   =============================== */
-
-
-/* ===============================
    CARD BASE (NO ANIMATION TRIGGER)
    =============================== */
 
@@ -4384,10 +4389,6 @@ img.magnetic-target {
   box-shadow 0.35s ease;
 
 }
-/* ===============================
-   REVEALED STATE
-================================ */
-
 
 
 /* ===============================
@@ -4404,7 +4405,7 @@ img.magnetic-target {
   height: 100%;
 }
 
-✔ 
+
 
 /* Tablet */
 @media (max-width: 768px) {
@@ -4502,14 +4503,6 @@ img.magnetic-target {
 
 
 /* ===============================
-   RESPONSIVE
-   =============================== */
-
-
-
-
-
-/* ===============================
    GLOBAL TYPOGRAPHY NORMALIZATION
    =============================== */
 
@@ -4598,11 +4591,6 @@ section {
   align-items:center;
 }
 
-/* Robot box */
-/* Robot container */
-/* Robot container */
-/* ROBOT CONTAINER */
-/* ROBOT CONTAINER */
 .spline-wrapper{
   width:600px;
   height:700px;
@@ -4619,7 +4607,7 @@ section {
   height:120%;
   display:block;
 
-  /* 🔥 PUSH MODEL RIGHT */
+  /* PUSH MODEL RIGHT */
   transform: translateX(60px);
   transform-origin:center;
 
@@ -4758,13 +4746,6 @@ section {
     height: 300px;
   }
 }
-
-
-/* ===============================
-   WORK WITH US – PRIMARY CTA BUTTON
-   =============================== */
-
-
 
 
 /* ===============================
@@ -5406,10 +5387,6 @@ section {
   .page-work .jobs-grid { grid-template-columns: 1fr; }
   .page-work .job-card { max-width: none; }
 }
-/* ===============================
-   MODAL
-   =============================== */
-   
 
 /* ===============================
    JOB MODAL BASE
@@ -5468,6 +5445,18 @@ section {
     max-height: 50vh;
     width: 92%;
     padding: 18px;
+    overflow-y: auto;
+    border-radius: 12px;
+  }
+}
+
+/* For all responsive (non-desktop) sizes keep the modal short and scrollable
+   so the content fits device heights similar to a 390px viewport. */
+@media (max-width: 1024px) {
+  .job-modal-content {
+    max-height: 390px; /* short box height */
+    width: 92%;
+    padding: 18px 22px;
     overflow-y: auto;
     border-radius: 12px;
   }
@@ -5583,10 +5572,6 @@ section {
 }
 
 /* ===============================
-   SECOND BUTTON COLOR
-================================ */
-
-/* ===============================
    SECONDARY / OUTLINE BUTTON
 ================================ */
 
@@ -5667,7 +5652,6 @@ section {
   }
 }
 
-/* (restored original behavior: fillIn/fillOut keyframes above) */
 
 
 /* ===============================
@@ -5696,18 +5680,6 @@ section {
 }
 
 
-
-/* ===============================
-   FIX: SHOW PROJECTS HERO SUBTITLE
-================================ */
-
-/* ===============================
-   FIX BLUR ON PROJECTS HERO SUBTITLE
-================================ */
-
-/* ===============================
-   PROJECTS HERO ALIGNMENT
-================================ */
 
 /* ===============================
    PROJECTS HERO SPACING FIX
@@ -5746,8 +5718,8 @@ section {
   max-width: 1400px;
   margin-bottom: 0px;
 
-  font-size: 1.25rem;   /* ADD THIS */
-  line-height: 1.7;     /* ADD THIS */
+  font-size: 1.25rem;   
+  line-height: 1.7;     
 }
 
 
@@ -5786,61 +5758,6 @@ section {
     transition: none !important;
   }
 }
-
-
-/* ===============================
-   CUSTOM CURSOR (FINAL FIX)
-=============================== */
-
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 40px;
-  height: 40px;
-
-  pointer-events: none;
-  z-index: 999999;
-
-  will-change: transform;
-}
-
-/* outer ring */
-.cursor-ring {
-  width: 40px;
-  height: 40px;
-  border: 2px solid #22c55e;
-  border-radius: 50%;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* inner dot */
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background: #22c55e;
-  border-radius: 50%;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* hide state */
-.cursor--hidden {
-  opacity: 0;
-}
-
-
-
-
-
 
 
 /* Project detail hero grid (two large images with smooth zoom on hover) */
@@ -6579,5 +6496,91 @@ html body main.stp-narrow .project-overview h3 {
 }
 
 /* mark this override done */
+
+/* ===============================
+   About page: override full-bleed and enforce sensible image sizing
+   Prevents global full-bleed rules from stretching the about image
+   =============================== */
+.page-about .about-image,
+.page-about .about-image img {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: 580px !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+  position: relative !important;
+  left: auto !important;
+  transform: none !important;
+}
+
+.page-about .about-row {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 48px !important;
+}
+
+@media (max-width: 900px) {
+  .page-about .about-row { grid-template-columns: 1fr !important; }
+  .page-about .about-image img { max-width: 100% !important; height: auto !important; margin: 0 auto !important; }
+}
+
+
+
+
+
+
+
+
+
+
+/* ================= DESKTOP 2 COLUMN PROJECT GRID ================= */
+
+@media (min-width: 769px) {
+
+  .projects-grid-page {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  .projects-row {
+    display: contents;
+  }
+
+}
+
+/* ================= MOBILE PAIR SLIDER ================= */
+
+@media (max-width: 768px) {
+
+  .projects-grid-page {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .projects-row {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .project-item {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
+
+  .projects-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .projects-row {
+    scrollbar-width: none;
+  }
+
+}
 
 

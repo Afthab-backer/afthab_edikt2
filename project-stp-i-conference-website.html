@@ -1,13 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="STP-I Conference Website — design and development of the conference website highlighting program, speakers and sessions.">
+  <link rel="canonical" href="https://edikt.in/project-stp-i-conference-website.html">
+  <meta property="og:title" content="STP-I Conference Website — Web Design | Edikt Media">
+  <meta property="og:description" content="STP-I Conference Website — design and development of the conference website highlighting program, speakers and sessions.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://edikt.in/project-stp-i-conference-website.html">
+  <meta property="og:image" content="https://edikt.in/assets/images/Projects/STP-I%20conference/conference%201.avif">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="STP-I Conference Website — Web Design | Edikt Media">
+  <meta name="twitter:description" content="STP-I Conference Website — design and development of the conference website highlighting program, speakers and sessions.">
+  <meta name="twitter:image" content="https://edikt.in/assets/images/Projects/STP-I%20conference/conference%201.avif">
   <title>Event |Edikt Media</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&amp;display=swap" rel="stylesheet">
   <style>
     /* Mobile-only: move Client/Location above Overview and make overview paragraph fill screen */
     @media (max-width: 768px) {
@@ -52,23 +60,8 @@
   
   <!-- ================= HEADER ================= -->
   <div id="site-header"></div>
-
-  <script>
-    fetch('header.html?_=' + Date.now())
-      .then(res => res.text())
-      .then(html => {
-        const container = document.getElementById('site-header');
-        container.innerHTML = html;
-        Array.from(container.querySelectorAll('script')).forEach(s => {
-          const ns = document.createElement('script');
-          if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
-          else { ns.textContent = s.textContent; document.body.appendChild(ns); }
-        });
-        if (typeof initHeaderScroll === 'function') initHeaderScroll();
-      });
-  </script>
-
-  <script src="assets/js/header.js"></script>
+  <script src="assets/js/header-loader.js" defer></script>
+  <script src="assets/js/header.js" defer=""></script>
 
   <main class="container stp-narrow" style="padding:60px 0;">
     <div class="project-hero-header" style="margin-bottom:18px; display:flex; align-items:flex-start; gap:18px;">
@@ -86,10 +79,10 @@
     <section class="project-hero-grid reveal delay-2" style="margin-top:18px;">
       <div class="grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;">
         <div class="grid-item">
-          <img src="assets/images/Projects/STP-I Conference web/Post 3.jpg" alt="STP-I Post 3" loading="lazy">
+          <picture><picture><img src="/assets/images/Projects/STP-I Conference web/Post 3.webp" alt="STP-I Post 3" eager=""></picture></picture>
         </div>
         <div class="grid-item">
-          <img src="assets/images/Projects/STP-I Conference web/Post 2.jpg" alt="STP-I Post 2" loading="lazy">
+          <picture><picture><img src="/assets/images/Projects/STP-I Conference web/Post 2.webp" alt="STP-I Post 2" lazy=""></picture></picture>
         </div>
       </div>
     </section>
@@ -125,7 +118,7 @@
       <!-- full-width Post 1 image added after Overview -->
       <div class="project-fullwidth reveal delay-3" style="margin-top:28px;">
         <div class="project-fullwidth-wrap" tabindex="0">
-          <img src="assets/images/Projects/STP-I Conference web/Post 1.jpg" alt="STP-I Post 1" loading="lazy">
+          <picture><picture><img src="/assets/images/Projects/STP-I Conference web/Post 1.webp" alt="STP-I Post 1" lazy=""></picture></picture>
         </div>
       </div>
 
@@ -152,7 +145,7 @@
 
           <div class="tile tile-center">
             <div class="tile-inner logo-circle">
-              <img src="assets\images\Projects\STP-I Conference web\STP logo.jpeg" alt="STPI logo" loading="lazy">
+              <picture><picture><img src="/assets\images\Projects\STP-I Conference web\STP logo.webp" alt="STPI logo" lazy=""></picture></picture>
             </div>
           </div>
 
@@ -164,7 +157,7 @@
             </div>
             <div class="tile-bottom">
               <div class="tile-inner right-bottom">
-                <img src="assets\images\Projects\STP-I Conference web\post 5.jpeg" alt="conference" loading="lazy">
+                <picture><picture><img src="/assets\images\Projects\STP-I Conference web\post 5.webp" alt="conference" lazy=""></picture></picture>
               </div>
             </div>
           </div>
@@ -214,7 +207,7 @@
       <!-- Post 4 image (added as requested) -->
       <div class="project-fullwidth reveal delay-7" style="margin-top:24px;">
         <div class="project-fullwidth-wrap no-effect" tabindex="0">
-          <img src="assets/images/Projects/STP-I Conference web/Post 4.jpeg" alt="STP-I Post 4" loading="lazy">
+          <picture><picture><img src="/assets/images/Projects/STP-I Conference web/Post 4.webp" alt="STP-I Post 4" lazy=""></picture></picture>
         </div>
       </div>
 
@@ -233,8 +226,7 @@
       just hit the button below and start your journey with Edikt Media.
     </p>
 
-    <a href="contact.html" 
-   class="btn magic-btn btn-primary btn-large reveal delay-2">
+    <a href="contact.html" class="btn magic-btn btn-primary btn-large reveal delay-2">
 
   <span class="button__text">Talk to us</span>
   <div class="button__filler"></div>
@@ -254,11 +246,18 @@
   fetch('footer.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
+      const container = document.getElementById('site-footer');
+      container.innerHTML = html;
+      Array.from(container.querySelectorAll('script')).forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+      });
+      try { const stagger = container.querySelector('.footer-content.reveal-stagger'); if (stagger) Array.from(stagger.children).forEach((child, i) => setTimeout(() => child.classList.add('revealed'), i * 80)); } catch (e) {}
     });
 </script>
 
-  <script src="assets/js/script.js"></script>
+  <script src="assets/js/script.js" defer=""></script>
 
 
 
@@ -275,5 +274,5 @@
     }
   </style>
 
-</body>
-</html>
+
+</body></html>

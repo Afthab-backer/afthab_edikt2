@@ -1,41 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Careers &amp; collaborations at Edikt Media — join our creative team or partner with us on branding, events and digital projects.">
+  <link rel="canonical" href="https://edikt.in/work_with_us.html">
+  <meta property="og:title" content="Work With Us — Careers at Edikt Media">
+  <meta property="og:description" content="Careers &amp; collaborations at Edikt Media — join our creative team or partner with us on branding, events and digital projects.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://edikt.in/work_with_us.html">
+  <meta property="og:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Work With Us — Careers at Edikt Media">
+  <meta name="twitter:description" content="Careers &amp; collaborations at Edikt Media — join our creative team or partner with us on branding, events and digital projects.">
+  <meta name="twitter:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <title>Work With Us | Edikt Media</title>
 
   <!-- MAIN CSS -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css">
 
   <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 </head>
 
 <body class="page-work">
 
 <!-- ================= HEADER (SAME AS HOME) ================= -->
 <div id="site-header"></div>
+  <script src="assets/js/header-loader.js" defer></script>
 
-  <script>
-    fetch('header.html?_=' + Date.now())
-      .then(res => res.text())
-      .then(html => {
-        const container = document.getElementById('site-header');
-        container.innerHTML = html;
-        Array.from(container.querySelectorAll('script')).forEach(s => {
-          const ns = document.createElement('script');
-          if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
-          else { ns.textContent = s.textContent; document.body.appendChild(ns); }
-        });
-      });
-  </script>
-  </script>
-
-<script src="assets/js/header.js"></script>
+<script src="assets/js/header.js" defer=""></script>
 
 <!-- ================= WORK WITH US HERO ================= -->
 <section class="careers-hero reveal">
@@ -53,7 +47,7 @@
 
     <div class="career-card reveal delay-1">
       <div class="career-icon">
-        <img src="assets\images\extras\Career freedom.png" alt="Career Freedom">
+        <picture><picture><img src="/assets\images\extras\Career freedom.webp" alt="Career Freedom" lazy=""></picture></picture>
       </div>
       <h3>Career<br>Freedom</h3>
       <p>
@@ -64,7 +58,7 @@
 
     <div class="career-card reveal delay-2">
       <div class="career-icon">
-        <img src="assets\images\extras\Collaborative Culture.png" alt="Collaborative Culture">
+        <picture><picture><img src="/assets\images\extras\Collaborative Culture.webp" alt="Collaborative Culture" lazy=""></picture></picture>
       </div>
       <h3>Collaborative<br>Culture</h3>
       <p>
@@ -75,7 +69,7 @@
 
     <div class="career-card reveal delay-3">
       <div class="career-icon">
-        <img src="assets\images\extras\Career  growth.png" alt="Career Growth">
+        <picture><picture><img src="/assets\images\extras\Career  growth.webp" alt="Career Growth" lazy=""></picture></picture>
       </div>
       <h3>Career<br>Growth</h3>
       <p>
@@ -177,7 +171,7 @@
 </div>
 
 <!-- JS -->
-<script src="assets/js/script.js"></script>
+<script src="assets/js/script.js" defer=""></script>
 
 <div id="site-footer"></div>
 
@@ -185,7 +179,14 @@
   fetch('footer.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
+      const container = document.getElementById('site-footer');
+      container.innerHTML = html;
+      Array.from(container.querySelectorAll('script')).forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+      });
+      try { const stagger = container.querySelector('.footer-content.reveal-stagger'); if (stagger) Array.from(stagger.children).forEach((child, i) => setTimeout(() => child.classList.add('revealed'), i * 80)); } catch (e) {}
     });
 </script>
 
@@ -193,5 +194,6 @@
 <script src="assets/js/scroll-reveal.js"></script>
 
 
-</body>
-</html>
+
+
+</body></html>

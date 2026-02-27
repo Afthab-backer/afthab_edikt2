@@ -1,18 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="STPI Conference — event production and program design for the Society of Toxicologic Pathology's annual conference in India.">
+  <link rel="canonical" href="https://edikt.in/project-stp-i-conference.html">
+  <meta property="og:title" content="STPI Conference — Event Production | Edikt Media">
+  <meta property="og:description" content="STPI Conference — event production and program design for the Society of Toxicologic Pathology's annual conference in India.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://edikt.in/project-stp-i-conference.html">
+  <meta property="og:image" content="https://edikt.in/assets/images/Projects/STP-I%20conference/conference%201.avif">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="STPI Conference — Event Production | Edikt Media">
+  <meta name="twitter:description" content="STPI Conference — event production and program design for the Society of Toxicologic Pathology's annual conference in India.">
+  <meta name="twitter:image" content="https://edikt.in/assets/images/Projects/STP-I%20conference/conference%201.avif">
   <title>Event |Edikt Media</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/project.css">
   <link rel="stylesheet" href="assets/css/stp.css?v=3">
   <link rel="stylesheet" href="assets/css/brijbasi.css">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&amp;display=swap" rel="stylesheet">
   <style>
     /* Mobile: make 2-column hero images square (1:1) without affecting desktop */
     @media (max-width: 768px) {
@@ -31,23 +39,8 @@
 
   <!-- ================= HEADER ================= -->
   <div id="site-header"></div>
-
-  <script>
-      fetch('header.html?_=' + Date.now())
-      .then(res => res.text())
-      .then(html => {
-        const container = document.getElementById('site-header');
-        container.innerHTML = html;
-        Array.from(container.querySelectorAll('script')).forEach(s => {
-          const ns = document.createElement('script');
-          if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
-          else { ns.textContent = s.textContent; document.body.appendChild(ns); }
-        });
-        if (typeof initHeaderScroll === 'function') initHeaderScroll();
-      });
-    </script>
-
-  <script src="assets/js/header.js"></script>
+  <script src="assets/js/header-loader.js" defer></script>
+  <script src="assets/js/header.js" defer=""></script>
 
 <main class="container project-page" style="padding:60px 0;">
 
@@ -69,10 +62,10 @@
   <section class="project-hero-grid">
     <div class="grid">
       <div class="grid-item">
-        <img src="assets\images\Projects\STP-I conference\conference 1.avif" alt="conference image 1">
+        <picture><picture><img src="/assets\images\Projects\STP-I conference\conference 1.avif" alt="conference image 1" eager=""></picture></picture>
       </div>
       <div class="grid-item">
-        <img src="assets\images\Projects\STP-I conference\conference 2.avif" alt="conference image 2">
+        <picture><picture><img src="/assets\images\Projects\STP-I conference\conference 2.avif" alt="conference image 2" lazy=""></picture></picture>
       </div>
     </div>
   </section>
@@ -115,7 +108,7 @@
 
     <!-- FULL WIDTH IMAGE -->
     <div class="project-fullwidth">
-      <img src="assets\images\Projects\STP-I conference\conference 3.avif" alt="conference image 3">
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference 3.avif" alt="conference image 3" lazy=""></picture></picture>
     </div>
 
   </section>
@@ -142,34 +135,34 @@
 
     <!-- LEFT LARGE -->
     <div class="gallery-item large-left">
-      <img src="assets\images\Projects\STP-I conference\conference g 1.avif" alt="">
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 1.avif" lazy=""></picture></picture>
     </div>
 
     <!-- CENTER LARGE -->
     <div class="gallery-item large-center">
-      <img src="assets\images\Projects\STP-I conference\conference g 2.avif" alt="">
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 2.avif" lazy=""></picture></picture>
     </div>
 
     <!-- TOP RIGHT STACK -->
     <div class="gallery-item stack-top">
-      <img src="assets\images\Projects\STP-I conference\conference g 3.avif" alt="">
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 3.avif" lazy=""></picture></picture>
     </div>
 
     <div class="gallery-item stack-bottom">
-      <img src="assets\images\Projects\STP-I conference\conference g 4.avif" alt="">
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 4.avif" lazy=""></picture></picture>
     </div>
 
     <!-- BOTTOM ROW -->
     <div class="gallery-item bottom">
-      <img src="assets\images\Projects\STP-I conference\conference g 5.avif" alt="">
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 5.avif" lazy=""></picture></picture>
     </div>
 
     <div class="gallery-item bottom">
-      <img src="assets\images\Projects\STP-I conference\conference g 6.avif" alt="">
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 6.avif" lazy=""></picture></picture>
     </div>
 
     <div class="gallery-item bottom">
-      <img src="assets\images\Projects\STP-I conference\conference g 7.avif" alt="">
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 7.avif" lazy=""></picture></picture>
     </div>
 
   </div>
@@ -181,7 +174,7 @@
   <div class="container">
 
     <h2 class="experience-title">
-      Lights, Sound & Lens – Crafting an Immersive Experience
+      Lights, Sound &amp; Lens – Crafting an Immersive Experience
     </h2>
 
     <p>
@@ -198,9 +191,7 @@
 
 <section class="project-fullwidth-image">
 
-  <img src="assets\images\Projects\STP-I conference\conference 4.avif" 
-       alt="Conference Highlight Image" 
-       loading="lazy">
+  <picture><picture><img src="/assets\images\Projects\STP-I conference\conference 4.avif" alt="Conference Highlight Image" lazy=""></picture></picture>
 
 </section>
 
@@ -217,8 +208,7 @@
       just hit the button below and start your journey with Edikt Media.
     </p>
 
-    <a href="contact.html" 
-   class="btn magic-btn btn-primary btn-large reveal delay-2">
+    <a href="contact.html" class="btn magic-btn btn-primary btn-large reveal delay-2">
 
   <span class="button__text">Talk to us</span>
   <div class="button__filler"></div>
@@ -240,15 +230,23 @@
   fetch('footer.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
+      const container = document.getElementById('site-footer');
+      container.innerHTML = html;
+      Array.from(container.querySelectorAll('script')).forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+      });
+      try { const stagger = container.querySelector('.footer-content.reveal-stagger'); if (stagger) Array.from(stagger.children).forEach((child, i) => setTimeout(() => child.classList.add('revealed'), i * 80)); } catch (e) {}
     });
 </script>
 
-  <script src="assets/js/script.js"></script>
+  <script src="assets/js/script.js" defer=""></script>
 
 
 
 <script src="assets/js/scroll-reveal.js"></script>
 
-</body>
-</html>
+
+
+</body></html>

@@ -1,7 +1,9 @@
-<header class="header">
+<html><head>
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+</head><body><header class="header">
   <style>
     /* Inline header-scoped mobile override to ensure fetched header works across pages */
-    @media (max-width: 768px) {
+    @media (max-width: 820px) {
       header .navbar { display: none; }
       header .navbar.active {
         display: flex !important;
@@ -28,9 +30,16 @@
 
       <!-- LOGO -->
       <a href="index.html" class="logo-link">
-        <img src="assets\images\edikt logo\edikt media logo png.png"
-             alt="Edikt Media Logo"
-             class="logo">
+        <img
+          src="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png"
+          alt="Edikt Media Logo"
+          width="131"
+          height="35"
+          class="logo"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        >
       </a>
 
       <!-- NAVBAR -->
@@ -96,3 +105,4 @@
     }, true);
   })();
 </script>
+</body></html>

@@ -1,39 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All Clients – Edikt Media</title>
 
   <!-- GLOBAL STYLES -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css">
 
   <!-- GOOGLE FONT (same as other pages) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 </head>
 <body class="page-clients">
 
 <!-- ================= HEADER ================= -->
 <div id="site-header"></div>
+    <script src="assets/js/header-loader.js" defer></script>
 
-  <script>
-    fetch('header.html?_=' + Date.now())
-      .then(res => res.text())
-      .then(html => {
-        const container = document.getElementById('site-header');
-        container.innerHTML = html;
-        Array.from(container.querySelectorAll('script')).forEach(s => {
-          const ns = document.createElement('script');
-          if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
-          else { ns.textContent = s.textContent; document.body.appendChild(ns); }
-        });
-      });
-  </script>
-
-<script src="assets/js/header.js"></script>
+<script src="assets/js/header.js" defer=""></script>
 
 <section class="Clients-hero">
   <div class="container">
@@ -53,62 +37,62 @@
     <div class="clients-grid">
 
         <!-- ORIGINAL LOGOS -->
-        <div class="client-card fade-in"><img src="assets\images\clients\allcargo.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\amber.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\AQUAMETRO.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\atlantic.webp" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\atnt.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\ATRAC.jpg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\autodesk.jpg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\Bhastrik.avif" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\brijbasi.webp" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\bull.jpg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\canyon.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\Chemtrols.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\chowgule.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\CKA.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\DeeTee.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\dolphin.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\endless.webp" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\firefly.webp" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\HASELMEIER.jpg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\HHV.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\jackson.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\madhu.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\Mallak.jpg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\MARUn PETRO Chemical Group.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\micro-tech.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\muller.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\Nail.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\orion.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\patidar.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\Protia.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\ridley.avif" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\Ruhrpumpen.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\sailcarb.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\SALEM.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\Sman.jpg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\sodick.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\SRI DEVARAJA.webp" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\stp.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\suncity-sheets.webp" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\The Jackson Laboratory.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\Transformers and Rectifiers.jpg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\unicon.jpg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\wacom.jpeg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\Evvolution.svg" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\Regal stones.png" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\Shivam multi microns.avif" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\Umpire Technologies.webp" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\Umpire cnc.avif" loading="lazy"></div>
-<div class="client-card fade-in"><img src="assets\images\clients\CIG.avif" loading="lazy"></div>
+        <div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\allcargo.webp" alt="Allcargo" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\amber.webp" alt="Amber" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\AQUAMETRO.webp" alt="Aquametro" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\atlantic.webp" alt="Atlantic" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\atnt.webp" alt="ATNT" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\ATRAC.webp" alt="ATRAC" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\autodesk.webp" alt="Autodesk" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\Bhastrik.avif" alt="Bhastrik" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\brijbasi.webp" alt="Brijbasi" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\bull.webp" alt="Bull" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\canyon.webp" alt="Canyon" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\Chemtrols.webp" alt="Chemtrols" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\chowgule.webp" alt="Chowgule" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\CKA.webp" alt="CKA" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\DeeTee.webp" alt="DeeTee" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\dolphin.webp" alt="Dolphin" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\endless.webp" alt="Endless" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\firefly.webp" alt="Firefly" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\HASELMEIER.webp" alt="Haselmeier" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\HHV.webp" alt="HHV" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\jackson.webp" alt="Jackson" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\madhu.webp" alt="Madhu" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\Mallak.webp" alt="Mallak" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\MARUn PETRO Chemical Group.webp" alt="MARUn PETRO Chemical Group" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\micro-tech.webp" alt="Micro-Tech" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\muller.webp" alt="Muller" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\Nail.webp" alt="Nail" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\orion.webp" alt="Orion" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\patidar.webp" alt="Patidar" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\Protia.webp" alt="Protia" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\ridley.avif" alt="Ridley" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\Ruhrpumpen.webp" alt="Ruhrpumpen" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\sailcarb.webp" alt="Sailcarb" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\SALEM.webp" alt="Salem" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\Sman.webp" alt="Sman" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\sodick.webp" alt="Sodick" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\SRI DEVARAJA.webp" alt="SRI DEVARAJA" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\stp.webp" alt="STP" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\suncity-sheets.webp" alt="Suncity Sheets" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\The Jackson Laboratory.png" alt="The Jackson Laboratory" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\Transformers and Rectifiers.webp" alt="Transformers and Rectifiers" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\unicon.webp" alt="Unicon" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\wacom.webp" alt="Wacom" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\Evvolution.webp" alt="Evvolution" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\Regal stones.webp" alt="Regal Stones" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\Shivam multi microns.avif" alt="Shivam Multi Microns" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\Umpire Technologies.webp" alt="Umpire Technologies" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\Umpire cnc.avif" alt="Umpire CNC" lazy=""></picture></picture></div>
+<div class="client-card fade-in"><picture><picture><img src="/assets\images\clients\CIG.avif" alt="CIG" lazy=""></picture></picture></div>
 
 
 
       </div>
     </div>
 
-  </div>
+  
 
 <!-- ================= FINAL CTA ================= -->
 <section class="final-cta">
@@ -124,8 +108,7 @@
     </p>
 
     <!-- ✅ USE SAME BUTTON SYSTEM -->
-   <a href="contact.html" 
-   class="btn magic-btn btn-primary btn-large reveal delay-2">
+   <a href="contact.html" class="btn magic-btn btn-primary btn-large reveal delay-2">
 
   <span class="button__text">Talk to us</span>
   <div class="button__filler"></div>
@@ -141,12 +124,19 @@
   fetch('footer.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
+      const container = document.getElementById('site-footer');
+      container.innerHTML = html;
+      Array.from(container.querySelectorAll('script')).forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+      });
+      try { const stagger = container.querySelector('.footer-content.reveal-stagger'); if (stagger) Array.from(stagger.children).forEach((child, i) => setTimeout(() => child.classList.add('revealed'), i * 80)); } catch (e) {}
     });
 </script>
 
 <!-- ================= GLOBAL SCRIPT ================= -->
-<script src="assets/js/script.js"></script>
+<script src="assets/js/script.js" defer=""></script>
 <script>
   const observer = new IntersectionObserver(
     (entries) => {
@@ -169,6 +159,7 @@
 
 <script src="assets/js/scroll-reveal.js"></script>
 
-</body>
-</html>
 
+
+
+</div></section></section></body></html>

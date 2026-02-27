@@ -1,0 +1,16 @@
+# Ignore build output
+/dist/
+
+# Node modules (if used)
+/node_modules/
+
+# VS Code
+.vscode/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Logs
+npm-debug.log*
+*.log

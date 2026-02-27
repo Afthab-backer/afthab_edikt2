@@ -1,40 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meet the Edikt Media team — designers, strategists and producers who create immersive brand experiences.">
+  <link rel="canonical" href="https://edikt.in/team.html">
+  <meta property="og:title" content="Meet the Team — Edikt Media">
+  <meta property="og:description" content="Meet the Edikt Media team — designers, strategists and producers who create immersive brand experiences.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://edikt.in/team.html">
+  <meta property="og:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Meet the Team — Edikt Media">
+  <meta name="twitter:description" content="Meet the Edikt Media team — designers, strategists and producers who create immersive brand experiences.">
+  <meta name="twitter:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <title>Our Team – Edikt Media</title>
 
   <!-- GLOBAL STYLES -->
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css">
   <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
 
   <!-- GOOGLE FONT (same as other pages) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 </head>
 <body>
 
 <!-- ================= HEADER ================= -->
 <div id="site-header"></div>
-
-<script>
-  fetch('header.html?_=' + Date.now())
-    .then(res => res.text())
-    .then(html => {
-      const container = document.getElementById('site-header');
-      container.innerHTML = html;
-      // execute any scripts that came with the header fragment
-      Array.from(container.querySelectorAll('script')).forEach(s => {
-        const ns = document.createElement('script');
-        if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
-        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
-      });
-      if (typeof initHeaderScroll === 'function') initHeaderScroll();
-    });
-</script>
-
+<script src="assets/js/header-loader.js" defer></script>
 <script src="assets/js/header.js"></script>
 
 <!-- ================= HERO ================= -->
@@ -55,7 +48,7 @@
     <!-- ROW 1 : 2 MEMBERS -->
     <div class="team-row two reveal-stagger">
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Ajay" loading="lazy">
+        <picture><picture><img src="/assets\images\extras\Smiling man in navy hoodie.webp" alt="Ajay" lazy=""></picture></picture>
         <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Ajay</h3>
@@ -73,11 +66,11 @@
       </div>
 
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling women.png" alt="Vinita" loading="lazy">
+        <picture><picture><img src="/assets\images\extras\Smiling women.webp" alt="Vinita" lazy=""></picture></picture>
         <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Vinita</h3>
-            <span>Director & Design Verifier</span>
+            <span>Director &amp; Design Verifier</span>
             <p>
                 Vinita ensures every project at Edikt Media reflects excellence.
                 Combining precision, creativity, and leadership, 
@@ -87,7 +80,7 @@
         </div>
         <div class="team-info">
           <h3>Vinita</h3>
-          <p>Director & Design Verifier</p>
+          <p>Director &amp; Design Verifier</p>
         </div>
       </div>
     </div>
@@ -95,7 +88,7 @@
     <!-- ROW 2 : 3 MEMBERS -->
     <div class="team-row three reveal-stagger">
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Saif" loading="lazy">
+        <picture><picture><img src="/assets\images\extras\Smiling man in navy hoodie.webp" alt="Saif" lazy=""></picture></picture>
          <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Saif</h3>
@@ -114,11 +107,11 @@
       </div>
 
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling women.png" alt="Pooja" loading="lazy">
+        <picture><picture><img src="/assets\images\extras\Smiling women.webp" alt="Pooja" lazy=""></picture></picture>
          <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Pooja</h3>
-            <span>BDM & Backend Tester</span>
+            <span>BDM &amp; Backend Tester</span>
             <p>
                 Pooja drives client growth while ensuring flawless digital performance.
                 Combining strategic business thinking with technical insight, she brings
@@ -127,16 +120,16 @@
         </div>
         <div class="team-info">
           <h3>Pooja</h3>
-          <p>BDM & Backend Tester</p>
+          <p>BDM &amp; Backend Tester</p>
         </div>
       </div>
 
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling women.png" alt="Janhavi" loading="lazy">
+        <picture><picture><img src="/assets\images\extras\Smiling women.webp" alt="Janhavi" lazy=""></picture></picture>
          <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Janhavi</h3>
-            <span>Sr. CS & BDM</span>
+            <span>Sr. CS &amp; BDM</span>
             <p>
                 Janhavi balances structure with strategy, ensuring Edikt Media operates smoothly while driving growth.
                 Her leadership, precision, and commitment to excellence make her a vital cornerstone of the company’s success.
@@ -144,7 +137,7 @@
         </div>
         <div class="team-info">
           <h3>Janhavi</h3>
-          <p>Sr. CS & BDM</p>
+          <p>Sr. CS &amp; BDM</p>
         </div>
       </div>
     </div>
@@ -152,7 +145,7 @@
     <!-- ROW 3 : 3 MEMBERS -->
     <div class="team-row three reveal-stagger">
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Harish" loading="lazy">
+        <picture><picture><img src="/assets\images\extras\Smiling man in navy hoodie.webp" alt="Harish" lazy=""></picture></picture>
          <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Harish</h3>
@@ -170,7 +163,7 @@
       </div>
 
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Afthab" loading="lazy">
+        <picture><picture><img src="/assets\images\extras\Smiling man in navy hoodie.webp" alt="Afthab" lazy=""></picture></picture>
          <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Afthab</h3>
@@ -188,7 +181,7 @@
       </div>
 
       <div class="team-card reveal">
-        <img src="assets\images\extras\Smiling man in navy hoodie.png" alt="Fauzan" loading="lazy">
+        <picture><picture><img src="/assets\images\extras\Smiling man in navy hoodie.webp" alt="Fauzan" lazy=""></picture></picture>
          <!-- BIO OVERLAY -->
         <div class="team-bio">
             <h3>Fauzan</h3>
@@ -217,15 +210,26 @@
   fetch('footer.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
+      const container = document.getElementById('site-footer');
+      container.innerHTML = html;
+      Array.from(container.querySelectorAll('script')).forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+      });
+      try {
+        const stagger = container.querySelector('.footer-content.reveal-stagger');
+        if (stagger) Array.from(stagger.children).forEach((child, i) => setTimeout(() => child.classList.add('revealed'), i * 80));
+      } catch (e) {}
     });
 </script>
 
 <!-- ================= GLOBAL SCRIPT ================= -->
-<script src="assets/js/script.js" defer></script>
+<script src="assets/js/script.js" defer=""></script>
 
-<script src="assets/js/scroll-reveal.js" defer></script>
+<script src="assets/js/scroll-reveal.js" defer=""></script>
 
 
-</body>
-</html>
+
+
+</body></html>

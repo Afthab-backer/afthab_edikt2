@@ -1,23 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Edikt Media — get in touch for branding, web, events, motion graphics and digital strategy projects.">
+  <link rel="canonical" href="https://edikt.in/contact.html">
+  <meta property="og:title" content="Contact Edikt Media — Let's Create Together">
+  <meta property="og:description" content="Contact Edikt Media — get in touch for branding, web, events, motion graphics and digital strategy projects.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://edikt.in/contact.html">
+  <meta property="og:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact Edikt Media — Let's Create Together">
+  <meta name="twitter:description" content="Contact Edikt Media — get in touch for branding, web, events, motion graphics and digital strategy projects.">
+  <meta name="twitter:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <title>Contact Us – Edikt Media</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css">
   <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- HEADER -->
   <div id="site-header"></div>
-
-
-
-<script src="assets/js/header.js" defer></script>
+  <script src="assets/js/header-loader.js" defer></script>
+  <script src="assets/js/header.js" defer=""></script>
 
  <!-- CONTACT SECTION -->
 <section class="contact-page">
@@ -28,23 +35,18 @@
       We're here to make it happen. Let's create something extraordinary together.
     </p>
 
-    <form
-      id="contactForm"
-      class="contact-form"
-      action="https://formspree.io/f/xvzbrolq"
-      method="POST"
-    >
+    <form id="contactForm" class="contact-form" action="https://formspree.io/f/xvzbrolq" method="POST">
 
       <div class="form-group">
-        <input name="name" type="text" placeholder="Enter Full Name" required>
+        <input name="name" type="text" placeholder="Enter Full Name" required="">
       </div>
 
       <div class="form-group">
-        <input name="email" type="email" placeholder="Enter Mail ID" required>
+        <input name="email" type="email" placeholder="Enter Mail ID" required="">
       </div>
 
       <div class="form-group">
-        <input name="phone" type="tel" placeholder="Enter Phone Number" required>
+        <input name="phone" type="tel" placeholder="Enter Phone Number" required="">
       </div>
 
       <div class="form-group">
@@ -52,11 +54,11 @@
       </div>
 
       <div class="form-group">
-        <textarea name="message" placeholder="Tell us about your vision, how can we bring it to life?" required></textarea>
+        <textarea name="message" placeholder="Tell us about your vision, how can we bring it to life?" required=""></textarea>
       </div>
 
       <label class="privacy-check">
-        <input name="privacy" type="checkbox" required>
+        <input name="privacy" type="checkbox" required="">
         <span>I agree to Edikt Media’s privacy policy and terms</span>
       </label>
 
@@ -74,21 +76,7 @@
 
   <!-- FOOTER -->
   <div id="site-footer"></div>
-
-  <script>
-    fetch('header.html?_=' + Date.now())
-      .then(res => res.text())
-      .then(html => {
-        const container = document.getElementById('site-header');
-        container.innerHTML = html;
-        Array.from(container.querySelectorAll('script')).forEach(s => {
-          const ns = document.createElement('script');
-          if (s.src) { ns.src = s.src; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
-          else { ns.textContent = s.textContent; document.body.appendChild(ns); }
-        });
-      });
-  </script>
-  <script src="assets/js/script.js" defer></script>
+  <script src="assets/js/script.js" defer=""></script>
   <script>
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -99,8 +87,9 @@
 
 
 
-<script src="assets/js/scroll-reveal.js" defer></script>
+<script src="assets/js/scroll-reveal.js" defer=""></script>
 
-</body>
-</html>
 
+
+
+</body></html>

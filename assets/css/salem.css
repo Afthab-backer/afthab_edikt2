@@ -419,6 +419,16 @@
   }
 }
 
+/* Small-screen cap: make the Post 1 image shorter on narrow phones */
+@media (max-width: 420px) {
+  .page-salem .post1-image {
+    height: 260px !important;
+    max-height: 260px !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+}
+
 
 
 

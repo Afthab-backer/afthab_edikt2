@@ -1,36 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Edikt Media — full-service creative agency delivering branding, web, events, motion graphics, video production and digital strategy to help brands grow and convert.">
+  <link rel="canonical" href="https://edikt.in/">
+  <meta property="og:title" content="Edikt Media — Creative Agency | Brand Build Better">
+  <meta property="og:description" content="Edikt Media — full-service creative agency delivering branding, web, events, motion graphics, video production and digital strategy to help brands grow and convert.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://edikt.in/">
+  <meta property="og:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Edikt Media — Creative Agency | Brand Build Better">
+  <meta name="twitter:description" content="Edikt Media — full-service creative agency delivering branding, web, events, motion graphics, video production and digital strategy to help brands grow and convert.">
+  <meta name="twitter:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <title>Edikt Media – Creative Agency | BRAND BUILD BETTER</title>
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="preload" as="image" href="assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
+  <link rel="preload" as="image" href="assets/images/orbit_section/Glode image Circle Animation.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <script type="module"
-  src="https://unpkg.com/@splinetool/viewer@1.12.50/build/spline-viewer.js">
-</script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <script>
+    // Load heavy Spline viewer lazily during idle or after load to avoid blocking LCP
+    (function lazyLoadSpline(){
+      function load(){
+        if (document.querySelector('script[data-spline-loaded]')) return;
+        var s = document.createElement('script');
+        s.type = 'module';
+        s.src = 'https://unpkg.com/@splinetool/viewer@1.12.50/build/spline-viewer.js';
+        s.setAttribute('data-spline-loaded','1');
+        document.head.appendChild(s);
+      }
+      if ('requestIdleCallback' in window) requestIdleCallback(load, {timeout:2000});
+      else window.addEventListener('load', load);
+    })();
+  </script>
 
 
 
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <!-- Inline critical CSS: minimal hero styles to improve LCP -->
+  <style>
+    /* Layout & container */
+    .page-home .hero{background:#fff;overflow:hidden;padding:60px 0 80px;position:relative;text-align:center;padding-top:60px}
+    .page-home .hero-content{margin:0 auto;max-width:1600px;padding:0 32px}
+
+    /* Headline */
+    .page-home .hero-title{display:flex;justify-content:center;margin-bottom:34px}
+    .page-home .hero-title-box{align-items:center;display:flex;font-family:Poppins,system-ui,Segoe UI,Roboto,sans-serif;font-size:clamp(40px,5.5vw,64px);font-weight:500;line-height:1.05;text-align:center;white-space:nowrap;width:78%}
+    .hero-text-reveal .word{display:inline-block;filter:blur(2px);transform:translateY(22px);transition:opacity 1.1s cubic-bezier(.22,.61,.36,1),transform 1.1s cubic-bezier(.22,.61,.36,1),filter 1.1s ease}
+    .hero-text-reveal.revealed .word{filter:blur(0);opacity:1;transform:translateY(0)}
+    .hero-green{background:linear-gradient(180deg,#2fb45b,#36774b 55%,#1f5e36);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-orange{background:linear-gradient(180deg,#f7ae31,#ee3c37);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-left:12px}
+
+    /* Subtitle & CTA */
+    .page-home .hero-subtitle{color:#6b6b6b;font-size:1.2rem;line-height:1.85;margin:0 auto 52px;max-width:1200px;text-align:center}
+    .page-home .hero-buttons{align-items:center;display:flex;gap:20px;justify-content:center}
+
+    /* Orbit / hero visual (keeps sizing consistent for LCP) */
+    .orbit-wrapper{aspect-ratio:1/1;height:auto;margin:110px auto;max-width:1000px;pointer-events:none;position:relative;width:100%}
+    .orbit-center{border-radius:50%;box-shadow:0 40px 90px rgba(0,0,0,.18);height:auto;left:50%;overflow:hidden;position:absolute;top:50%;transform:translate(-50%,-50%);width:min(390px,42%);z-index:3}
+    .orbit-center img{display:block;height:auto;max-width:100%;width:100%}
+
+    /* Ensure basic responsive adjustments used during initial render */
+    @media (max-width:1024px){.page-home .hero-title-box{font-size:44px;width:100%;white-space:normal}}
+    @media (max-width:640px){.page-home .hero-title-box{font-size:34px;line-height:42px;white-space:normal}.orbit-wrapper{margin:40px auto;width:min(92vw,360px)}}
+    /* Project tag overlay */
+    .project-image{position:relative}
+    .project-image .project-tag{position:absolute;top:14px;left:14px;z-index:5;background:#fff;padding:8px 14px;border-radius:28px;box-shadow:0 12px 30px rgba(0,0,0,0.08);color:#2fba63;font-weight:600;font-size:14px}
+  </style>
 </head>
 <body class="page-home">
 
   <!-- ================= HEADER ================= -->
   <div id="site-header"></div>
-
-  <script>
-    fetch('header.html?_=' + Date.now())
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('site-header').innerHTML = html;
-        initHeaderScroll();
-      });
-  </script>
+  <script src="assets/js/header-loader.js" defer></script>
 
   <script src="assets/js/header.js"></script>
 
@@ -80,7 +124,7 @@
 
   </div>
 
-  <script src="assets/js/scroll-reveal.js" defer></script>
+  <script src="assets/js/scroll-reveal.js" defer=""></script>
 
 
 
@@ -89,21 +133,21 @@
       <div class="orbit-wrapper reveal delay-3">
 
         <div class="orbit-center">
-          <img src="assets/images/orbit_section/Glode image Circle Animation.png">
+          <picture><picture><img src="/assets/images/orbit_section/Glode image Circle Animation.webp" alt="Globe Image" eager=""></picture></picture>
         </div>
 
         <div class="orbit-rotator">
 
           <div class="orbit" style="--angle:0deg">
             <div class="orbit-content">
-              <img src="assets/images/orbit_section/Branding Animation Image.png">
+              <picture><picture><img src="/assets/images/orbit_section/Branding Animation Image.png" alt="Branding Animation" lazy=""></picture></picture> 
               <span>Branding</span>
             </div>
 
     <script>
-      window.addEventListener('load', function forceMobileMarquee(){
+        window.addEventListener('load', function forceMobileMarquee(){
           try {
-          if (window.innerWidth > 768) return;
+          if (window.innerWidth > 820) return;
           const track = document.querySelector('.logo-track');
           if (!track) return;
           track.style.animation = 'none';
@@ -122,7 +166,7 @@
           // start JS loop
           var x = 0;
           var last = performance.now();
-          var duration = 32; // mobile speed (seconds per cycle)
+          var duration = 48; // mobile speed (seconds per cycle)
           var speed = cycleWidth / duration;
           function frame(now){
             var dt = (now - last) / 1000; last = now;
@@ -142,54 +186,66 @@
 
           <div class="orbit" style="--angle:51.428deg">
             <div class="orbit-content">
-              <img src="assets/images/orbit_section/Corporate Gifts Animation Image .png">
+              <picture><picture><img src="/assets/images/orbit_section/Corporate Gifts Animation Image .png" alt="Corporate Gifts Animation" lazy=""></picture></picture>
               <span>Corporate Gifts</span>
             </div>
           </div>
 
           <div class="orbit" style="--angle:102.857deg">
             <div class="orbit-content">
-              <img src="assets/images/orbit_section/Digital Marketing Animation Image .png">
+              <picture><picture><img src="/assets/images/orbit_section/Digital Marketing Animation Image .png" alt="Digital Marketing Animation" lazy=""></picture></picture>
               <span>Digital Marketing</span>
             </div>
           </div>
 
           <div class="orbit" style="--angle:154.286deg">
             <div class="orbit-content">
-              <img src="assets/images/orbit_section/event management animation image.png">
+              <picture><picture><img src="/assets/images/orbit_section/event management animation image.png" alt="Event Management Animation" lazy=""></picture></picture>
               <span>Event Management</span>
             </div>
           </div>
 
           <div class="orbit" style="--angle:205.714deg">
             <div class="orbit-content">
-              <img src="assets/images/orbit_section/Photography Animation image.png">
+              <picture><picture><img src="/assets/images/orbit_section/Photography Animation image.png" alt="Photography Animation" lazy=""></picture></picture>
               <span>Photography</span>
             </div>
           </div>
 
           <div class="orbit" style="--angle:257.143deg">
             <div class="orbit-content">
-              <img src="assets/images/orbit_section/UI UX Design animation image.png">
+              <picture><picture><img src="/assets/images/orbit_section/UI UX Design animation image.png" alt="UI/UX Design Animation" lazy=""></picture></picture>
               <span>UI/UX Design</span>
             </div>
           </div>
 
           <div class="orbit" style="--angle:308deg">
             <div class="orbit-content">
-              <img src="assets/images/orbit_section/VFX & Animation Image.png">
-              <span>VFX & Animation</span>
+              <picture><picture><img src="/assets/images/orbit_section/VFX &amp; Animation Image.png" alt="VFX &amp; Animation" lazy=""></picture></picture>
+              <span>VFX &amp; Animation</span>
             </div>
           </div>
 
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
+    </section></div>
+  
 
-  <script src="assets/js/orbit-fix.js" defer></script>
+
+  <script src="assets/js/orbit-fix.js" defer=""></script>
+  <!-- Register service worker for improved caching (optional) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').then(function(reg){
+          console.log('ServiceWorker registered:', reg.scope);
+        }).catch(function(err){
+          console.warn('ServiceWorker registration failed:', err);
+        });
+      });
+    }
+  </script>
 
   
 
@@ -221,15 +277,13 @@
       <div class="home-about-buttons reveal delay-3">
 
   <!-- Primary -->
-  <a href="https://drive.proton.me/urls/AQB3N55PQ0#SHlfkqQQlJR7"
-   class="btn magic-btn btn-primary" target="_blank" rel="noopener noreferrer">
+  <a href="https://drive.proton.me/urls/AQB3N55PQ0#SHlfkqQQlJR7" class="btn magic-btn btn-primary" target="_blank" rel="noopener noreferrer">
     <span class="button__text">Our Brochure</span>
     <div class="button__filler"></div>
   </a>
 
   <!-- Secondary -->
-  <a href="https://drive.proton.me/urls/SNSRW86N90#7ugnZ24XWk5e"
-   class="btn magic-btn btn-outline" target="_blank" rel="noopener noreferrer">
+  <a href="https://drive.proton.me/urls/SNSRW86N90#7ugnZ24XWk5e" class="btn magic-btn btn-outline" target="_blank" rel="noopener noreferrer">
     <span class="button__text">Work Photos</span>
     <div class="button__filler"></div>
   </a>
@@ -242,16 +296,14 @@
     <!-- RIGHT -->
 <div class="home-about-right">
   <div class="spline-wrapper">
-    <script type="module"
-      src="https://unpkg.com/@splinetool/viewer@1.12.50/build/spline-viewer.js">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.50/build/spline-viewer.js">
     </script>
 
-    <spline-viewer
-      url="https://prod.spline.design/R9KLetKu8NdECxYC/scene.splinecode">
+    <spline-viewer url="https://prod.spline.design/R9KLetKu8NdECxYC/scene.splinecode">
     </spline-viewer>
   </div>
 </div>
-</section>
+</div></section>
 
 
 
@@ -266,10 +318,7 @@
 </h2>
 
 <!-- CTA -->
-<a href="https://stonemart-india.in/" 
-   class="btn magic-btn btn-primary" 
-   target="_blank" 
-   rel="noopener noreferrer">
+<a href="https://stonemart-india.in/" class="btn magic-btn btn-primary" target="_blank" rel="noopener noreferrer">
 
   <span class="button__text">Learn More</span>
   <div class="button__filler"></div>
@@ -298,7 +347,7 @@
       <!-- CARD 1 -->
       <a href="services.html" class="service-card">
         <div class="service-image">
-          <img src="assets/images/services/Event.png" alt="Event (M.I.C.E.)">
+          <picture><picture><img src="/assets/images/services/Event.webp" alt="Event (M.I.C.E.)" lazy=""></picture></picture>
         </div>
         <p>Event (M.I.C.E.)</p>
       </a>
@@ -306,15 +355,15 @@
       <!-- CARD 2 -->
       <a href="services.html" class="service-card">
         <div class="service-image">
-          <img src="assets\images\services\branding.png" alt="Branding & Identity">
+          <picture><picture><img src="/assets\images\services\branding.webp" alt="Branding &amp; Identity" lazy=""></picture></picture>
         </div>
-        <p>Branding & Identity</p>
+        <p>Branding &amp; Identity</p>
       </a>
 
       <!-- CARD 3 -->
       <a href="services.html" class="service-card">
         <div class="service-image">
-          <img src="assets\images\services\UI UX Design.png" alt="UI/UX Designing">
+          <picture><picture><img src="/assets\images\services\UI UX Design.webp" alt="UI/UX Designing" lazy=""></picture></picture>
         </div>
         <p>UI/UX Designing</p>
       </a>
@@ -322,7 +371,7 @@
       <!-- CARD 4 -->
       <a href="services.html" class="service-card">
         <div class="service-image">
-          <img src="assets\images\services\Motion Graphics.png" alt="Motion Graphics">
+          <picture><picture><img src="/assets\images\services\Motion Graphics.webp" alt="Motion Graphics" lazy=""></picture></picture>
         </div>
         <p>Motion Graphics</p>
       </a>
@@ -330,15 +379,15 @@
       <!-- CARD 5 -->
       <a href="services.html" class="service-card">
         <div class="service-image">
-          <img src="assets\images\services\VFX & Animation.png" alt="VFX & Animation">
+          <picture><picture><img src="/assets\images\services\VFX &amp; Animation.webp" alt="VFX &amp; Animation" lazy=""></picture></picture>
         </div>
-        <p>VFX & Animation</p>
+        <p>VFX &amp; Animation</p>
       </a>
 
       <!-- CARD 6 -->
       <a href="services.html" class="service-card">
         <div class="service-image">
-          <img src="assets\images\services\corporate gifts.png" alt="Corporate Gifts">
+          <picture><picture><img src="/assets\images\services\corporate gifts.webp" alt="Corporate Gifts" lazy=""></picture></picture>
         </div>
         <p>Corporate Gifts</p>
       </a>
@@ -346,7 +395,7 @@
       <!-- CARD 7 -->
       <a href="services.html" class="service-card">
         <div class="service-image">
-          <img src="assets\images\services\Digital Marketing.png" alt="Digital Marketing">
+          <picture><picture><img src="/assets\images\services\Digital Marketing.webp" alt="Digital Marketing" lazy=""></picture></picture>
         </div>
         <p>Digital Marketing</p>
       </a>
@@ -354,9 +403,9 @@
       <!-- CARD 8 -->
       <a href="services.html" class="service-card">
         <div class="service-image">
-          <img src="assets\images\services\Photography.png" alt="Photography & Video">
+          <picture><picture><img src="/assets\images\services\Photography.webp" alt="Photography &amp; Video" lazy=""></picture></picture>
         </div>
-        <p>Photography & Video</p>
+        <p>Photography &amp; Video</p>
       </a>
 
     </div>
@@ -421,160 +470,160 @@
   <div class="clients-slider-wrapper reveal delay-2">
     <div class="logo-slider">
       <div class="logo-track">
-        <div class="client-box"><img src="assets\images\clients\allcargo.png"></div>
-        <div class="client-box"><img src="assets\images\clients\amber.png"></div>
-        <div class="client-box"><img src="assets\images\clients\AQUAMETRO.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\atlantic.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\atnt.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\ATRAC.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\autodesk.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\Bhastrik.avif"></div>
-        <div class="client-box"><img src="assets\images\clients\brijbasi.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\bull.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\canyon.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Chemtrols.png"></div>
-        <div class="client-box"><img src="assets\images\clients\chowgule.png"></div>
-        <div class="client-box"><img src="assets\images\clients\CKA.png"></div>
-        <div class="client-box"><img src="assets\images\clients\DeeTee.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\dolphin.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\endless.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\firefly.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\HASELMEIER.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\HHV.png"></div>
-        <div class="client-box"><img src="assets\images\clients\jackson.png"></div>
-        <div class="client-box"><img src="assets\images\clients\madhu.png"></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\allcargo.webp" alt="Allcargo" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\amber.webp" alt="Amber" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\AQUAMETRO.webp" alt="Aquametro" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\atlantic.webp" alt="Atlantic" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\atnt.webp" alt="ATNT" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\ATRAC.webp" alt="ATRAC" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\autodesk.webp" alt="Autodesk" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Bhastrik.avif" alt="Bhastrik" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\brijbasi.webp" alt="Brijbasi" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\bull.webp" alt="Bull" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\canyon.webp" alt="Canyon" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Chemtrols.webp" alt="Chemtrols" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\chowgule.webp" alt="Chowgule" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\CKA.webp" alt="CKA" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\DeeTee.webp" alt="DeeTee" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\dolphin.webp" alt="Dolphin" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\endless.webp" alt="Endless" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\firefly.webp" alt="Firefly" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\HASELMEIER.webp" alt="Haselmeier" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\HHV.webp" alt="HHV" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\jackson.webp" alt="Jackson" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\madhu.webp" alt="Madhu" lazy=""></picture></picture></div>
 
-        <div class="client-box"><img src="assets\images\clients\Mallak.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\MARUn PETRO Chemical Group.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\micro-tech.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\muller.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Nail.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\orion.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\patidar.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Protia.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\ridley.avif"></div>
-        <div class="client-box"><img src="assets\images\clients\Ruhrpumpen.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\sailcarb.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\SALEM.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\Sman.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\sodick.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\SRI DEVARAJA.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\stp.png"></div>
-        <div class="client-box"><img src="assets\images\clients\suncity-sheets.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\The Jackson Laboratory.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Transformers and Rectifiers.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\unicon.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\wacom.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\Evvolution.svg"></div>
-        <div class="client-box"><img src="assets\images\clients\Regal stones.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Shivam multi microns.avif"></div>
-        <div class="client-box"><img src="assets\images\clients\Umpire Technologies.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\Umpire cnc.avif"></div>
-        <div class="client-box"><img src="assets\images\clients\CIG.avif"></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Mallak.webp" alt="Mallak" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\MARUn PETRO Chemical Group.webp" alt="MARUn PETRO Chemical Group" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\micro-tech.webp" alt="Micro-Tech" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\muller.webp" alt="Muller" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Nail.webp" alt="Nail" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\orion.webp" alt="Orion" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\patidar.webp" alt="Patidar" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Protia.webp" alt="Protia" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\ridley.avif" alt="Ridley" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Ruhrpumpen.webp" alt="Ruhrpumpen" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\sailcarb.webp" alt="Sailcarb" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\SALEM.webp" alt="Salem" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Sman.webp" alt="Sman" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\sodick.webp" alt="Sodick" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\SRI DEVARAJA.webp" alt="Sri Devaraja" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\stp.webp" alt="STP" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\suncity-sheets.webp" alt="Suncity Sheets" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\The Jackson Laboratory.png" alt="The Jackson Laboratory" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Transformers and Rectifiers.webp" alt="Transformers and Rectifiers" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\unicon.webp" alt="Unicon" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\wacom.webp" alt="Wacom" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Evvolution.webp" alt="Evvolution" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Regal stones.webp" alt="Regal Stones" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Shivam multi microns.avif" alt="Shivam Multi Microns" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Umpire Technologies.webp" alt="Umpire Technologies" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Umpire cnc.avif" alt="Umpire CNC" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\CIG.avif" alt="CIG" lazy=""></picture></picture></div>
 
         <!-- second cycle -->
-        <div class="client-box"><img src="assets\images\clients\allcargo.png"></div>
-        <div class="client-box"><img src="assets\images\clients\amber.png"></div>
-        <div class="client-box"><img src="assets\images\clients\AQUAMETRO.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\atlantic.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\atnt.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\ATRAC.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\autodesk.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\Bhastrik.avif"></div>
-        <div class="client-box"><img src="assets\images\clients\brijbasi.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\bull.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\canyon.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Chemtrols.png"></div>
-        <div class="client-box"><img src="assets\images\clients\chowgule.png"></div>
-        <div class="client-box"><img src="assets\images\clients\CKA.png"></div>
-        <div class="client-box"><img src="assets\images\clients\DeeTee.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\dolphin.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\endless.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\firefly.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\HASELMEIER.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\HHV.png"></div>
-        <div class="client-box"><img src="assets\images\clients\jackson.png"></div>
-        <div class="client-box"><img src="assets\images\clients\madhu.png"></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\allcargo.webp" alt="Allcargo" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\amber.webp" alt="Amber" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\AQUAMETRO.webp" alt="Aquametro" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\atlantic.webp" alt="Atlantic" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\atnt.webp" alt="ATNT" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\ATRAC.webp" alt="ATRAC" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\autodesk.webp" alt="Autodesk" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Bhastrik.avif" alt="Bhastrik" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\brijbasi.webp" alt="Brijbasi" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\bull.webp" alt="Bull" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\canyon.webp" alt="Canyon" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Chemtrols.webp" alt="Chemtrols" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\chowgule.webp" alt="Chowgule" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\CKA.webp" alt="CKA" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\DeeTee.webp" alt="DeeTee" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\dolphin.webp" alt="Dolphin" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\endless.webp" alt="Endless" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\firefly.webp" alt="Firefly" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\HASELMEIER.webp" alt="Haselmeier" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\HHV.webp" alt="HHV" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\jackson.webp" alt="Jackson" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\madhu.webp" alt="Madhu" lazy=""></picture></picture></div>
 
-        <div class="client-box"><img src="assets\images\clients\Mallak.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\MARUn PETRO Chemical Group.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\micro-tech.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\muller.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Nail.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\orion.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\patidar.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Protia.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\ridley.avif"></div>
-        <div class="client-box"><img src="assets\images\clients\Ruhrpumpen.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\sailcarb.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\SALEM.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\Sman.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\sodick.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\SRI DEVARAJA.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\stp.png"></div>
-        <div class="client-box"><img src="assets\images\clients\suncity-sheets.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\The Jackson Laboratory.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Transformers and Rectifiers.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\unicon.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\wacom.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\Evvolution.svg"></div>
-        <div class="client-box"><img src="assets\images\clients\Regal stones.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Shivam multi microns.avif"></div>
-        <div class="client-box"><img src="assets\images\clients\Umpire Technologies.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\Umpire cnc.avif"></div>
-        <div class="client-box"><img src="assets\images\clients\CIG.avif"></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Mallak.webp" alt="Mallak" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\MARUn PETRO Chemical Group.webp" alt="MARUn PETRO Chemical Group" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\micro-tech.webp" alt="Micro-Tech" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\muller.webp" alt="Muller" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Nail.webp" alt="Nail" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\orion.webp" alt="Orion" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\patidar.webp" alt="Patidar" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Protia.webp" alt="Protia" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\ridley.avif" alt="Ridley" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Ruhrpumpen.webp" alt="Ruhrpumpen" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\sailcarb.webp" alt="Sailcarb" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\SALEM.webp" alt="Salem" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Sman.webp" alt="Sman" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\sodick.webp" alt="Sodick" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\SRI DEVARAJA.webp" alt="Sri Devaraja" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\stp.webp" alt="STP" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\suncity-sheets.webp" alt="Suncity Sheets" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\The Jackson Laboratory.png" alt="The Jackson Laboratory" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Transformers and Rectifiers.webp" alt="Transformers and Rectifiers" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\unicon.webp" alt="Unicon" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\wacom.webp" alt="Wacom" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Evvolution.webp" alt="Evvolution" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Regal stones.webp" alt="Regal Stones" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Shivam multi microns.avif" alt="Shivam Multi Microns" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Umpire Technologies.webp" alt="Umpire Technologies" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Umpire cnc.avif" alt="Umpire CNC" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\CIG.avif" alt="CIG" lazy=""></picture></picture></div>
 
         <!-- third cycle -->
-        <div class="client-box"><img src="assets\images\clients\allcargo.png"></div>
-        <div class="client-box"><img src="assets\images\clients\amber.png"></div>
-        <div class="client-box"><img src="assets\images\clients\AQUAMETRO.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\atlantic.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\atnt.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\ATRAC.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\autodesk.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\Bhastrik.avif"></div>
-        <div class="client-box"><img src="assets\images\clients\brijbasi.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\bull.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\canyon.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Chemtrols.png"></div>
-        <div class="client-box"><img src="assets\images\clients\chowgule.png"></div>
-        <div class="client-box"><img src="assets\images\clients\CKA.png"></div>
-        <div class="client-box"><img src="assets\images\clients\DeeTee.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\dolphin.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\endless.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\firefly.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\HASELMEIER.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\HHV.png"></div>
-        <div class="client-box"><img src="assets\images\clients\jackson.png"></div>
-        <div class="client-box"><img src="assets\images\clients\madhu.png"></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\allcargo.webp" alt="Allcargo" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\amber.webp" alt="Amber" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\AQUAMETRO.webp" alt="Aquametro" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\atlantic.webp" alt="Atlantic" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\atnt.webp" alt="ATNT" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\ATRAC.webp" alt="ATRAC" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\autodesk.webp" alt="Autodesk" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Bhastrik.avif" alt="Bhastrik" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\brijbasi.webp" alt="Brijbasi" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\bull.webp" alt="Bull" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\canyon.webp" alt="Canyon" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Chemtrols.webp" alt="Chemtrols" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\chowgule.webp" alt="Chowgule" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\CKA.webp" alt="CKA" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\DeeTee.webp" alt="DeeTee" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\dolphin.webp" alt="Dolphin" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\endless.webp" alt="Endless" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\firefly.webp" alt="Firefly" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\HASELMEIER.webp" alt="Haselmeier" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\HHV.webp" alt="HHV" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\jackson.webp" alt="Jackson" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\madhu.webp" alt="Madhu" lazy=""></picture></picture></div>
 
-        <div class="client-box"><img src="assets\images\clients\Mallak.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\MARUn PETRO Chemical Group.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\micro-tech.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\muller.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Nail.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\orion.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\patidar.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Protia.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\ridley.avif"></div>
-        <div class="client-box"><img src="assets\images\clients\Ruhrpumpen.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\sailcarb.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\SALEM.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\Sman.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\sodick.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\SRI DEVARAJA.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\stp.png"></div>
-        <div class="client-box"><img src="assets\images\clients\suncity-sheets.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\The Jackson Laboratory.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Transformers and Rectifiers.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\unicon.jpg"></div>
-        <div class="client-box"><img src="assets\images\clients\wacom.jpeg"></div>
-        <div class="client-box"><img src="assets\images\clients\Evvolution.svg"></div>
-        <div class="client-box"><img src="assets\images\clients\Regal stones.png"></div>
-        <div class="client-box"><img src="assets\images\clients\Shivam multi microns.avif"></div>
-        <div class="client-box"><img src="assets\images\clients\Umpire Technologies.webp"></div>
-        <div class="client-box"><img src="assets\images\clients\Umpire cnc.avif"></div>
-        <div class="client-box"><img src="assets\images\clients\CIG.avif"></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Mallak.webp" alt="Mallak" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\MARUn PETRO Chemical Group.webp" alt="MARUn PETRO Chemical Group" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\micro-tech.webp" alt="Micro-Tech" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\muller.webp" alt="Muller" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Nail.webp" alt="Nail" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\orion.webp" alt="Orion" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\patidar.webp" alt="Patidar" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Protia.webp" alt="Protia" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\ridley.avif" alt="Ridley" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Ruhrpumpen.webp" alt="Ruhrpumpen" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\sailcarb.webp" alt="Sailcarb" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\SALEM.webp" alt="Salem" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Sman.webp" alt="Sman" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\sodick.webp" alt="Sodick" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\SRI DEVARAJA.webp" alt="Sri Devaraja" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\stp.webp" alt="STP" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\suncity-sheets.webp" alt="Suncity Sheets" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\The Jackson Laboratory.png" alt="The Jackson Laboratory" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Transformers and Rectifiers.webp" alt="Transformers and Rectifiers" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\unicon.webp" alt="Unicon" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\wacom.webp" alt="Wacom" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Evvolution.webp" alt="Evvolution" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Regal stones.webp" alt="Regal Stones" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Shivam multi microns.avif" alt="Shivam Multi Microns" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Umpire Technologies.webp" alt="Umpire Technologies" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\Umpire cnc.avif" alt="Umpire CNC" lazy=""></picture></picture></div>
+        <div class="client-box"><picture><picture><img src="/assets\images\clients\CIG.avif" alt="CIG" lazy=""></picture></picture></div>
 
         </div>
           </div>
@@ -592,9 +641,9 @@
 </div>
 
 
-      </div>
-    </div>
-  </div>
+      
+    
+  
   </section>
 
 <!-- TESTIMONIALS SECTION -->
@@ -619,7 +668,7 @@
         <div class="testimonial-card">
           <div class="testimonial-header">
             <div class="testimonial-logo">
-              <img src="assets/images/clients/orion.jpeg" alt="Orion Ball Pen">
+              <picture><picture><img src="/assets/images/clients/orion.webp" alt="Orion Ball Pen" lazy=""></picture></picture>
             </div>
             <div class="testimonial-author">
               <strong>Orion Ball Pen</strong>
@@ -635,7 +684,7 @@
         <div class="testimonial-card">
           <div class="testimonial-header">
             <div class="testimonial-logo">
-              <img src="assets/images/clients/micro-tech.jpeg" alt="Micro-Tech">
+              <picture><picture><img src="/assets/images/clients/micro-tech.webp" alt="Micro-Tech" lazy=""></picture></picture>
             </div>
             <div class="testimonial-author">
               <strong>Micro-Tech</strong>
@@ -651,7 +700,7 @@
         <div class="testimonial-card">
           <div class="testimonial-header">
             <div class="testimonial-logo">
-              <img src="assets/images/clients/SALEM.jpeg" alt="Salem Stainless Steel">
+              <picture><picture><img src="/assets/images/clients/SALEM.webp" alt="Salem Stainless Steel" lazy=""></picture></picture>
             </div>
             <div class="testimonial-author">
               <strong>Salem Stainless Steel</strong>
@@ -667,7 +716,7 @@
         <div class="testimonial-card">
           <div class="testimonial-header">
             <div class="testimonial-logo">
-              <img src="assets/images/clients/MARUn PETRO Chemical Group.jpeg" alt="MARUn Petro">
+              <picture><picture><img src="/assets/images/clients/MARUn PETRO Chemical Group.webp" alt="MARUn Petro" lazy=""></picture></picture>
             </div>
             <div class="testimonial-author">
               <strong>MARUn PETRO Chemical Group</strong>
@@ -683,7 +732,7 @@
         <div class="testimonial-card">
           <div class="testimonial-header">
             <div class="testimonial-logo">
-              <img src="assets/images/clients/Nail.jpeg" alt="Nail">
+              <picture><picture><img src="/assets/images/clients/Nail.webp" alt="Nail" lazy=""></picture></picture>
             </div>
             <div class="testimonial-author">
               <strong>Nail</strong>
@@ -699,7 +748,7 @@
         <div class="testimonial-card">
           <div class="testimonial-header">
             <div class="testimonial-logo">
-              <img src="assets/images/clients/brijbasi.webp" alt="Brijbasi">
+              <picture><picture><img src="/assets/images/clients/brijbasi.webp" alt="Brijbasi" lazy=""></picture></picture>
             </div>
             <div class="testimonial-author">
               <strong>Brijbasi</strong>
@@ -710,8 +759,6 @@
             "Edikt Media's design solutions refined our brand presence, aligning with our legacy of safety and excellence."
           </p>
         </div>
-
-        <!-- 🔁 DUPLICATES CONTINUE (NO REVEAL HERE) -->
 
       </div>
     </div>
@@ -754,7 +801,7 @@
 
     <!-- RIGHT IMAGE -->
     <div class="why-trust-image reveal delay-2">
-      <img src="assets/images/extras/UI_UX.jpeg" alt="Why Trust Edikt Media">
+      <picture><picture><img src="/assets/images/extras/UI_UX.jpeg" alt="Why Trust Edikt Media" lazy=""></picture></picture>
     </div>
 
     </div>
@@ -785,7 +832,7 @@
 
 
   </div>
-</section>
+</div></section>
 
 <!-- ================= PROJECTS GRID ================= -->
 <section class="projects">
@@ -797,11 +844,11 @@
       <div class="project-item">
         <a href="project.html" class="project-link">
           <div class="project-image">
-            <img src="assets/images/extras/UI UX Design.jpg" alt="STP-I Conference Website" loading="lazy">
+            <span class="project-tag">UI/UX Design</span>
+            <picture><picture><img src="/assets/images/extras/UI UX Design (1).webp" alt="STP-I Conference Website" lazy=""></picture></picture>
           </div>
         </a>
         <div class="project-content">
-          <span class="project-tag">UI/UX Design</span>
           <h3>STP-I Conference Website</h3>
           <p>
             Dynamic, user-friendly site showcasing event details,
@@ -813,11 +860,11 @@
       <div class="project-item">
         <a href="project.html" class="project-link">
           <div class="project-image">
-            <img src="assets/images/extras/Edikt UI UX Design.jpg" alt="Edikt Media Website" loading="lazy">
+            <span class="project-tag">UI/UX Design</span>
+            <picture><picture><img src="/assets/images/extras/Edikt UI UX Design.jpg" alt="Edikt Media Website" lazy=""></picture></picture>
           </div>
         </a>
         <div class="project-content">
-          <span class="project-tag">UI/UX Design</span>
           <h3>Edikt Media</h3>
           <p>
             Modern, responsive site emphasizing UX, intuitive navigation,
@@ -829,11 +876,11 @@
       <div class="project-item">
         <a href="project.html" class="project-link">
         <div class="project-image">
-          <img src="assets/images/extras/Exhibition.png" alt="Salem Exhibition" loading="lazy">
+          <span class="project-tag">Exhibition</span>
+          <picture><picture><img src="/assets/images/extras/Exhibition.webp" alt="Salem Exhibition" lazy=""></picture></picture>
         </div>
         </a>
         <div class="project-content">
-          <span class="project-tag">Exhibition</span>
           <h3>Salem Stainless Steel Suppliers Pvt. Ltd.</h3>
           <p>
             Interactive exhibition showcasing premium products and innovation with visually striking displays, highlighting the brand's expertise and industry leadership.
@@ -844,11 +891,11 @@
       <div class="project-item">
         <a href="project.html" class="project-link">
           <div class="project-image">
-            <img src="assets/images/extras/Event.jpeg" alt="STP-I Conference Event" loading="lazy">
+            <span class="project-tag">Event</span>
+            <picture><picture><img src="/assets/images/extras/Event (1).webp" alt="STP-I Conference Event" lazy=""></picture></picture>
           </div>
         </a>
         <div class="project-content">
-          <span class="project-tag">Event</span>
           <h3>STP-I Conference</h3>
           <p>
             Successfully organized the event, managing planning, logistics, and attendee engagement, creating a seamless, professional, and impactful experience.
@@ -859,11 +906,11 @@
       <div class="project-item">
         <a href="project.html" class="project-link">
           <div class="project-image">
-            <img src="assets/images/extras/Logo Design.jpg" alt="Edikt Logo Design" loading="lazy">
+            <span class="project-tag">Logo Design</span>
+            <picture><picture><img src="/assets/images/extras/Logo Design.webp" alt="Edikt Logo Design" lazy=""></picture></picture>
           </div>
         </a>
         <div class="project-content">
-          <span class="project-tag">Logo Design</span>
           <h3>Edikt Media</h3>
           <p>
             Logo reflecting brand identity, creativity, and professionalism, showcasing proficiency in designing memorable and impactful visual identities.
@@ -874,11 +921,11 @@
       <div class="project-item">
         <a href="project.html" class="project-link">
           <div class="project-image">
-            <img src="assets/images/extras/Branding.png" alt="Brijbasi Branding" loading="lazy">
+            <span class="project-tag">Branding</span>
+            <picture><picture><img src="/assets/images/extras/Branding (1).webp" alt="Brijbasi Branding" lazy=""></picture></picture>
           </div>
         </a>
         <div class="project-content">
-          <span class="project-tag">Branding</span>
           <h3>Brijbasi</h3>
           <p>
             Comprehensive branding strategy focusing on visual identity, messaging, and consistency, highlighting the company's legacy, quality, and industry leadership.
@@ -906,8 +953,7 @@
       just hit the button below and start your journey with Edikt Media.
     </p>
 
-    <a href="contact.html" 
-   class="btn magic-btn btn-primary btn-large reveal delay-2">
+    <a href="contact.html" class="btn magic-btn btn-primary btn-large reveal delay-2">
 
   <span class="button__text">Talk to us</span>
   <div class="button__filler"></div>
@@ -926,16 +972,28 @@
   fetch('footer.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
+      const container = document.getElementById('site-footer');
+      container.innerHTML = html;
+
+      Array.from(container.querySelectorAll('script')).forEach(s => {
+        const ns = document.createElement('script');
+        if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+        else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+      });
+
+      try {
+        const stagger = container.querySelector('.footer-content.reveal-stagger');
+        if (stagger) Array.from(stagger.children).forEach((child, i) => setTimeout(() => child.classList.add('revealed'), i * 80));
+      } catch (e) {}
     });
 </script>
 
-  <script src="assets/js/script.js" defer></script>
+  <script src="assets/js/script.js" defer=""></script>
 
 
 
-<script src="assets/js/scroll-reveal.js" defer></script>
-  </script>
+<script src="assets/js/scroll-reveal.js" defer=""></script>
+  
 
   <script>
     // Hide any visible "Built with Spline" badge on small screens.
@@ -974,8 +1032,8 @@
     })();
   </script>
 
-  </body>
-</html>
+  
+
 
   <script>
     // Append a visual cover inside the spline wrapper on small screens
@@ -992,3 +1050,4 @@
     })();
   </script>
 
+</body></html>
