@@ -96,24 +96,52 @@
     .failure-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
     .failure-toast__icon { width:40px; height:40px; border-radius:8px; display:grid; place-items:center; color:#2b1208; background: linear-gradient(135deg,#F7AE31,#EE3C37); font-weight:700; flex:0 0 40px; }
     .failure-toast__message { font-size:13px; opacity:0.95; }
-    /* Ensure contact form fits shorter viewports and isn't covered by footer/pseudo-elements */
-    .contact-page .contact-wrapper{
-      padding: 48px 20px;
-      margin-bottom: 120px;
-      min-height: 60vh;
+    /* Keep contact section compact so footer follows right after the form */
+    .contact-page {
+      min-height: auto !important;
+      padding: 96px 20px 32px !important;
+      display: block !important;
+    }
+
+    .contact-page .contact-wrapper {
+      padding: 44px 20px 28px;
+      margin: 0 auto;
+      min-height: auto;
       box-sizing: border-box;
     }
 
-    @media (max-height: 1100px){
-      .contact-page .contact-wrapper{ padding-top:40px; padding-bottom:120px; }
+    /* Keep contact submit button compact instead of stretched full width */
+    .page-contact .contact-form .btn.magic-btn.btn-large {
+      align-self: center;
+      display: inline-flex !important;
+      width: auto !important;
+      max-width: none !important;
+      min-width: 240px;
+      margin: 6px auto 0 !important;
+      padding-left: 34px !important;
+      padding-right: 34px !important;
     }
 
-    @media (max-height: 900px){
-      .contact-page .contact-wrapper{ padding-top:30px; padding-bottom:140px; min-height:55vh; }
+    .page-contact .contact-form .btn.magic-btn .button__text {
+      display: inline-block !important;
+      width: auto !important;
+      white-space: nowrap;
     }
 
-    @media (max-height: 820px){
-      .contact-page .contact-wrapper{ padding-top:20px; padding-bottom:180px; min-height:50vh; }
+    @media (max-width: 768px) {
+      .contact-page {
+        padding: 84px 12px 24px !important;
+      }
+
+      .contact-page .contact-wrapper {
+        padding: 34px 16px 22px;
+      }
+
+      .page-contact .contact-form .btn.magic-btn.btn-large {
+        min-width: 210px;
+        padding-left: 28px !important;
+        padding-right: 28px !important;
+      }
     }
   </style>
 </head>
@@ -174,6 +202,36 @@
 
   <!-- FOOTER -->
   <div id="site-footer"></div>
+
+  <script>
+    fetch('footer.html?v=20260309-footer-align-v2')
+      .then(res => res.text())
+      .then(html => {
+        const container = document.getElementById('site-footer');
+        container.innerHTML = html;
+
+        Array.from(container.querySelectorAll('script')).forEach(s => {
+          const ns = document.createElement('script');
+          if (s.src) {
+            ns.src = s.src;
+            if (s.type) ns.type = s.type;
+            if (s.defer) ns.defer = true;
+            document.head.appendChild(ns);
+          } else {
+            ns.textContent = s.textContent;
+            document.body.appendChild(ns);
+          }
+        });
+
+        try {
+          const stagger = container.querySelector('.footer-content.reveal-stagger');
+          if (stagger) {
+            Array.from(stagger.children).forEach((child, i) => setTimeout(() => child.classList.add('revealed'), i * 80));
+          }
+        } catch (e) {}
+      });
+  </script>
+
   <div id="successToast" class="success-toast" role="status" aria-live="polite" aria-hidden="true">
     <div class="success-toast__icon">✓</div>
     <div class="success-toast__content">

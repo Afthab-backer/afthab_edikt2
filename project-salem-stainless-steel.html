@@ -20,6 +20,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="/assets/images/Projects/Salem%20stainless/Salem%20stainless%201.webp">
   <style>
+    /* Salem page: keep body copy justified on all viewport sizes */
+    body.page-salem main.container .project-overview p,
+    body.page-salem main.container .project-summary p,
+    body.page-salem main.container .project-extra p,
+    body.page-salem main.container .project-experience p {
+      text-align: justify !important;
+      text-justify: inter-word !important;
+      text-align-last: left !important;
+    }
+
     /* Salem page (mobile/tablet): hero + section alignment */
     @media (max-width: 1279px) {
       body.page-salem main.container {

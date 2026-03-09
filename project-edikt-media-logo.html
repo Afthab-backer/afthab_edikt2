@@ -26,6 +26,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Page-specific mobile CSS moved to assets/css/edikt.css -->
   <style>
+    /* Edikt page: keep body copy justified on all viewport sizes */
+    body.page-edikt-logo main.project-page .project-overview p,
+    body.page-edikt-logo main.project-page .project-summary p,
+    body.page-edikt-logo main.project-page .project-aim .aim-block p {
+      text-align: justify !important;
+      text-justify: inter-word !important;
+      text-align-last: left !important;
+    }
+
     /* Edikt logo page (mobile/tablet): hero + section alignment */
     @media (max-width: 1279px) {
       body.page-edikt-logo main.project-page {

@@ -23,6 +23,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <style>
+    /* STPI event page: keep body copy justified on all viewport sizes */
+    body.page-stp main.project-page .project-overview p,
+    body.page-stp main.project-page .project-summary p,
+    body.page-stp main.project-page .project-experience p {
+      text-align: justify !important;
+      text-justify: inter-word !important;
+      text-align-last: left !important;
+    }
+
     /* Mobile: make 2-column hero images square (1:1) without affecting desktop */
     @media (max-width: 768px) {
       .project-hero-grid .grid-item { aspect-ratio: 1/1; }
