@@ -100,7 +100,7 @@ body {
 .project-overview p {
   line-height: 1.8;
   color: #555;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .overview-spacing {
@@ -790,16 +790,22 @@ body {
   width: 220px;
   height: 220px;
   object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  transform: none;
 }
 
-/* Nudge the final brand card slightly to the right without affecting layout */
+/* Keep card position stable and center the image inside this card */
 .brand-grid .brand-card.card-mark {
-  transform: translateX(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: none;
 }
 
-/* Disable the nudge on small screens so layout stays consistent */
+/* Disable the image shift on small screens so layout stays consistent */
 @media (max-width: 992px) {
-  .brand-grid .brand-card.card-mark {
+  .card-mark img {
     transform: none;
   }
 }

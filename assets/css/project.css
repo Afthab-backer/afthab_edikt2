@@ -55,7 +55,7 @@ body {
 .project-overview p {
   line-height: 1.7;
   color: var(--copy-color);
-  font-size: 16px;
+  font-size: 20px;
 }
 
 /* ===============================
@@ -141,10 +141,10 @@ body {
   font-weight: 600;
 }
 
-.project-overview p {
+  .project-overview p {
   line-height: 1.7;
   color: #444;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .overview-spacing {

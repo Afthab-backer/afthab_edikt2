@@ -150,27 +150,8 @@ if (!window._mobileMenuDelegateAdded) {
    =============================== */
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-  contactForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const name = document.getElementById('name')?.value.trim();
-    const email = document.getElementById('email')?.value.trim();
-    const message = document.getElementById('message')?.value.trim();
-
-    if (!name || !email || !message) {
-      alert('Please fill in all required fields.');
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      alert('Please enter a valid email address.');
-      return;
-    }
-
-    alert('Thank you for your message! We will get back to you soon.');
-    this.reset();
-  });
+  // Legacy inline alerts/validation removed — contact form is handled per-page
+  // (Fetch-based submission + styled toasts are implemented in contact.html)
 }
 
 
@@ -362,6 +343,77 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* ===============================
+   Robust Spline badge hide
+   - Runs on pages where a <spline-viewer> injects a badge after load
+   - Attempts to hide badges in light DOM and inside spline-viewer shadowRoots
+   - Appends a local cover to `.spline-wrapper` as a visual fallback
+   - Observes DOM for a short period to catch late injections
+   =============================== */
+function initRobustSplineBadge() {
+  if (window._robustSplineBadgeInit) return; window._robustSplineBadgeInit = true;
+
+  function hideBadges(root = document) {
+    try {
+      ['.spline-badge', '.built-with-spline', '.spline-credit', '.badge', '.credit'].forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => el.style.display = 'none');
+      });
+
+      document.querySelectorAll('a[href*="spline"]').forEach(a => a.style.display = 'none');
+
+      Array.from((root || document).querySelectorAll('*')).forEach(el => {
+        if (!el || !el.innerText) return;
+        if (/built\s+with\s+spline/i.test(el.innerText)) el.style.display = 'none';
+      });
+
+      // attempt to hide badges inside any spline-viewer shadow roots
+      document.querySelectorAll('spline-viewer').forEach(sv => {
+        try {
+          const sr = sv.shadowRoot;
+          if (!sr) return;
+          ['.spline-badge', '.built-with-spline', '.spline-credit', '.badge', '.credit'].forEach(sel => {
+            sr.querySelectorAll(sel).forEach(el => el.style.display = 'none');
+          });
+          sr.querySelectorAll('a[href*="spline"]').forEach(a => a.style.display = 'none');
+        } catch (e) { /* ignore shadow access failures */ }
+      });
+    } catch (e) { /* ignore */ }
+  }
+
+  function ensureCover() {
+    try {
+      const wrapper = document.querySelector('.spline-wrapper');
+      if (!wrapper) return;
+      if (wrapper.querySelector('.spline-badge-cover')) return;
+      const cover = document.createElement('div');
+      cover.className = 'spline-badge-cover';
+      wrapper.appendChild(cover);
+    } catch (e) {}
+  }
+
+  // run now and on load
+  hideBadges();
+  ensureCover();
+
+  const obs = new MutationObserver(() => {
+    hideBadges();
+    ensureCover();
+  });
+  obs.observe(document.body, { childList: true, subtree: true });
+  // stop observing after 8s
+  setTimeout(() => obs.disconnect(), 8000);
+
+  window.addEventListener('load', () => { hideBadges(); ensureCover(); });
+
+  // expose for debugging or manual invocation
+  window.robustHideSplineBadge = function () { hideBadges(); ensureCover(); };
+}
+
+// If this script runs after DOM parsed, initialize immediately; otherwise wait for DOMContentLoaded
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initRobustSplineBadge);
+else initRobustSplineBadge();
+
+
+/* ===============================
    DUPLICATE LOGO TRACK FOR MARQUEE (robust)
    Duplicate logos until the track's width comfortably exceeds the
    container width so the CSS marquee can loop without gaps. Waits
@@ -444,8 +496,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
           var x = 0;
           var last = performance.now();
-          // duration in seconds for one cycle (match previous desktop timing)
-          var duration = (window.matchMedia && window.matchMedia('(max-width: 768px)').matches) ? 32 : 60;
+          // duration in seconds for one cycle (increase to slow the marquee further)
+          // mobile: ultra slow (200s), desktop: ultra slow (360s)
+          var duration = (window.matchMedia && window.matchMedia('(max-width: 768px)').matches) ? 200 : 360;
           var speed = cycleWidth / duration; // pixels per second
 
           function frame(now) {

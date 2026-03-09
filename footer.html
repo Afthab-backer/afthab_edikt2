@@ -11,6 +11,28 @@
       /* Slightly reduce footer logo to improve balance */
       .footer-logo { max-width: 150px; width: auto; height: auto; display: block; }
       @media (max-width:480px) { .footer-logo { max-width: 120px; } }
+
+      /* Keep address in the contact column as exactly 3 lines on desktop */
+      .contact-address .addr-line { white-space: nowrap; }
+      @media (max-width:1000px) { .contact-address .addr-line { white-space: normal; } }
+
+      /* Mobile: keep contact block aligned to the same left rail as logo/tagline */
+      @media (max-width:640px) {
+        .footer-contact,
+        .footer-contact p,
+        .footer-contact .contact-address,
+        .footer-contact strong {
+          text-align: left !important;
+          margin-left: 0 !important;
+          padding-left: 0 !important;
+        }
+
+        .footer-contact .footer-socials {
+          justify-content: flex-start !important;
+          margin-left: 0 !important;
+          padding-left: 0 !important;
+        }
+      }
     </style>
 
     <div class="footer-content reveal-stagger">
@@ -20,7 +42,7 @@
 
         <!-- Logo -->
          <a href="index.html">
-          <picture><picture><img src="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" alt="Edikt Media" class="footer-logo" loading="lazy"></picture></picture>
+          <picture><picture><img src="/assets\images\edikt logo\edikt media logo png.webp" alt="Edikt Media" class="footer-logo" loading="lazy"></picture></picture>
           </a>
 
         <div class="footer-tagline">
@@ -62,11 +84,11 @@
       </div>
 
       <!-- CONTACT -->
-      <div class="footer-section">
-        <p>
-          Office no 513, Fortune Business Centre,<br>
-          Kaspate Wasti, Near Chatrapati Chowk,<br>
-          Wakad, Pune – 411057
+      <div class="footer-section footer-contact">
+        <p class="contact-address">
+          <span class="addr-line">Office no 513, Fortune Business Centre,</span><br>
+          <span class="addr-line">Kaspate Wasti, Near Chatrapati Chowk,</span><br>
+          <span class="addr-line">Wakad, Pune-411057</span>
         </p>
 
         <p>
@@ -121,7 +143,7 @@
         <a href="terms-of-use.html">Terms of Use</a>
         <p>© 2025 Edikt Media Worldwide Pvt. Ltd.</p>
 
-      <p>Made in Bharat <picture><picture><img src="/assets/images/extras/indian%20flag.webp" alt="Indian flag" class="footer-flag" lazy=""></picture></picture></p>
+      <p>Made in Bharat <picture><picture><img src="/assets/images/extras/indian%20flag.webp" alt="Indian flag" class="footer-flag" loading="lazy"></picture></picture></p>
       </div>
 
     

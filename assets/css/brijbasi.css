@@ -632,4 +632,43 @@ body.page-brijbasi .hero-arrow {
   font-size: 36px !important;
 }
 
+/* Brijbasi + Edikt logo pages: remove excess blank space around CTA */
+.page-brijbasi .cta,
+.page-edikt-logo .cta {
+  margin-top: 0 !important;
+  padding: 24px 0 28px !important;
+}
+
+.page-brijbasi .cta .container,
+.page-edikt-logo .cta .container {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.page-brijbasi .cta-title,
+.page-edikt-logo .cta-title {
+  margin-bottom: 12px !important;
+}
+
+.page-brijbasi .cta-subtitle,
+.page-edikt-logo .cta-subtitle {
+  margin-bottom: 18px !important;
+}
+
+.page-brijbasi main.project-page,
+.page-edikt-logo main.project-page {
+  padding-bottom: 0 !important;
+}
+
+/* Edikt logo page: add spacing after header before hero content */
+.page-edikt-logo .project-hero-header {
+  margin-top: 28px !important;
+}
+
+@media (max-width: 900px) {
+  .page-edikt-logo .project-hero-header {
+    margin-top: 16px !important;
+  }
+}
+
 

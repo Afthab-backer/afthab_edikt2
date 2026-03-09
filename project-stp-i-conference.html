@@ -12,15 +12,16 @@
   <meta name="twitter:title" content="STPI Conference — Event Production | Edikt Media">
   <meta name="twitter:description" content="STPI Conference — event production and program design for the Society of Toxicologic Pathology's annual conference in India.">
   <meta name="twitter:image" content="https://edikt.in/assets/images/Projects/STP-I%20conference/conference%201.avif">
-  <title>Event |Edikt Media</title>
-  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css">
+  <title>Exhibition | Edikt Media</title>
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css?v=stp-event-cta-btn">
   <link rel="stylesheet" href="assets/css/project.css">
   <link rel="stylesheet" href="assets/css/stp.css?v=3">
   <link rel="stylesheet" href="assets/css/brijbasi.css">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <style>
     /* Mobile: make 2-column hero images square (1:1) without affecting desktop */
     @media (max-width: 768px) {
@@ -30,6 +31,101 @@
         height: 100% !important;
         object-fit: cover !important;
         display: block !important;
+      }
+    }
+
+    /* STPI event page (mobile/tablet): hero + section alignment */
+    @media (max-width: 1279px) {
+      body.page-stp main.project-page {
+        padding-top: 8px !important;
+      }
+
+      body.page-stp main.project-page .project-hero-header {
+        display: flex !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+        padding: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+
+      body.page-stp main.project-page .project-hero-grid {
+        margin-top: 0 !important;
+      }
+
+      body.page-stp main.project-page .project-hero-header .hero-texts {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        min-width: 0 !important;
+        flex: 1 1 auto !important;
+      }
+
+      body.page-stp main.project-page .project-hero-header .hero-title {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        text-align: left !important;
+        font-size: clamp(1.25rem, 5.3vw, 1.5rem) !important;
+        line-height: 1.18 !important;
+        letter-spacing: 0 !important;
+      }
+
+      body.page-stp main.project-page .project-hero-header .hero-subtitle {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 4px 0 0 !important;
+        margin-left: 0 !important;
+        text-align: left !important;
+        font-size: clamp(0.82rem, 3.4vw, 0.95rem) !important;
+        line-height: 1.4 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        align-self: flex-start !important;
+      }
+
+      body.page-stp main.project-page .project-hero-header .hero-back {
+        padding-right: 4px !important;
+        align-self: flex-start !important;
+      }
+
+      body.page-stp main.project-page .project-hero-header .hero-arrow-large {
+        font-size: 34px !important;
+        line-height: 1 !important;
+        transform: scaleX(1.15) !important;
+      }
+
+      body.page-stp main.project-page .project-overview .section-title,
+      body.page-stp main.project-page .project-summary .section-heading,
+      body.page-stp main.project-page .project-experience .experience-title {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        text-align: left !important;
+      }
+
+      body.page-stp main.project-page .project-overview p,
+      body.page-stp main.project-page .project-summary p,
+      body.page-stp main.project-page .project-experience p {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+        text-align-last: left !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body.page-stp main.project-page .project-hero-header .hero-title {
+        white-space: nowrap !important;
       }
     }
   </style>
@@ -62,10 +158,10 @@
   <section class="project-hero-grid">
     <div class="grid">
       <div class="grid-item">
-        <picture><picture><img src="/assets\images\Projects\STP-I conference\conference 1.avif" alt="conference image 1" eager=""></picture></picture>
+        <picture><picture><img src="/assets\images\Projects\STP-I conference\conference 1.avif" alt="conference image 1" loading="eager"></picture></picture>
       </div>
       <div class="grid-item">
-        <picture><picture><img src="/assets\images\Projects\STP-I conference\conference 2.avif" alt="conference image 2" lazy=""></picture></picture>
+        <picture><picture><img src="/assets\images\Projects\STP-I conference\conference 2.avif" alt="conference image 2" loading="lazy"></picture></picture>
       </div>
     </div>
   </section>
@@ -108,7 +204,7 @@
 
     <!-- FULL WIDTH IMAGE -->
     <div class="project-fullwidth">
-      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference 3.avif" alt="conference image 3" lazy=""></picture></picture>
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference 3.avif" alt="conference image 3" loading="lazy"></picture></picture>
     </div>
 
   </section>
@@ -135,34 +231,34 @@
 
     <!-- LEFT LARGE -->
     <div class="gallery-item large-left">
-      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 1.avif" lazy=""></picture></picture>
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 1.avif" loading="lazy"></picture></picture>
     </div>
 
     <!-- CENTER LARGE -->
     <div class="gallery-item large-center">
-      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 2.avif" lazy=""></picture></picture>
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 2.avif" loading="lazy"></picture></picture>
     </div>
 
     <!-- TOP RIGHT STACK -->
     <div class="gallery-item stack-top">
-      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 3.avif" lazy=""></picture></picture>
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 3.avif" loading="lazy"></picture></picture>
     </div>
 
     <div class="gallery-item stack-bottom">
-      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 4.avif" lazy=""></picture></picture>
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 4.avif" loading="lazy"></picture></picture>
     </div>
 
     <!-- BOTTOM ROW -->
     <div class="gallery-item bottom">
-      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 5.avif" lazy=""></picture></picture>
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 5.avif" loading="lazy"></picture></picture>
     </div>
 
     <div class="gallery-item bottom">
-      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 6.avif" lazy=""></picture></picture>
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 6.avif" loading="lazy"></picture></picture>
     </div>
 
     <div class="gallery-item bottom">
-      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 7.avif" lazy=""></picture></picture>
+      <picture><picture><img src="/assets\images\Projects\STP-I conference\conference g 7.avif" loading="lazy"></picture></picture>
     </div>
 
   </div>
@@ -191,7 +287,7 @@
 
 <section class="project-fullwidth-image">
 
-  <picture><picture><img src="/assets\images\Projects\STP-I conference\conference 4.avif" alt="Conference Highlight Image" lazy=""></picture></picture>
+  <picture><picture><img src="/assets\images\Projects\STP-I conference\conference 4.avif" alt="Conference Highlight Image" loading="lazy"></picture></picture>
 
 </section>
 

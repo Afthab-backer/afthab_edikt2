@@ -12,18 +12,241 @@
   <meta name="twitter:title" content="Edikt Media Logo — Brand Mark Case Study">
   <meta name="twitter:description" content="Edikt Media Logo — design case study showing our process in crafting a bold, modern brand mark for Edikt Media.">
   <meta name="twitter:image" content="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png">
-  <title>Event |Edikt Media</title>
+  <title>Edikt Media Logo Design</title>
 
-  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="/assets/images/edikt%20logo/edikt%20media%20logo%20png.png" type="image/png"><link rel="stylesheet" href="assets/css/style.css?v=edikt-cta-btn">
   <link rel="stylesheet" href="assets/css/project.css">
   <link rel="stylesheet" href="assets/css/edikt.css">
   <link rel="stylesheet" href="assets/css/stp.css">
   <link rel="stylesheet" href="assets/css/brijbasi.css">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Page-specific mobile CSS moved to assets/css/edikt.css -->
+  <style>
+    /* Edikt logo page (mobile/tablet): hero + section alignment */
+    @media (max-width: 1279px) {
+      body.page-edikt-logo main.project-page {
+        padding-top: 8px !important;
+      }
+
+      body.page-edikt-logo main.project-page .project-hero-header {
+        display: flex !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+        padding: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+
+      body.page-edikt-logo main.project-page .project-hero-grid {
+        margin-top: 0 !important;
+      }
+
+      body.page-edikt-logo main.project-page .project-hero-header > div {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        min-width: 0 !important;
+        flex: 1 1 auto !important;
+      }
+
+      body.page-edikt-logo main.project-page .project-hero-header .hero-title {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        text-align: left !important;
+        font-size: clamp(1.25rem, 5.3vw, 1.5rem) !important;
+        line-height: 1.18 !important;
+        letter-spacing: 0 !important;
+      }
+
+      body.page-edikt-logo main.project-page .project-hero-header .hero-subtitle {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 4px 0 0 !important;
+        margin-left: 0 !important;
+        text-align: left !important;
+        font-size: clamp(0.82rem, 3.4vw, 0.95rem) !important;
+        line-height: 1.4 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        align-self: flex-start !important;
+      }
+
+      body.page-edikt-logo main.project-page .project-hero-header .hero-back {
+        padding-right: 4px !important;
+        align-self: flex-start !important;
+      }
+
+      body.page-edikt-logo main.project-page .project-hero-header .hero-arrow {
+        font-size: 34px !important;
+        line-height: 1 !important;
+        display: inline-block !important;
+        transform: scaleX(1.15) !important;
+        transform-origin: left center !important;
+      }
+
+      body.page-edikt-logo main.project-page .project-overview .section-title,
+      body.page-edikt-logo main.project-page .project-summary .section-heading,
+      body.page-edikt-logo main.project-page .project-aim .aim-main-title,
+      body.page-edikt-logo main.project-page .project-aim .aim-block h4 {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        text-align: left !important;
+        font-size: 20px !important;
+        line-height: 1.2 !important;
+      }
+
+      body.page-edikt-logo main.project-page .project-overview p,
+      body.page-edikt-logo main.project-page .project-summary p,
+      body.page-edikt-logo main.project-page .project-aim .aim-block p {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+        text-align-last: left !important;
+        font-size: 20px !important;
+        line-height: 1.6 !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body.page-edikt-logo main.project-page .project-hero-header .hero-title {
+        white-space: nowrap !important;
+      }
+
+      /* Match the reference mobile card order/scale for the Edikt brand block */
+      body.page-edikt-logo .brand-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        margin: 24px 0 30px !important;
+        max-width: 100% !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-typography {
+        order: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: #f1f1f1 !important;
+        border-radius: 20px !important;
+        min-height: 170px !important;
+        padding: 22px 18px !important;
+        text-align: center !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-typography > div {
+        width: 100% !important;
+        margin: 0 auto !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-typography .brand-title {
+        margin: 0 0 10px 0 !important;
+        line-height: 1.04 !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-typography .brand-subtitle {
+        margin: 0 0 8px 0 !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-typography .brand-desc {
+        margin: 0 auto !important;
+        max-width: 280px !important;
+        line-height: 1.22 !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-gradients {
+        order: 1 !important;
+        background: transparent !important;
+        padding: 0 !important;
+        min-height: 0 !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-logo {
+        order: 2 !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-mark {
+        order: 3 !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-gradients .gradients-wrap {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        align-items: stretch !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-gradients .swatch {
+        width: 100% !important;
+        height: 164px !important;
+        border-radius: 12px !important;
+        padding: 22px 20px !important;
+        box-shadow: none !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-gradients .swatch-green {
+        background: linear-gradient(135deg, #1f6f43 0%, #34b865 100%) !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-gradients .swatch-red {
+        background: linear-gradient(180deg, #f6a42f 0%, #f53a36 100%) !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-gradients .swatch-label {
+        font-size: 14px !important;
+        line-height: 1.15 !important;
+        font-weight: 600 !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-logo,
+      body.page-edikt-logo .brand-grid .card-mark {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: #ffffff !important;
+        border-radius: 12px !important;
+        min-height: 164px !important;
+        padding: 14px !important;
+        overflow: hidden !important;
+      }
+
+      /* Cancel global full-bleed image rules for this section */
+      body.page-edikt-logo .brand-grid .brand-card img {
+        width: auto !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        margin: 0 !important;
+        object-fit: contain !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-logo img {
+        width: 92% !important;
+        max-width: 320px !important;
+        max-height: 116px !important;
+      }
+
+      body.page-edikt-logo .brand-grid .card-mark img {
+        width: 106px !important;
+        max-width: 106px !important;
+        max-height: 106px !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="page-edikt-logo">
@@ -199,7 +422,7 @@
 
     <!-- Full width cinematic image (added) - isolated for per-page effects -->
     <section id="project-fullwidth-edikt" class="project-fullwidth-image project-fullwidth-edikt">
-      <picture><picture><img src="/assets\images\Projects\edikt\edikt 4.avif" alt="Full width project image" lazy=""></picture></picture>
+      <picture><picture><img src="/assets\images\Projects\edikt\edikt 4.avif" alt="Full width project image" loading="lazy"></picture></picture>
     </section>
 
       <!-- Fullscreen cover (added) -->

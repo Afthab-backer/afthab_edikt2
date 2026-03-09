@@ -2,6 +2,62 @@
 (function(){
   if (window._headerLoaderAdded) return; window._headerLoaderAdded = true;
 
+  function normalizeHref(href) {
+    return String(href || '')
+      .trim()
+      .toLowerCase()
+      .replace(/^[./]+/, '')
+      .split('#')[0]
+      .split('?')[0];
+  }
+
+  function resolveNavTarget(pathname) {
+    const raw = decodeURIComponent((pathname || '').toLowerCase()).replace(/\/+$/, '');
+    const leaf = raw.split('/').pop() || '';
+    const page = leaf.replace(/\.html?$/, '');
+
+    if (!raw || raw === '/' || !page || page === 'index') return 'index.html';
+
+    if (page === 'about') return 'about.html';
+    if (page === 'services' || page === 'service') return 'services.html';
+    if (page === 'team') return 'team.html';
+    if (page === 'work_with_us' || page === 'work-with-us' || page === 'workwithus' || page === 'work') return 'work_with_us.html';
+
+    // Project listing + project detail aliases should highlight Projects.
+    if (
+      page === 'project' ||
+      page.startsWith('project-') ||
+      page.includes('website-stpi') ||
+      page.includes('conference') ||
+      page.includes('salem') ||
+      page.includes('brij') ||
+      page.includes('logo')
+    ) {
+      return 'project.html';
+    }
+
+    return null;
+  }
+
+  function initActiveNav(scope) {
+    const root = scope && scope.querySelector ? scope : document;
+    const nav = root.querySelector('.navbar') || document.querySelector('.navbar');
+    if (!nav) return false;
+
+    const links = Array.from(nav.querySelectorAll('a[href]'));
+    if (!links.length) return false;
+
+    const targetHref = resolveNavTarget(window.location.pathname);
+    links.forEach(link => link.classList.remove('active'));
+    if (!targetHref) return false;
+
+    const target = links.find(link => normalizeHref(link.getAttribute('href')) === targetHref);
+    if (!target) return false;
+
+    target.classList.add('active');
+    return true;
+  }
+
   function runScripts(nodes) {
     // sequentially insert scripts preserving order and awaiting external loads
     const seq = nodes.reduce((p, s) => p.then(() => new Promise(resolve => {
@@ -32,6 +88,7 @@
     return runScripts(scripts).then(() => {
       try { if (typeof initHeaderScroll === 'function') initHeaderScroll(); } catch (e) {}
       try { if (typeof initMobileMenu === 'function') initMobileMenu(); } catch (e) {}
+      try { initActiveNav(container); } catch (e) {}
     });
   }
 

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Client Reviews — Edikt Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="page-default">
+
+  <!-- header placeholder (will be injected by header-loader) -->
+  <div id="site-header"></div>
+  <script src="assets/js/header-loader.js" defer></script>
+  <script src="assets/js/header.js"></script>
+
+  <main class="container">
+    <section class="edikt-testimonials reveal">
+      <div class="container">
+        <div class="section-header">
+          <h1>What Our Clients Say</h1>
+          <p>Real stories. Real partnerships. Real impact.</p>
+        </div>
+
+        <div class="testimonial-grid">
+
+          <div class="testimonial-card reveal" data-video="YOUTUBE_ID_1">
+            <div class="thumb-wrapper">
+              <img src="thumb1.webp" alt="Client Testimonial">
+              <div class="play-circle"><span>▶</span></div>
+            </div>
+            <div class="testimonial-info">
+              <h3>Client Name</h3>
+              <span>Company Name</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal" data-video="YOUTUBE_ID_2">
+            <div class="thumb-wrapper">
+              <img src="thumb2.webp" alt="Client Testimonial">
+              <div class="play-circle"><span>▶</span></div>
+            </div>
+            <div class="testimonial-info">
+              <h3>Client Name</h3>
+              <span>Company Name</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal" data-video="YOUTUBE_ID_3">
+            <div class="thumb-wrapper">
+              <img src="thumb3.webp" alt="Client Testimonial">
+              <div class="play-circle"><span>▶</span></div>
+            </div>
+            <div class="testimonial-info">
+              <h3>Client Name</h3>
+              <span>Company Name</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal" data-video="YOUTUBE_ID_4">
+            <div class="thumb-wrapper">
+              <img src="thumb4.webp" alt="Client Testimonial">
+              <div class="play-circle"><span>▶</span></div>
+            </div>
+            <div class="testimonial-info">
+              <h3>Client Name</h3>
+              <span>Company Name</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer placeholder (will be injected) -->
+  <div id="site-footer"></div>
+
+  <script>
+    // inject footer.html similarly to other pages
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(html => {
+        const container = document.getElementById('site-footer');
+        container.innerHTML = html;
+        Array.from(container.querySelectorAll('script')).forEach(s => {
+          const ns = document.createElement('script');
+          if (s.src) { ns.src = s.src; if (s.type) ns.type = s.type; if (s.defer) ns.defer = true; document.head.appendChild(ns); }
+          else { ns.textContent = s.textContent; document.body.appendChild(ns); }
+        });
+      }).catch(()=>{});
+  </script>
+
+  <script src="assets/js/script.js" defer></script>
+  <script src="assets/js/scroll-reveal.js" defer></script>
+
+  <div id="videoModal" class="video-modal">
+    <div class="video-content">
+      <span class="close-video">&times;</span>
+      <div id="videoContainer"></div>
+    </div>
+  </div>
+
+  <script>
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    const modal = document.getElementById('videoModal');
+    const container = document.getElementById('videoContainer');
+    const closeBtn = document.querySelector('.close-video');
+
+    testimonialCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const videoId = card.dataset.video;
+
+        container.innerHTML = `\n      <iframe \n        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0"\n        frameborder="0"\n        allow="autoplay; encrypted-media"\n        allowfullscreen>\n      </iframe>\n    `;
+
+        modal.classList.add('active');
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+      container.innerHTML = "";
+    });
+  </script>
+
+</body>
+</html>
