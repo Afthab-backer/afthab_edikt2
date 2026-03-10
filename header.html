@@ -44,6 +44,11 @@
         padding: 12px 44px !important;
       }
 
+      /* Keep floating pill slightly lower so it never feels clipped at the top edge */
+      header.header--floating .navbar {
+        top: calc(50% + 8px) !important;
+      }
+
       header .navbar a:not(.mobile-only) {
         display: inline-flex !important;
         align-items: center !important;
