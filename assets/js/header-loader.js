@@ -2,6 +2,34 @@
 (function(){
   if (window._headerLoaderAdded) return; window._headerLoaderAdded = true;
 
+  function ensureFavicon() {
+    try {
+      const head = document.head || document.getElementsByTagName('head')[0];
+      if (!head) return;
+      const faviconHref = '/assets/images/edikt%20logo/fevicon.png';
+
+      let icon = head.querySelector('link[rel="icon"]');
+      if (!icon) {
+        icon = document.createElement('link');
+        icon.rel = 'icon';
+        head.appendChild(icon);
+      }
+      icon.type = 'image/png';
+      icon.href = faviconHref;
+
+      let shortcutIcon = head.querySelector('link[rel="shortcut icon"]');
+      if (!shortcutIcon) {
+        shortcutIcon = document.createElement('link');
+        shortcutIcon.rel = 'shortcut icon';
+        head.appendChild(shortcutIcon);
+      }
+      shortcutIcon.type = 'image/png';
+      shortcutIcon.href = faviconHref;
+    } catch (e) {
+      console.warn('header-loader: failed to ensure favicon', e);
+    }
+  }
+
   function normalizeHref(href) {
     return String(href || '')
       .trim()
@@ -21,6 +49,7 @@
     if (page === 'about') return 'about.html';
     if (page === 'services' || page === 'service') return 'services.html';
     if (page === 'team') return 'team.html';
+    if (page === 'project-client-review' || page === 'client-stories' || page === 'clientstories') return 'project-client-review.html';
     if (page === 'work_with_us' || page === 'work-with-us' || page === 'workwithus' || page === 'work') return 'work_with_us.html';
 
     // Project listing + project detail aliases should highlight Projects.
@@ -93,6 +122,7 @@
   }
 
   function loadHeader() {
+    ensureFavicon();
     return fetch('header.html?_=' + Date.now(), { cache: 'no-store' })
       .then(res => res.text())
       .then(html => insertHeader(html))

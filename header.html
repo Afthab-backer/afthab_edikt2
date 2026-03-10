@@ -2,6 +2,61 @@
   <link rel="preload" as="image" href="/assets\images\edikt logo\edikt media logo png.webp" type="image/webp"><link rel="stylesheet" href="assets/css/style.css">
 </head><body><header class="header">
   <style>
+    /* Desktop: keep all nav labels on one line and allow a wider pill */
+    @media (min-width: 821px) {
+      header .logo-link,
+      header .header-cta {
+        flex: 0 0 146px;
+        width: 146px;
+      }
+
+      header .logo-link {
+        justify-content: flex-start;
+      }
+
+      header .header-cta {
+        margin-left: auto !important;
+        justify-content: flex-end;
+      }
+
+      header .header-cta .btn,
+      header .header-cta .magic-btn,
+      header .header-cta .btn-primary {
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        display: inline-flex !important;
+      }
+
+      header .header-cta .magic-btn .button__text {
+        width: auto !important;
+        white-space: nowrap !important;
+      }
+
+      header .navbar {
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        flex-wrap: nowrap !important;
+        white-space: nowrap !important;
+        gap: 20px !important;
+        padding: 12px 44px !important;
+      }
+
+      header .navbar a:not(.mobile-only) {
+        display: inline-flex !important;
+        align-items: center !important;
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+        line-height: 1.1 !important;
+      }
+
+      header .navbar a.mobile-only {
+        display: none !important;
+      }
+    }
+
     /* Inline header-scoped mobile override to ensure fetched header works across pages */
     @media (max-width: 820px) {
       header .navbar { display: none; }
@@ -48,6 +103,7 @@
         <a href="about.html">About us</a>
         <a href="services.html">Services</a>
         <a href="project.html">Projects</a>
+        <a href="project-client-review.html">Client stories</a>
         <a href="team.html">Our Team</a>
         <a href="work_with_us.html" class="mobile-only">Work with us</a>
       </nav>

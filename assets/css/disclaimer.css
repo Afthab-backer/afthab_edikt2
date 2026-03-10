@@ -33,6 +33,9 @@
   font-size: 17px;
   line-height: 1.8;
   margin-bottom: 18px;
+  text-align: justify !important;
+  text-justify: inter-word;
+  text-align-last: left;
 }
 
 .page-disclaimer .disclaimer-illustration {

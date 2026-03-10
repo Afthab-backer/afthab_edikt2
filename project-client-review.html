@@ -20,53 +20,66 @@
     <section class="edikt-testimonials reveal">
       <div class="container">
         <div class="section-header">
-          <h1>What Our Clients Say</h1>
-          <p>Real stories. Real partnerships. Real impact.</p>
+          <h1 class="hero-title">What Our Clients Say</h1>
+          <p class="hero-subtitle">Hear directly from the brands we've partnered with and the impact we've created together.</p>
         </div>
 
         <div class="testimonial-grid">
 
-          <div class="testimonial-card reveal" data-video="YOUTUBE_ID_1">
+          <div class="testimonial-card reveal" data-video="assets/videos/client_review/CIG_Interview.mp4">
             <div class="thumb-wrapper">
-              <img src="thumb1.webp" alt="Client Testimonial">
+              <img src="assets\images\clients\CIG.avif" class="thumb-img" alt="Client Testimonial">
+              <video class="preview-video" muted loop playsinline preload="metadata">
+                <source src="assets/videos/client_review/CIG_Interview.mp4" type="video/mp4">
+              </video>
               <div class="play-circle"><span>▶</span></div>
             </div>
             <div class="testimonial-info">
-              <h3>Client Name</h3>
-              <span>Company Name</span>
+              <h3>CIG INTER GROUP CO.,LTD</h3>
+              <span>International Traders of Marble and Natural Stone Materials</span>
             </div>
           </div>
 
-          <div class="testimonial-card reveal" data-video="YOUTUBE_ID_2">
+          
+          <div class="testimonial-card reveal" data-video="assets/videos/client_review/Regal_Stones_Interviews.mp4">
             <div class="thumb-wrapper">
-              <img src="thumb2.webp" alt="Client Testimonial">
+              <img src="assets\images\clients\Regal stones.webp" class="thumb-img" alt="Client Testimonial">
+              <video class="preview-video" muted loop playsinline preload="metadata">
+                <source src="assets/videos/client_review/Regal_Stones_Interviews.mp4" type="video/mp4">
+              </video>
               <div class="play-circle"><span>▶</span></div>
             </div>
             <div class="testimonial-info">
-              <h3>Client Name</h3>
-              <span>Company Name</span>
+              <h3>Regal Stones</h3>
+              <span>Quarry Owners & Direct Manufacturers of premium Kota Stone, Limestone, Granite, and Sandstone</span>
             </div>
           </div>
 
-          <div class="testimonial-card reveal" data-video="YOUTUBE_ID_3">
+          <div class="testimonial-card reveal" data-video="assets/videos/client_review/Shivan_Multi_Micron_Pvt_Ltd_Interview.mp4">
             <div class="thumb-wrapper">
-              <img src="thumb3.webp" alt="Client Testimonial">
+              <img src="assets\images\clients\Shivam multi microns.webp" class="thumb-img" alt="Client Testimonial">
+              <video class="preview-video" muted loop playsinline preload="metadata">
+                <source src="assets/videos/client_review/Shivan_Multi_Micron_Pvt_Ltd_Interview.mp4" type="video/mp4">
+              </video>
               <div class="play-circle"><span>▶</span></div>
             </div>
             <div class="testimonial-info">
-              <h3>Client Name</h3>
-              <span>Company Name</span>
+              <h3>Shivam Multi Micron Pvt Ltd</h3>
+              <span>Manufacturers & Suppliers of High-Quality Clay, Kaolinite, and Industrial Mineral Products</span>
             </div>
           </div>
 
-          <div class="testimonial-card reveal" data-video="YOUTUBE_ID_4">
+          <div class="testimonial-card reveal" data-video="assets/videos/client_review/Umpire_Technologies_Interview.mp4">
             <div class="thumb-wrapper">
-              <img src="thumb4.webp" alt="Client Testimonial">
+              <img src="assets\images\clients\Umpire Technologies.webp" class="thumb-img" alt="Client Testimonial">
+              <video class="preview-video" muted loop playsinline preload="metadata">
+                <source src="assets/videos/client_review/Umpire_Technologies_Interview.mp4" type="video/mp4">
+              </video>
               <div class="play-circle"><span>▶</span></div>
             </div>
             <div class="testimonial-info">
-              <h3>Client Name</h3>
-              <span>Company Name</span>
+              <h3>Umpire Technologies</h3>
+              <span>Manufacturers & Solution Providers of Advanced Laser Cutting, Engraving, and Marking Machines</span>
             </div>
           </div>
 
@@ -74,6 +87,30 @@
       </div>
     </section>
   </main>
+
+  <!-- CTA SECTION -->
+  <section class="cta reveal">
+    <div class="container">
+
+      <h2 class="cta-title reveal">
+        Let's get to the work
+      </h2>
+
+      <p class="cta-subtitle reveal delay-1">
+        We're here to make it happen. Let's create something extraordinary together —
+        just hit the button below and start your journey with Edikt Media.
+      </p>
+
+      <a href="contact.html" class="btn magic-btn btn-primary btn-large reveal delay-2">
+
+        <span class="button__text">Talk to us</span>
+        <div class="button__filler"></div>
+
+      </a>
+
+
+    </div>
+  </section>
 
   <!-- footer placeholder (will be injected) -->
   <div id="site-footer"></div>
@@ -98,7 +135,6 @@
 
   <div id="videoModal" class="video-modal">
     <div class="video-content">
-      <span class="close-video">&times;</span>
       <div id="videoContainer"></div>
     </div>
   </div>
@@ -107,21 +143,63 @@
     const testimonialCards = document.querySelectorAll('.testimonial-card');
     const modal = document.getElementById('videoModal');
     const container = document.getElementById('videoContainer');
-    const closeBtn = document.querySelector('.close-video');
 
     testimonialCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const videoId = card.dataset.video;
+      const previewVideo = card.querySelector('.preview-video');
 
-        container.innerHTML = `\n      <iframe \n        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0"\n        frameborder="0"\n        allow="autoplay; encrypted-media"\n        allowfullscreen>\n      </iframe>\n    `;
+      card.addEventListener('mouseenter', () => {
+        if (previewVideo) {
+          previewVideo.play().catch(() => {});
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if (previewVideo) {
+          previewVideo.pause();
+          previewVideo.currentTime = 0;
+        }
+      });
+
+      card.addEventListener('click', () => {
+        const videoSrc = card.dataset.video;
+
+        if (previewVideo) {
+          previewVideo.pause();
+          previewVideo.currentTime = 0;
+        }
+
+        container.innerHTML = `
+      <video controls autoplay playsinline>
+        <source src="${videoSrc}" type="video/mp4">
+      </video>
+    `;
 
         modal.classList.add('active');
       });
     });
 
-    closeBtn.addEventListener('click', () => {
+    function closeVideo() {
+      const video = container.querySelector('video');
+
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
+
       modal.classList.remove('active');
       container.innerHTML = "";
+    }
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal) {
+        closeVideo();
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeVideo();
+      }
     });
   </script>
 
