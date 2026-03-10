@@ -2437,6 +2437,9 @@ section {
 
 .page-about .about-text p {
   margin-bottom: 22px;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
 }
 
 
@@ -7736,10 +7739,15 @@ html body main.stp-narrow #stp-left-title {
 
   body.page-about .about-text,
   body.page-about .about-row .about-text,
-  body.page-about .about-text .section-title,
-  body.page-about .about-text p {
+  body.page-about .about-text .section-title {
     text-align: center !important;
     text-justify: auto !important;
+  }
+
+  body.page-about .about-text p {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    text-align-last: left !important;
   }
 
   body.page-privacy .privacy p,
