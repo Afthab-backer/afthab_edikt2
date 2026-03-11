@@ -23,7 +23,11 @@ async function buildCSS() {
   for (const f of cssFiles) css += '\n/* ' + path.relative(ROOT, f) + ' */\n' + await fs.readFile(f, 'utf8');
 
   const result = await postcss([
-    purgecss({ content: ['*.html', 'components/*.html'], defaultExtractor: content => content.match(/[-_a-zA-Z0-9:\/]+/g) || [] }),
+    purgecss({
+      content: ['**/*.html', 'assets/js/**/*.js', '!dist/**', '!node_modules/**'],
+      safelist: ['btn', 'cta', 'hover', 'active', 'navbar', 'menu', 'work-with-us'],
+      defaultExtractor: content => content.match(/[-_a-zA-Z0-9:\/]+/g) || []
+    }),
     cssnano()
   ]).process(css, { from: undefined });
 
