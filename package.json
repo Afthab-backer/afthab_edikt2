@@ -14,7 +14,6 @@
     "html-minifier-terser": "^7.0.0",
     "jsdom": "^22.1.0",
     "postcss": "^8.4.23",
-    "sharp": "^0.32.6",
     "terser": "^5.20.2"
   }
 }

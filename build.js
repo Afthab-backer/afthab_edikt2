@@ -1,7 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
-const sharp = require('sharp');
 const postcss = require('postcss');
 const cssnano = require('cssnano');
 const purgecss = require('@fullhuman/postcss-purgecss');
@@ -47,68 +46,7 @@ async function buildJS() {
   console.log('JS built ->', path.join('dist', 'assets', 'js', 'scripts.min.js'));
 }
 
-async function processImages() {
-  const patterns = ['assets/images/**/*.{jpg,jpeg,png,webp,avif}'];
-  const files = patterns.flatMap(p => glob.sync(p, { cwd: ROOT, nodir: true }));
-  const manifest = {};
-  const sizes = [320, 640, 1024, 1600];
-  const formats = ['avif', 'webp'];
-  const MAX_FALLBACK_WIDTH = 1600; // clamp large originals to this width
-
-  for (const rel of files) {
-    const src = path.join(ROOT, rel);
-    const stat = await fs.stat(src).catch(() => null);
-    if (!stat) continue;
-    const info = await sharp(src).metadata();
-    const base = rel.replace(/\\/g, '/');
-    manifest[base] = { variants: [], width: info.width || null, height: info.height || null };
-
-    for (const w of sizes) {
-      if (info.width && w > info.width) continue; // skip upscales
-      for (const fmt of formats) {
-        const ext = fmt;
-        const outRel = base.replace(/\.(jpg|jpeg|png|webp|avif)$/i, '') + `-${w}.${ext}`;
-        const outPath = path.join(DIST, outRel);
-        await fs.ensureDir(path.dirname(outPath));
-        await sharp(src).resize({ width: w }).toFormat(fmt, { quality: 80 }).toFile(outPath);
-        manifest[base].variants.push({ format: fmt, width: w, path: outRel.replace(/\\/g, '/') });
-      }
-    }
-
-    // generate a fallback optimized variant (clamped to MAX_FALLBACK_WIDTH)
-    const fallbackWidth = info.width && info.width > MAX_FALLBACK_WIDTH ? MAX_FALLBACK_WIDTH : info.width;
-    for (const fmt of formats) {
-      const outRel = base.replace(/\.(jpg|jpeg|png|webp|avif)$/i, '') + `-orig.${fmt}`;
-      const outPath = path.join(DIST, outRel);
-      await fs.ensureDir(path.dirname(outPath));
-      if (fallbackWidth && info.width && fallbackWidth !== info.width) {
-        // resize down to clamped width
-        await sharp(src).resize({ width: fallbackWidth }).toFormat(fmt, { quality: 80 }).toFile(outPath);
-      } else {
-        await sharp(src).toFormat(fmt, { quality: 80 }).toFile(outPath);
-      }
-      // compute fallback height proportionally if available
-      let fallbackHeight = info.height || null;
-      if (info.width && fallbackWidth && info.height) {
-        fallbackHeight = Math.round((fallbackWidth / info.width) * info.height);
-      }
-      manifest[base].variants.push({ format: fmt, width: fallbackWidth || null, path: outRel.replace(/\\/g, '/') });
-    }
-
-    // update manifest primary dimensions to the fallback (avoid exposing huge original sizes)
-    if (fallbackWidth) manifest[base].width = fallbackWidth;
-    if (info.height && manifest[base].width && info.width) manifest[base].height = Math.round((manifest[base].width / info.width) * info.height);
-  }
-
-  // Per project preference: do not write images-manifest.json to disk.
-  // The manifest is still returned in-memory so HTML rewriting can continue,
-  // but we avoid persisting the JSON file.
-  // await fs.writeJson(path.join(DIST, 'images-manifest.json'), manifest, { spaces: 2 });
-  console.log('Images processed ->', Object.keys(manifest).length, 'files (manifest not written to disk)');
-  return manifest;
-}
-
-async function updateHTML(manifest) {
+async function updateHTML() {
   const htmlFiles = glob.sync('*.html', { cwd: ROOT });
   for (const hf of htmlFiles) {
     const src = path.join(ROOT, hf);
@@ -141,48 +79,12 @@ async function updateHTML(manifest) {
       }
     });
 
+    // Keep image paths portable when source HTML was edited on Windows.
     const imgs = Array.from(doc.querySelectorAll('img'));
     for (const img of imgs) {
-      let srcAttr = img.getAttribute('src') || '';
-      // normalize backslashes to forward slashes so Windows paths are handled
+      const srcAttr = img.getAttribute('src') || '';
       const norm = srcAttr.replace(/\\/g, '/');
-      if (!norm.startsWith('assets/images/')) continue;
-      // update the img src to normalized form
-      img.setAttribute('src', norm);
-      const info = manifest[norm];
-      if (!info) continue;
-
-      // build srcset strings per format
-      const byFormat = {};
-      info.variants.forEach(v => {
-        byFormat[v.format] = byFormat[v.format] || [];
-        byFormat[v.format].push(`${v.path} ${v.width}w`);
-      });
-
-      const picture = doc.createElement('picture');
-      if (byFormat['avif']) {
-        const s = doc.createElement('source');
-        s.setAttribute('type', 'image/avif');
-        s.setAttribute('srcset', byFormat['avif'].join(', '));
-        picture.appendChild(s);
-      }
-      if (byFormat['webp']) {
-        const s = doc.createElement('source');
-        s.setAttribute('type', 'image/webp');
-        s.setAttribute('srcset', byFormat['webp'].join(', '));
-        picture.appendChild(s);
-      }
-
-      // update original img to be the fallback (use largest orig variant)
-      const fallback = img.cloneNode(false);
-      const origVariant = info.variants.find(v => v.width === info.width) || info.variants[0];
-      if (origVariant) fallback.setAttribute('src', origVariant.path);
-      fallback.setAttribute('loading', 'lazy');
-      if (info.width) fallback.setAttribute('width', String(info.width));
-      if (info.height) fallback.setAttribute('height', String(info.height));
-
-      picture.appendChild(fallback);
-      img.replaceWith(picture);
+      if (norm !== srcAttr) img.setAttribute('src', norm);
     }
 
     // Rewrite CSS/JS references to bundled files
@@ -221,8 +123,8 @@ async function updateHTML(manifest) {
 }
 
 async function copyAssets() {
-  // copy other static files (fonts, extras)
-  const copyList = ['assets/fonts', 'assets/js/vendor'];
+  // Copy static assets as-is since images are pre-optimized upstream.
+  const copyList = ['assets/images', 'assets/fonts', 'assets/js/vendor', 'assets/videos', 'videos'];
   for (const p of copyList) {
     if (await fs.pathExists(p)) {
       await fs.copy(p, path.join(DIST, p));
@@ -238,10 +140,8 @@ async function run() {
     await buildCSS();
     console.log('Building JS...');
     await buildJS();
-    console.log('Processing images (this may take a while)...');
-    const manifest = await processImages();
     console.log('Updating HTML...');
-    await updateHTML(manifest);
+    await updateHTML();
     console.log('Copying extra assets...');
     await copyAssets();
     console.log('Build complete. Output in ./dist');
