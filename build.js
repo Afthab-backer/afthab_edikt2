@@ -3,7 +3,6 @@ const path = require('path');
 const glob = require('glob');
 const postcss = require('postcss');
 const cssnano = require('cssnano');
-const purgecss = require('@fullhuman/postcss-purgecss');
 const terser = require('terser');
 const { minify } = require('html-minifier-terser');
 const { JSDOM } = require('jsdom');
@@ -23,11 +22,6 @@ async function buildCSS() {
   for (const f of cssFiles) css += '\n/* ' + path.relative(ROOT, f) + ' */\n' + await fs.readFile(f, 'utf8');
 
   const result = await postcss([
-    purgecss({
-      content: ['**/*.html', 'assets/js/**/*.js', '!dist/**', '!node_modules/**'],
-      safelist: ['btn', 'cta', 'hover', 'active', 'navbar', 'menu', 'work-with-us'],
-      defaultExtractor: content => content.match(/[-_a-zA-Z0-9:\/]+/g) || []
-    }),
     cssnano()
   ]).process(css, { from: undefined });
 
