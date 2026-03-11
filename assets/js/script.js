@@ -214,10 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
   let x = mouseX, y = mouseY;
-  let vx = 0, vy = 0;
   let lastMouseX = mouseX, lastMouseY = mouseY;
   let mouseVX = 0, mouseVY = 0;
   let lastMoveTime = Date.now();
+  let smoothDirX = 1, smoothDirY = 0;
 
   const interactiveSelector = 'a, button, .job-btn, .magic-btn, input, textarea, select, label, img';
   let interactiveElements = Array.from(document.querySelectorAll(interactiveSelector));
@@ -229,8 +229,10 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', refreshInteractive, true);
 
   let magnet = null;
-  let magnetX = 0, magnetY = 0;
   const magnetRadius = 140; // px
+  const MIN_CURSOR_GAP = 26; // minimum center distance from pointer hotspot
+  const BASE_TAIL_DISTANCE = 30; // default tail-follow spacing
+  const MAX_EXTRA_TAIL = 16; // extra spacing at high pointer speed
 
   document.addEventListener('mousemove', e => {
     mouseX = e.clientX;
@@ -242,6 +244,18 @@ document.addEventListener('DOMContentLoaded', () => {
     lastMouseX = mouseX;
     lastMouseY = mouseY;
     lastMoveTime = Date.now();
+
+    // smooth movement direction; this is used to keep the blob behind the pointer.
+    const speed = Math.hypot(mouseVX, mouseVY);
+    if (speed > 0.01) {
+      const nx = mouseVX / speed;
+      const ny = mouseVY / speed;
+      smoothDirX = smoothDirX * 0.72 + nx * 0.28;
+      smoothDirY = smoothDirY * 0.72 + ny * 0.28;
+      const mag = Math.hypot(smoothDirX, smoothDirY) || 1;
+      smoothDirX /= mag;
+      smoothDirY /= mag;
+    }
 
     // find nearest interactive element
     let minDist = Infinity;
@@ -265,8 +279,6 @@ document.addEventListener('DOMContentLoaded', () => {
         magnet = nearest.el;
         magnet.classList.add('magnetic-target');
       }
-      magnetX = nearest.cx;
-      magnetY = nearest.cy;
       blob.classList.add('blob--magnetic');
     } else {
       if (magnet) magnet.classList.remove('magnetic-target');
@@ -279,39 +291,43 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('mouseenter', () => blob.style.opacity = '1');
 
   function animate() {
-    const now = Date.now();
-    const idleThreshold = 220; // ms before considering the cursor idle
+    const idleFor = Date.now() - lastMoveTime;
+    const pointerSpeed = Math.hypot(mouseVX, mouseVY);
 
-    // compute trailing target based on recent mouse velocity so blob follows from behind
-    let desiredX = mouseX;
-    let desiredY = mouseY;
+    // Keep a stable lag distance behind the pointer direction.
+    let lagDistance = BASE_TAIL_DISTANCE + Math.min(pointerSpeed * 0.32, MAX_EXTRA_TAIL);
+    if (idleFor > 120) lagDistance = Math.max(BASE_TAIL_DISTANCE, lagDistance * 0.9);
 
-    if (magnet) {
-      desiredX = magnetX + (mouseX - magnetX) * 0.28;
-      desiredY = magnetY + (mouseY - magnetY) * 0.28;
-    } else {
-      // when mouse is moving, offset the desired point by a fraction of mouse velocity
-      if (Math.abs(mouseVX) > 0.5 || Math.abs(mouseVY) > 0.5) {
-        const trailFactor = 6; // higher = more trailing distance
-        desiredX = mouseX - mouseVX * trailFactor;
-        desiredY = mouseY - mouseVY * trailFactor;
-      } else if (now - lastMoveTime > idleThreshold) {
-        // cursor idle: stop chasing the cursor so blob doesn't stick to it
-        desiredX = x;
-        desiredY = y;
-      }
+    const desiredX = mouseX - smoothDirX * lagDistance;
+    const desiredY = mouseY - smoothDirY * lagDistance;
+
+    // Lerp follow is smoother than spring physics and avoids bounce.
+    const follow = magnet ? 0.13 : 0.11;
+    x += (desiredX - x) * follow;
+    y += (desiredY - y) * follow;
+
+    // Hard constraint: keep blob behind cursor along the travel direction.
+    const minBehind = Math.max(MIN_CURSOR_GAP, lagDistance * 0.82);
+    const alongDirection = (x - mouseX) * smoothDirX + (y - mouseY) * smoothDirY;
+    if (alongDirection > -minBehind) {
+      x = mouseX - smoothDirX * minBehind;
+      y = mouseY - smoothDirY * minBehind;
     }
 
-    // spring-like acceleration toward desired point
-    const ax = (desiredX - x) * 0.12;
-    const ay = (desiredY - y) * 0.12;
-
-    // integrate velocity with damping
-    vx = (vx + ax) * 0.86;
-    vy = (vy + ay) * 0.86;
-
-    x += vx;
-    y += vy;
+    // Safety clamp: blob center must never enter the no-touch radius around cursor.
+    const dx = x - mouseX;
+    const dy = y - mouseY;
+    const dist = Math.hypot(dx, dy);
+    if (dist < MIN_CURSOR_GAP) {
+      if (dist > 0.001) {
+        const k = MIN_CURSOR_GAP / dist;
+        x = mouseX + dx * k;
+        y = mouseY + dy * k;
+      } else {
+        x = mouseX - smoothDirX * MIN_CURSOR_GAP;
+        y = mouseY - smoothDirY * MIN_CURSOR_GAP;
+      }
+    }
 
     blob.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
     requestAnimationFrame(animate);
@@ -412,6 +428,68 @@ function initRobustSplineBadge() {
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initRobustSplineBadge);
 else initRobustSplineBadge();
 
+/* ===============================
+   CLIENT LOGO NORMALIZATION
+   Equalize visual logo size by adjusting scale from aspect ratio.
+   =============================== */
+function computeLogoScaleByRatio(naturalWidth, naturalHeight, frameWidth, frameHeight) {
+  if (!naturalWidth || !naturalHeight) return 1;
+
+  var ratio = naturalWidth / naturalHeight;
+  var frameRatio = frameWidth / frameHeight;
+  var fill = ratio >= frameRatio ? (frameRatio / ratio) : (ratio / frameRatio);
+  var targetFill = 0.75;
+  var scale = Math.sqrt(targetFill / Math.max(fill, 0.08));
+
+  // Gentle optical corrections for extremely wide or tall logos.
+  if (ratio > 4.2) scale += 0.07;
+  if (ratio < 0.95) scale -= 0.05;
+
+  return Math.max(0.9, Math.min(1.34, scale));
+}
+
+function normalizeSingleLogo(img, frameWidth, frameHeight) {
+  if (!img) return;
+
+  var apply = function () {
+    var w = img.naturalWidth || 0;
+    var h = img.naturalHeight || 0;
+    if (!w || !h) return;
+    var scale = computeLogoScaleByRatio(w, h, frameWidth, frameHeight);
+    img.style.setProperty('--logo-scale', scale.toFixed(3));
+  };
+
+  if (img.complete && img.naturalWidth) {
+    apply();
+    return;
+  }
+
+  if (!img._logoScaleBound) {
+    img.addEventListener('load', apply, { once: true });
+    img.addEventListener('error', function () {
+      img.style.setProperty('--logo-scale', '1');
+    }, { once: true });
+    img._logoScaleBound = true;
+  }
+}
+
+function normalizeClientLogos(root) {
+  var scope = root || document;
+
+  scope.querySelectorAll('.page-clients .client-card img').forEach(function (img) {
+    normalizeSingleLogo(img, 150, 64);
+  });
+
+  scope.querySelectorAll('.clients .logo-track .client-box img').forEach(function (img) {
+    normalizeSingleLogo(img, 150, 56);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  normalizeClientLogos(document);
+  setTimeout(function () { normalizeClientLogos(document); }, 1200);
+});
+
 
 /* ===============================
    DUPLICATE LOGO TRACK FOR MARQUEE (robust)
@@ -483,6 +561,11 @@ document.addEventListener('DOMContentLoaded', function () {
           duplicateOnce();
           currentCopies++;
         }
+
+        // Normalize logo visual size after all clones are present.
+        track.querySelectorAll(':scope > .client-box img').forEach(function (img) {
+          normalizeSingleLogo(img, 150, 56);
+        });
 
         track.dataset.duplicated = 'true';
 
@@ -988,22 +1071,15 @@ document.addEventListener("DOMContentLoaded", () => {
 // Enhance magic buttons so effect survives CSS purge and works on touch
 function applyMagicBtnState(btn, state) {
   try {
-    const filler = btn.querySelector('.button__filler');
-    const text = btn.querySelector('.button__text');
-    const cs = getComputedStyle(btn);
-    const hoverColor = cs.getPropertyValue('--hoverTextColor') || cs.getPropertyValue('--baseTextColor') || '#fff';
-    const baseColor = cs.getPropertyValue('--baseTextColor') || '#fff';
+    if (btn._magicState === state) return;
+    btn._magicState = state;
 
     if (state === 'in') {
-      btn.classList.remove('hover-out');
       btn.classList.add('hover-in');
-      if (filler) filler.style.transform = 'translateY(0%)';
-      if (text) text.style.color = hoverColor.trim();
+      btn.classList.remove('hover-out');
     } else {
-      btn.classList.remove('hover-in');
       btn.classList.add('hover-out');
-      if (filler) filler.style.transform = 'translateY(-75%)';
-      if (text) text.style.color = baseColor.trim();
+      btn.classList.remove('hover-in');
     }
   } catch (e) { /* defensive */ }
 }
@@ -1011,12 +1087,14 @@ function applyMagicBtnState(btn, state) {
 document.addEventListener('mouseover', (e) => {
   const btn = e.target && e.target.closest && e.target.closest('.magic-btn');
   if (!btn) return;
+  if (e.relatedTarget && btn.contains(e.relatedTarget)) return;
   applyMagicBtnState(btn, 'in');
 });
 
 document.addEventListener('mouseout', (e) => {
   const btn = e.target && e.target.closest && e.target.closest('.magic-btn');
   if (!btn) return;
+  if (e.relatedTarget && btn.contains(e.relatedTarget)) return;
   applyMagicBtnState(btn, 'out');
 });
 
@@ -1025,9 +1103,8 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     document.querySelectorAll('.magic-btn').forEach(btn => {
       // ensure an initial out state so CSS animations have a baseline
+      btn._magicState = 'out';
       btn.classList.add('hover-out');
-      const filler = btn.querySelector('.button__filler');
-      if (filler && !filler.style.transform) filler.style.transform = 'translateY(75%)';
 
       // on touch, toggle briefly
       btn.addEventListener('touchstart', (ev) => { applyMagicBtnState(btn, 'in'); }, { passive: true });
