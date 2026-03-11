@@ -984,8 +984,10 @@ function openJob(role) {
   const content = document.getElementById('jobContent');
   if (!modal || !content || !jobs[role]) return;
 
+  initJobModalDismiss();
   content.innerHTML = jobs[role];
   modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
 }
 
@@ -994,8 +996,29 @@ function closeJob() {
   if (!modal) return;
 
   modal.classList.remove('active');
+  modal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
+
+function initJobModalDismiss() {
+  const modal = document.getElementById('jobModal');
+  if (!modal || modal.dataset.dismissInit === '1') return;
+
+  modal.addEventListener('pointerdown', (event) => {
+    // Close only when tapping/clicking the overlay, not modal content.
+    if (event.target === modal) closeJob();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.classList.contains('active')) {
+      closeJob();
+    }
+  });
+
+  modal.dataset.dismissInit = '1';
+}
+
+document.addEventListener('DOMContentLoaded', initJobModalDismiss);
 
 // ===============================
 // HERO TEXT WORD STAGGER
