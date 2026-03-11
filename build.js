@@ -16,20 +16,19 @@ async function clean() {
 }
 
 async function buildCSS() {
-  const cssFiles = glob.sync('assets/css/**/*.css', { cwd: ROOT })
-    .map(p => path.join(ROOT, p));
+  const cssFiles = glob.sync('assets/css/**/*.css', { cwd: ROOT, nodir: true });
   if (!cssFiles.length) return;
-  let css = '';
-  for (const f of cssFiles) css += '\n/* ' + path.relative(ROOT, f) + ' */\n' + await fs.readFile(f, 'utf8');
 
-  const result = await postcss([
-    cssnano()
-  ]).process(css, { from: undefined });
+  for (const rel of cssFiles) {
+    const srcPath = path.join(ROOT, rel);
+    const outPath = path.join(DIST, rel);
+    const css = await fs.readFile(srcPath, 'utf8');
+    const result = await postcss([cssnano()]).process(css, { from: srcPath, to: outPath });
+    await fs.ensureDir(path.dirname(outPath));
+    await fs.writeFile(outPath, result.css, 'utf8');
+  }
 
-  const outDir = path.join(DIST, 'assets', 'css');
-  await fs.ensureDir(outDir);
-  await fs.writeFile(path.join(outDir, 'styles.min.css'), result.css, 'utf8');
-  console.log('CSS built ->', path.join('dist', 'assets', 'css', 'styles.min.css'));
+  console.log('CSS built ->', cssFiles.length, 'files');
 }
 
 async function buildJS() {
@@ -86,25 +85,7 @@ async function updateHTML() {
       if (norm !== srcAttr) img.setAttribute('src', norm);
     }
 
-    // Rewrite CSS/JS references to bundled files
-      // Preserve external font or critical stylesheet links (e.g. Google Fonts).
-      // Remove local stylesheet links but keep preconnect/preload and external stylesheets.
-      const head = doc.querySelector('head') || doc.documentElement;
-      Array.from(doc.querySelectorAll('link[rel="stylesheet"]')).forEach(h => {
-        const href = h.getAttribute('href') || '';
-        // Keep external stylesheets (fonts, cdn) and data URIs; remove local css files.
-        if (/^(https?:)?\/\//.test(href) || href.indexOf('fonts.googleapis.com') !== -1 || href.startsWith('data:')) {
-          return; // keep
-        }
-        h.parentNode.removeChild(h);
-      });
-      // ensure bundled stylesheet is present
-      if (!doc.querySelector('link[href="assets/css/styles.min.css"]')) {
-        const newLink = doc.createElement('link');
-        newLink.setAttribute('rel', 'stylesheet');
-        newLink.setAttribute('href', 'assets/css/styles.min.css');
-        head.appendChild(newLink);
-      }
+    // Keep page stylesheet links unchanged so each page preserves its local CSS cascade.
 
     const scripts = doc.querySelectorAll('script[src]');
     scripts.forEach(s => s.parentNode.removeChild(s));
