@@ -16,7 +16,15 @@ async function clean() {
 }
 
 async function buildCSS() {
-  const cssFiles = glob.sync('assets/css/**/*.css', { cwd: ROOT }).map(p => path.join(ROOT, p));
+  const cssFiles = [
+    'assets/css/style.css',
+    'assets/css/edikt.css',
+    'assets/css/project.css',
+    'assets/css/brijbasi.css',
+    'assets/css/salem.css',
+    'assets/css/stp.css',
+    'assets/css/disclaimer.css'
+  ].map(p => path.join(ROOT, p));
   if (!cssFiles.length) return;
   let css = '';
   for (const f of cssFiles) css += '\n/* ' + path.relative(ROOT, f) + ' */\n' + await fs.readFile(f, 'utf8');
