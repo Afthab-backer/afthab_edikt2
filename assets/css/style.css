@@ -2270,6 +2270,13 @@ section {
   font-size:17px;
   color:#555;
   white-space:nowrap;
+  text-decoration: none;
+}
+
+.footer-links a:hover,
+.footer-links a:focus,
+.footer-links a:visited {
+  text-decoration: none;
 }
 
 .footer-bottom p{
