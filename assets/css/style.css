@@ -3541,7 +3541,6 @@ html, body {
   cursor: auto; /* show native cursor globally */
 }
 
-a,
 button,
 input,
 textarea,
@@ -3550,7 +3549,8 @@ label {
   cursor: auto !important;
 }
 
-/* Keep hand cursor on clickable controls (buttons + button-like links). */
+/* Keep hand cursor on all clickable controls and links. */
+a,
 button,
 .btn,
 .magic-btn,
