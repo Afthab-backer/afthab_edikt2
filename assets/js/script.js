@@ -581,28 +581,56 @@ document.addEventListener('DOMContentLoaded', function () {
           var last = performance.now();
           // duration in seconds for one cycle (increase to slow the marquee further)
           // mobile: ultra slow (200s), desktop: ultra slow (360s)
-          var duration = (window.matchMedia && window.matchMedia('(max-width: 768px)').matches) ? 200 : 360;
-          var speed = cycleWidth / duration; // pixels per second
+          function getSpeed() {
+            var duration = (window.matchMedia && window.matchMedia('(max-width: 768px)').matches) ? 200 : 360;
+            return cycleWidth / duration; // pixels per second
+          }
 
           function frame(now) {
             var dt = (now - last) / 1000;
             last = now;
+            var speed = getSpeed();
             // pause when hovered
             if (!trackEl.parentElement.matches(':hover')) {
               x -= speed * dt;
               // when we've moved one full cycle, wrap by adding cycleWidth
-              if (x <= -cycleWidth) x += cycleWidth;
+              while (x <= -cycleWidth) x += cycleWidth;
               trackEl.style.transform = `translateX(${Math.round(x)}px)`;
             }
             trackEl._marqueeRaf = requestAnimationFrame(frame);
           }
 
-          trackEl._marqueeRaf = requestAnimationFrame(frame);
+          function start() {
+            if (trackEl._marqueeRaf) return;
+            last = performance.now();
+            trackEl._marqueeRaf = requestAnimationFrame(frame);
+          }
 
-          // clean up on page unload
-          window.addEventListener('beforeunload', function () {
-            if (trackEl._marqueeRaf) cancelAnimationFrame(trackEl._marqueeRaf);
-          });
+          function stop() {
+            if (!trackEl._marqueeRaf) return;
+            cancelAnimationFrame(trackEl._marqueeRaf);
+            trackEl._marqueeRaf = null;
+          }
+
+          start();
+
+          if (!trackEl._marqueeLifecycleBound) {
+            trackEl._marqueeLifecycleBound = true;
+
+            // Back/forward cache restore can keep JS state but stop RAF.
+            window.addEventListener('pageshow', function () {
+              start();
+            });
+
+            window.addEventListener('pagehide', function () {
+              stop();
+            });
+
+            document.addEventListener('visibilitychange', function () {
+              if (document.hidden) stop();
+              else start();
+            });
+          }
         })(track, scrollDistance);
       }
 
