@@ -14,9 +14,8 @@
   <meta name="twitter:image" content="/assets\images\edikt logo\edikt media logo png.webp">
   <title>Edikt Media | Global Creative Agency</title>
   <link rel="preload" as="image" href="/assets\images\edikt logo\edikt media logo png.webp">
-  <!-- Load main stylesheet without blocking initial render -->
-  <link rel="preload" href="assets/css/style.css?v=20260309-home-orbit-safe-v6" as="style" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="assets/css/style.css?v=20260309-home-orbit-safe-v6"></noscript>
+  <!-- Keep stylesheet render-blocking to avoid FOUC during page transitions. -->
+  <link rel="stylesheet" href="assets/css/style.css?v=20260309-home-orbit-safe-v6">
   <link rel="preload" as="image" href="assets/images/orbit_section/Glode image Circle Animation.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
