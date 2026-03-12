@@ -80,7 +80,11 @@
     links.forEach(link => link.classList.remove('active'));
     if (!targetHref) return false;
 
-    const target = links.find(link => normalizeHref(link.getAttribute('href')) === targetHref);
+    const targetNoExt = targetHref.replace(/\.html?$/, '');
+    const target = links.find(link => {
+      const href = normalizeHref(link.getAttribute('href'));
+      return href === targetHref || href === targetNoExt;
+    });
     if (!target) return false;
 
     target.classList.add('active');
