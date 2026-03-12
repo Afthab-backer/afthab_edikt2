@@ -3922,6 +3922,11 @@ img.magnetic-target {
   animation: contentCounterSpin 18s linear infinite;
 }
 
+/* When JS orbit-fix is active, avoid transform conflicts with CSS counter-spin. */
+.orbit-wrapper.orbit-fix-active .orbit-content {
+  animation: none !important;
+}
+
 @keyframes contentCounterSpin {
   from {
     transform: translate(-50%, -50%) rotate(calc(-1 * var(--angle)));

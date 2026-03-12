@@ -21,6 +21,7 @@
 
     const wrapper = q('.orbit-wrapper');
     if (!wrapper) return;
+    wrapper.classList.add('orbit-fix-active');
     const rotator = q('.orbit-rotator', wrapper);
     if (!rotator) return;
 
