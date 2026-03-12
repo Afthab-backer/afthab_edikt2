@@ -7591,7 +7591,9 @@ html body main.stp-narrow #stp-left-title {
   .page-project .projects-grid-page .project-item,
   .page-project .projects-grid-page .project-item.revealed,
   .page-project .projects-grid-page .project-item.revealed:hover {
+    opacity: 1 !important;
     transform: none !important;
+    transition-delay: 0ms !important;
   }
 }
 
