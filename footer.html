@@ -33,6 +33,123 @@
           padding-left: 0 !important;
         }
       }
+
+      /* Cookie consent popup (theme aligned) */
+      .cookie-consent {
+        position: fixed;
+        left: 18px;
+        right: 18px;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+        max-width: 840px;
+        margin: 0 auto;
+        padding: 14px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(22, 101, 52, 0.22);
+        background: linear-gradient(120deg, #f0fdf4 0%, #fff7ed 100%);
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+        z-index: 1000200;
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+        transition: opacity 0.28s ease, transform 0.28s ease;
+      }
+
+      .cookie-consent.show {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .cookie-consent__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .cookie-consent p {
+        margin: 0;
+        font-size: 0.96rem;
+        line-height: 1.55;
+        color: #334155;
+      }
+
+      .cookie-consent p a {
+        color: #166534;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .cookie-consent p a:hover {
+        color: #15803d;
+      }
+
+      .cookie-consent__actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+
+      .cookie-btn {
+        border: none;
+        border-radius: 999px;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      }
+
+      .cookie-btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .cookie-btn--accept {
+        background: linear-gradient(90deg, #f59e0b, #ef4444);
+        color: #fff;
+        box-shadow: 0 6px 16px rgba(239, 68, 68, 0.24);
+      }
+
+      .cookie-btn--later {
+        background: #ffffff;
+        color: #166534;
+        border: 1px solid rgba(22, 101, 52, 0.24);
+      }
+
+      @media (max-width: 680px) {
+        .cookie-consent {
+          left: 10px;
+          right: 10px;
+          bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+          padding: 12px;
+          border-radius: 14px;
+          max-height: min(62vh, 360px);
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .cookie-consent__content {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .cookie-consent p {
+          font-size: 0.9rem;
+          line-height: 1.45;
+        }
+
+        .cookie-consent__actions {
+          width: 100%;
+          justify-content: stretch;
+        }
+
+        .cookie-btn {
+          flex: 1 1 0;
+          text-align: center;
+          padding: 10px 12px;
+        }
+      }
     </style>
 
     <div class="footer-content reveal-stagger">
@@ -138,12 +255,17 @@
     <div class="footer-bottom">
 
       <div class="footer-links">
-        <a href="/disclaimer.html">Disclaimer</a>
-        <a href="/privacy-policy.html">Privacy Policy</a>
-        <a href="/terms-of-use.html">Terms of Use</a>
-        <p>© 2026 Edikt Media Worldwide Pvt. Ltd.</p>
+        <div class="footer-legal-links">
+          <a href="/disclaimer.html">Disclaimer</a>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-use.html">Terms of Use</a>
+          <a href="/privacy-policy.html" data-open-cookie-popup="true">Cookies</a>
+        </div>
 
-      <p>Made in Bharat <picture><picture><img src="/assets/images/extras/indian%20flag.webp" alt="Indian flag" class="footer-flag" loading="lazy"></picture></picture></p>
+        <div class="footer-meta">
+          <p>© 2026 Edikt Media Worldwide Pvt. Ltd.</p>
+          <p>Made in Bharat <picture><picture><img src="/assets/images/extras/indian%20flag.webp" alt="Indian flag" class="footer-flag" loading="lazy"></picture></picture></p>
+        </div>
       </div>
 
     
@@ -153,6 +275,90 @@
   </div>
 
 </footer>
+
+<div id="cookie-consent-banner" class="cookie-consent" role="dialog" aria-live="polite" aria-hidden="true" aria-label="Cookie consent">
+  <div class="cookie-consent__content">
+    <p>
+      We use cookies to improve website performance and your browsing experience. By clicking Accept, you agree to our cookie usage.
+      <a href="/privacy-policy.html">Learn more</a>.
+    </p>
+    <div class="cookie-consent__actions">
+      <button type="button" class="cookie-btn cookie-btn--later" data-cookie-later>Later</button>
+      <button type="button" class="cookie-btn cookie-btn--accept" data-cookie-accept>Accept</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    if (window.__ediktCookieConsentInitialized) return;
+    window.__ediktCookieConsentInitialized = true;
+
+    var CONSENT_KEY = 'edikt_cookie_consent';
+    var EXPIRY_KEY = 'edikt_cookie_consent_expiry';
+    var CONSENT_DAYS = 180;
+
+    var banner = document.getElementById('cookie-consent-banner');
+    if (!banner) return;
+
+    var acceptBtn = banner.querySelector('[data-cookie-accept]');
+    var laterBtn = banner.querySelector('[data-cookie-later]');
+    var openers = Array.prototype.slice.call(document.querySelectorAll('[data-open-cookie-popup="true"]'));
+
+    function safeGet(key) {
+      try { return localStorage.getItem(key); } catch (e) { return null; }
+    }
+
+    function safeSet(key, value) {
+      try { localStorage.setItem(key, value); } catch (e) {}
+    }
+
+    function showBanner() {
+      banner.classList.add('show');
+      banner.setAttribute('aria-hidden', 'false');
+    }
+
+    function hideBanner() {
+      banner.classList.remove('show');
+      banner.setAttribute('aria-hidden', 'true');
+    }
+
+    function hasValidConsent() {
+      var consent = safeGet(CONSENT_KEY);
+      var expiryRaw = safeGet(EXPIRY_KEY);
+      var expiry = expiryRaw ? parseInt(expiryRaw, 10) : 0;
+
+      if (consent !== 'accepted') return false;
+      if (!expiry || Number.isNaN(expiry)) return true;
+      return expiry > Date.now();
+    }
+
+    function acceptCookies() {
+      var expiryTime = Date.now() + (CONSENT_DAYS * 24 * 60 * 60 * 1000);
+      safeSet(CONSENT_KEY, 'accepted');
+      safeSet(EXPIRY_KEY, String(expiryTime));
+      hideBanner();
+    }
+
+    if (!hasValidConsent()) {
+      setTimeout(showBanner, 550);
+    }
+
+    if (acceptBtn) acceptBtn.addEventListener('click', acceptCookies);
+    if (laterBtn) laterBtn.addEventListener('click', hideBanner);
+
+    openers.forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        showBanner();
+      });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') hideBanner();
+    });
+  })();
+</script>
 
 <!-- Lazy loading helper (deferred) -->
 <script src="assets/js/lazy-init.js" defer=""></script>

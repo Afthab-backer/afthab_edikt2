@@ -541,7 +541,10 @@ main.stp-narrow .project-summary p {
   /* Footer stack */
   .footer-content { grid-template-columns: 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; align-items: center; gap: 10px; text-align: center; }
-  .footer-bottom p { width:100%; }
+  .footer-links { flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+  .footer-legal-links,
+  .footer-meta { justify-content: center; margin-left: 0; }
+  .footer-meta p { width: auto; }
 
   /* Project grids / hero */
   .project-hero-grid .grid, .project-tiles .grid, .project-detail-grid { grid-template-columns: 1fr; }
@@ -588,13 +591,41 @@ main.stp-narrow .project-summary p {
     z-index: 1 !important;
   }
 
-  .footer-links{
-    gap:12px; /* reduce spacing to avoid wrapping issues */
-    justify-content:center;
-    flex-wrap:wrap;
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
 
-  .footer-bottom p { width:100%; margin:6px 0; }
+  .footer-legal-links {
+    justify-content: center;
+    column-gap: 10px;
+    row-gap: 8px;
+  }
+
+  .footer-legal-links a {
+    font-size: 15px;
+  }
+
+  .footer-legal-links a:not(:last-child)::after {
+    margin-left: 8px;
+    margin-right: -8px;
+  }
+
+  .footer-meta {
+    width: 100%;
+    margin-left: 0;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .footer-meta p {
+    margin: 2px 0;
+    width: auto;
+    white-space: normal;
+  }
 }
 
 /* Strong override near file end: ensure toggle and open navbar remain on top and clickable */
@@ -2259,31 +2290,46 @@ section {
 
 .footer-links{
   display:flex;
-  gap: clamp(12px, 2vw, 28px);
   align-items:center;
-  flex-wrap: wrap;
-  /* spread links automatically based on available row width */
   justify-content: space-between;
+  gap: clamp(12px, 2vw, 24px);
+  flex-wrap: wrap;
   width:100%;
 }
 
-.footer-links a,
-.footer-links p {
+.footer-legal-links a,
+.footer-meta p {
   white-space: nowrap;
   margin: 0;
 }
 
-.footer-links a{
+.footer-legal-links {
+  display:flex;
+  align-items:center;
+  gap: clamp(10px, 1.4vw, 18px);
+  flex-wrap: wrap;
+}
+
+.footer-legal-links a{
   font-size:17px;
   color:#555;
   white-space:nowrap;
   text-decoration: none;
 }
 
-.footer-links a:hover,
-.footer-links a:focus,
-.footer-links a:visited {
+.footer-legal-links a:hover,
+.footer-legal-links a:focus,
+.footer-legal-links a:visited {
   text-decoration: none;
+}
+
+.footer-meta {
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap: clamp(10px, 1.6vw, 20px);
+  margin-left: auto;
+  flex-wrap: wrap;
 }
 
 .footer-bottom p{
@@ -2300,7 +2346,7 @@ section {
 }
 
 /* small separator dot between links */
-.footer-links a:not(:last-child)::after{
+.footer-legal-links a:not(:last-child)::after{
   content: '•';
   margin-left:12px;
   color:#999;
@@ -2374,6 +2420,18 @@ section {
   .footer-bottom{
     flex-direction:column;
     text-align:center;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-legal-links,
+  .footer-meta {
+    justify-content: center;
+    margin-left: 0;
   }
 }
 
@@ -2473,6 +2531,10 @@ section {
   white-space: nowrap;   /* prevent line break */
 }
 
+.page-about .about-row:first-child .about-text .section-title {
+  font-weight: 500;
+}
+
 
 /* ===============================
    IMAGE
@@ -2507,7 +2569,7 @@ section {
 .origin-box .section-title,
 .origin-box .origin-title {
   font-size: 3.4rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 28px;
   color: #22c55e;
 }

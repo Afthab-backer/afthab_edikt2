@@ -82,7 +82,18 @@
 
     const targetNoExt = targetHref.replace(/\.html?$/, '');
     const target = links.find(link => {
-      const href = normalizeHref(link.getAttribute('href'));
+      const rawHref = String(link.getAttribute('href') || '')
+        .trim()
+        .toLowerCase()
+        .split('#')[0]
+        .split('?')[0];
+      const href = normalizeHref(rawHref);
+
+      // Home link can be "/" while target resolves as index.html.
+      if (targetHref === 'index.html') {
+        return rawHref === '/' || href === '' || href === 'index' || href === 'index.html';
+      }
+
       return href === targetHref || href === targetNoExt;
     });
     if (!target) return false;
