@@ -193,9 +193,27 @@ document.addEventListener('DOMContentLoaded', () => {
    ACTIVE NAV LINK
    =============================== */
 document.addEventListener('DOMContentLoaded', () => {
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const normalizePath = (path) => {
+    let p = (path || '/').split('?')[0].split('#')[0];
+    if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+    if (p === '/index' || p === '/index.html') return '/';
+    if (p.endsWith('.html')) p = p.slice(0, -5);
+    return p || '/';
+  };
+
+  const currentPath = normalizePath(window.location.pathname);
   document.querySelectorAll('.navbar a').forEach(link => {
-    if (link.getAttribute('href') === currentPage) {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#')) return;
+
+    let linkPath = href;
+    try {
+      linkPath = new URL(href, window.location.origin).pathname;
+    } catch (e) {
+      return;
+    }
+
+    if (normalizePath(linkPath) === currentPath) {
       link.classList.add('active');
     }
   });

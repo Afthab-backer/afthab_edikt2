@@ -10,6 +10,16 @@
       "permanent": true
     },
     {
+      "source": "/about-us",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/about-us.html",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
       "source": "/services.html",
       "destination": "/services",
       "permanent": true
@@ -17,6 +27,116 @@
     {
       "source": "/contact.html",
       "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us.html",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/projects",
+      "destination": "/project",
+      "permanent": true
+    },
+    {
+      "source": "/projects.html",
+      "destination": "/project",
+      "permanent": true
+    },
+    {
+      "source": "/our-clients-list",
+      "destination": "/all_clients",
+      "permanent": true
+    },
+    {
+      "source": "/our-clients-list.html",
+      "destination": "/all_clients",
+      "permanent": true
+    },
+    {
+      "source": "/all-clients",
+      "destination": "/all_clients",
+      "permanent": true
+    },
+    {
+      "source": "/all-clients.html",
+      "destination": "/all_clients",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/disclaimer.html",
+      "destination": "/disclaimer",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy.html",
+      "destination": "/privacy-policy",
+      "permanent": true
+    },
+    {
+      "source": "/terms-of-use.html",
+      "destination": "/terms-of-use",
+      "permanent": true
+    },
+    {
+      "source": "/work_with_us.html",
+      "destination": "/work_with_us",
+      "permanent": true
+    },
+    {
+      "source": "/team.html",
+      "destination": "/team",
+      "permanent": true
+    },
+    {
+      "source": "/project.html",
+      "destination": "/project",
+      "permanent": true
+    },
+    {
+      "source": "/project-client-review.html",
+      "destination": "/project-client-review",
+      "permanent": true
+    },
+    {
+      "source": "/project-brijbasi.html",
+      "destination": "/project-brijbasi",
+      "permanent": true
+    },
+    {
+      "source": "/project-edikt-media-logo.html",
+      "destination": "/project-edikt-media-logo",
+      "permanent": true
+    },
+    {
+      "source": "/project-salem-stainless-steel.html",
+      "destination": "/project-salem-stainless-steel",
+      "permanent": true
+    },
+    {
+      "source": "/project-stp-i-conference.html",
+      "destination": "/project-stp-i-conference",
+      "permanent": true
+    },
+    {
+      "source": "/project-stp-i-conference-website.html",
+      "destination": "/project-stp-i-conference-website",
+      "permanent": true
+    },
+    {
+      "source": "/all_clients.html",
+      "destination": "/all_clients",
       "permanent": true
     }
   ]
