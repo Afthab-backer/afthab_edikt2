@@ -87,8 +87,13 @@ async function updateHTML() {
 
     // Keep page stylesheet links unchanged so each page preserves its local CSS cascade.
 
-    const scripts = doc.querySelectorAll('script[src]');
-    scripts.forEach(s => s.parentNode.removeChild(s));
+    const scripts = Array.from(doc.querySelectorAll('script[src]'));
+    scripts.forEach(s => {
+      const src = (s.getAttribute('src') || '').trim();
+      const isExternal = /^(https?:)?\/\//i.test(src);
+      // Keep external CDN scripts (e.g. Spline viewer), remove local scripts.
+      if (!isExternal) s.parentNode.removeChild(s);
+    });
     const body = doc.querySelector('body') || doc.documentElement;
     const newScript = doc.createElement('script');
     newScript.setAttribute('src', 'assets/js/scripts.min.js');
