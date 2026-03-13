@@ -11,11 +11,149 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
+        if (typeof window.__ediktSmoothScrollToElement === 'function') {
+          window.__ediktSmoothScrollToElement(target);
+          return;
+        }
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
   });
 });
+
+/* ===============================
+   PREMIUM SMOOTH SCROLL (DESKTOP)
+   =============================== */
+(function initPremiumSmoothScroll() {
+  if (window.__ediktPremiumScrollInitialized) return;
+  window.__ediktPremiumScrollInitialized = true;
+
+  var prefersReduced = false;
+  var coarsePointer = false;
+  try {
+    prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    coarsePointer = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  } catch (e) {
+    // ignore media query support issues and continue with defaults
+  }
+
+  // Keep touch/mobile scrolling native and accessible.
+  if (prefersReduced || coarsePointer) return;
+
+  var scriptId = 'edikt-lenis-cdn';
+  var cdnUrl = 'https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js';
+
+  function restoreNativeScroll() {
+    try {
+      var root = document.documentElement;
+      root.classList.remove('lenis', 'lenis-smooth', 'lenis-stopped', 'lenis-scrolling');
+      root.style.overflow = '';
+      document.body.style.overflow = '';
+    } catch (e) {
+      // no-op
+    }
+  }
+
+  function getHeaderOffset() {
+    try {
+      var raw = getComputedStyle(document.documentElement).getPropertyValue('--header-height');
+      var val = parseFloat(raw);
+      return Number.isFinite(val) ? val : 92;
+    } catch (e) {
+      return 92;
+    }
+  }
+
+  function cubicOut(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function mountLenis() {
+    if (!window.Lenis || window.__ediktLenisInstance) return;
+
+    var lenisRafId = null;
+
+    try {
+      var lenis = new window.Lenis({
+        duration: 1.2,
+        lerp: 0.068,
+        smoothWheel: true,
+        smoothTouch: false,
+        wheelMultiplier: 0.82,
+        touchMultiplier: 1,
+        normalizeWheel: true,
+        autoResize: true,
+        syncTouch: false
+      });
+
+      window.__ediktLenisInstance = lenis;
+      window.__ediktSmoothScrollToElement = function (el) {
+        if (!el) return;
+        lenis.scrollTo(el, {
+          offset: -getHeaderOffset(),
+          duration: 1.45,
+          easing: cubicOut
+        });
+      };
+
+      function raf(time) {
+        if (!window.__ediktLenisInstance) return;
+        lenis.raf(time);
+        lenisRafId = requestAnimationFrame(raf);
+      }
+      lenisRafId = requestAnimationFrame(raf);
+
+      window.addEventListener('beforeunload', function () {
+        try {
+          if (lenisRafId) {
+            cancelAnimationFrame(lenisRafId);
+            lenisRafId = null;
+          }
+          if (window.__ediktLenisInstance) {
+            window.__ediktLenisInstance.destroy();
+          }
+        } catch (e) {
+          // no-op
+        }
+        window.__ediktLenisInstance = null;
+        window.__ediktSmoothScrollToElement = null;
+      }, { once: true });
+    } catch (e) {
+      console.warn('Lenis init failed, falling back to native scroll.', e);
+      window.__ediktLenisInstance = null;
+      window.__ediktSmoothScrollToElement = null;
+      restoreNativeScroll();
+    }
+  }
+
+  if (window.Lenis) {
+    mountLenis();
+    return;
+  }
+
+  var existing = document.getElementById(scriptId);
+  if (!existing) {
+    existing = document.createElement('script');
+    existing.id = scriptId;
+    existing.src = cdnUrl;
+    existing.defer = true;
+    existing.onload = mountLenis;
+    existing.onerror = function () {
+      console.warn('Lenis script failed to load, using native scroll.');
+      restoreNativeScroll();
+    };
+    document.head.appendChild(existing);
+  } else {
+    existing.addEventListener('load', mountLenis, { once: true });
+  }
+
+  // Failsafe: if Lenis does not initialize quickly, keep native scroll unlocked.
+  setTimeout(function () {
+    if (!window.__ediktLenisInstance) {
+      restoreNativeScroll();
+    }
+  }, 2500);
+})();
 
 
 /* ===============================
@@ -226,6 +364,13 @@ document.addEventListener('DOMContentLoaded', () => {
    - a white 3D-ish blob follows smoothly behind
    =============================== */
 (function () {
+  try {
+    if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  } catch (e) {
+    // continue if media queries are unsupported
+  }
+
   // Site-wide magnetic blob cursor
   const blob = document.createElement('div');
   blob.className = 'cursor-blob';

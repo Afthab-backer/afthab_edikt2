@@ -26,7 +26,21 @@ img {
 html {
   /* Reduce root font size to visually match ~80% zoom */
   font-size: 14.4px; /* 18px * 0.8 = 14.4px */
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+
+/* Lenis compatibility so the smooth engine controls scroll without conflicts. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
