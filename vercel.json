@@ -55,12 +55,32 @@
       "permanent": true
     },
     {
+      "source": "/our-clients-list/:path*",
+      "destination": "/all_clients",
+      "permanent": true
+    },
+    {
+      "source": "/our-client-list/:path*",
+      "destination": "/all_clients",
+      "permanent": true
+    },
+    {
+      "source": "/our-clients/:path*",
+      "destination": "/all_clients",
+      "permanent": true
+    },
+    {
       "source": "/our-clients-list.html",
       "destination": "/all_clients",
       "permanent": true
     },
     {
       "source": "/all-clients",
+      "destination": "/all_clients",
+      "permanent": true
+    },
+    {
+      "source": "/all-clients/:path*",
       "destination": "/all_clients",
       "permanent": true
     },
