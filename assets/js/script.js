@@ -52,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
+  // keep observer short-lived to avoid unnecessary long-running DOM work
+  setTimeout(() => observer.disconnect(), 12000);
   // safety: stop observing after 5s to avoid leaking
   setTimeout(() => observer.disconnect(), 5000);
 });
@@ -218,15 +220,39 @@ document.addEventListener('DOMContentLoaded', () => {
   let mouseVX = 0, mouseVY = 0;
   let lastMoveTime = Date.now();
   let smoothDirX = 1, smoothDirY = 0;
+  let rafId = null;
+  let refreshRaf = null;
+  let lastMagnetCheck = 0;
 
   const interactiveSelector = 'a, button, .job-btn, .magic-btn, input, textarea, select, label, img';
-  let interactiveElements = Array.from(document.querySelectorAll(interactiveSelector));
+  let interactivePoints = [];
+
+  function recomputeInteractive() {
+    interactivePoints = Array.from(document.querySelectorAll(interactiveSelector)).map(function (el) {
+      const r = el.getBoundingClientRect();
+      if (!r || !r.width || !r.height) return null;
+      if (r.bottom < -180 || r.top > window.innerHeight + 180 || r.right < -180 || r.left > window.innerWidth + 180) return null;
+      return {
+        el: el,
+        cx: r.left + r.width / 2,
+        cy: r.top + r.height / 2
+      };
+    }).filter(Boolean);
+  }
 
   function refreshInteractive() {
-    interactiveElements = Array.from(document.querySelectorAll(interactiveSelector));
+    if (refreshRaf) return;
+    refreshRaf = requestAnimationFrame(function () {
+      refreshRaf = null;
+      recomputeInteractive();
+    });
   }
-  window.addEventListener('resize', refreshInteractive);
-  window.addEventListener('scroll', refreshInteractive, true);
+
+  recomputeInteractive();
+  window.addEventListener('resize', refreshInteractive, { passive: true });
+  window.addEventListener('scroll', refreshInteractive, { passive: true, capture: true });
+  setTimeout(recomputeInteractive, 900);
+  setTimeout(recomputeInteractive, 2500);
 
   let magnet = null;
   const magnetRadius = 140; // px
@@ -234,61 +260,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const BASE_TAIL_DISTANCE = 30; // default tail-follow spacing
   const MAX_EXTRA_TAIL = 16; // extra spacing at high pointer speed
 
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    blob.style.opacity = '1';
-    // compute mouse velocity (difference since last mousemove)
-    mouseVX = mouseX - lastMouseX;
-    mouseVY = mouseY - lastMouseY;
-    lastMouseX = mouseX;
-    lastMouseY = mouseY;
-    lastMoveTime = Date.now();
-
-    // smooth movement direction; this is used to keep the blob behind the pointer.
-    const speed = Math.hypot(mouseVX, mouseVY);
-    if (speed > 0.01) {
-      const nx = mouseVX / speed;
-      const ny = mouseVY / speed;
-      smoothDirX = smoothDirX * 0.72 + nx * 0.28;
-      smoothDirY = smoothDirY * 0.72 + ny * 0.28;
-      const mag = Math.hypot(smoothDirX, smoothDirY) || 1;
-      smoothDirX /= mag;
-      smoothDirY /= mag;
-    }
-
-    // find nearest interactive element
-    let minDist = Infinity;
-    let nearest = null;
-    for (const el of interactiveElements) {
-      const r = el.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const cy = r.top + r.height / 2;
-      const dx = mouseX - cx;
-      const dy = mouseY - cy;
-      const d = Math.hypot(dx, dy);
-      if (d < minDist) {
-        minDist = d;
-        nearest = { el, cx, cy, d };
-      }
-    }
-
-    if (nearest && nearest.d < magnetRadius) {
-      if (magnet !== nearest.el) {
-        if (magnet) magnet.classList.remove('magnetic-target');
-        magnet = nearest.el;
-        magnet.classList.add('magnetic-target');
-      }
-      blob.classList.add('blob--magnetic');
-    } else {
-      if (magnet) magnet.classList.remove('magnetic-target');
-      magnet = null;
-      blob.classList.remove('blob--magnetic');
-    }
-  });
-
-  document.addEventListener('mouseleave', () => blob.style.opacity = '0');
-  document.addEventListener('mouseenter', () => blob.style.opacity = '1');
+  function startAnimation() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(animate);
+  }
 
   function animate() {
     const idleFor = Date.now() - lastMoveTime;
@@ -329,10 +304,81 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    blob.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
-    requestAnimationFrame(animate);
+    blob.style.transform = `translate(${x.toFixed(3)}px, ${y.toFixed(3)}px) translate(-50%, -50%)`;
+
+    const settle = Math.hypot(desiredX - x, desiredY - y);
+    const recentlyMoved = (Date.now() - lastMoveTime) < 180;
+    if (recentlyMoved || settle > 0.12 || blob.classList.contains('blob--active')) {
+      rafId = requestAnimationFrame(animate);
+    } else {
+      rafId = null;
+    }
   }
-  animate();
+
+  document.addEventListener('mousemove', function (e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    blob.style.opacity = '1';
+
+    // compute mouse velocity (difference since last mousemove)
+    mouseVX = mouseX - lastMouseX;
+    mouseVY = mouseY - lastMouseY;
+    lastMouseX = mouseX;
+    lastMouseY = mouseY;
+    lastMoveTime = Date.now();
+
+    // smooth movement direction; this is used to keep the blob behind the pointer.
+    const speed = Math.hypot(mouseVX, mouseVY);
+    if (speed > 0.01) {
+      const nx = mouseVX / speed;
+      const ny = mouseVY / speed;
+      smoothDirX = smoothDirX * 0.72 + nx * 0.28;
+      smoothDirY = smoothDirY * 0.72 + ny * 0.28;
+      const mag = Math.hypot(smoothDirX, smoothDirY) || 1;
+      smoothDirX /= mag;
+      smoothDirY /= mag;
+    }
+
+    // Magnet targeting is throttled to reduce layout/JS pressure.
+    const now = performance.now();
+    if (now - lastMagnetCheck > 48) {
+      lastMagnetCheck = now;
+      if (!interactivePoints.length) recomputeInteractive();
+
+      let minDist = Infinity;
+      let nearest = null;
+      for (const item of interactivePoints) {
+        const dx = mouseX - item.cx;
+        const dy = mouseY - item.cy;
+        const d = Math.hypot(dx, dy);
+        if (d < minDist) {
+          minDist = d;
+          nearest = item;
+        }
+      }
+
+      if (nearest && minDist < magnetRadius) {
+        if (magnet !== nearest.el) {
+          if (magnet) magnet.classList.remove('magnetic-target');
+          magnet = nearest.el;
+          magnet.classList.add('magnetic-target');
+        }
+        blob.classList.add('blob--magnetic');
+      } else {
+        if (magnet) magnet.classList.remove('magnetic-target');
+        magnet = null;
+        blob.classList.remove('blob--magnetic');
+      }
+    }
+
+    startAnimation();
+  }, { passive: true });
+
+  document.addEventListener('mouseleave', () => blob.style.opacity = '0');
+  document.addEventListener('mouseenter', () => {
+    blob.style.opacity = '1';
+    startAnimation();
+  });
 
   // Hover states (enlarge) for interactive elements
   document.addEventListener('mouseover', (e) => {
@@ -346,6 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('mousedown', (e) => {
     if (e.button !== 0) return; // only left click
     if (e.target.closest(interactiveSelector)) blob.classList.add('blob--active');
+    startAnimation();
   });
   document.addEventListener('mouseup', () => blob.classList.remove('blob--active'));
 
@@ -512,6 +559,15 @@ document.addEventListener('DOMContentLoaded', function () {
       // snapshot the original set once (avoid re-duplicating clones)
       var originalSnapshot = Array.from(track.querySelectorAll(':scope > .client-box'));
       if (originalSnapshot.length === 0) originalSnapshot = Array.from(track.children);
+      var totalItems = originalSnapshot.length;
+      var hasServerDuplicatedCycles = totalItems >= 90;
+
+      // Home page markup already contains 3 cycles; use one cycle as the base
+      // so we avoid cloning hundreds of extra logo nodes at runtime.
+      if (hasServerDuplicatedCycles) {
+        var baseCount = Math.max(1, Math.floor(totalItems / 3));
+        originalSnapshot = originalSnapshot.slice(0, baseCount);
+      }
 
       function duplicateOnce() {
         originalSnapshot.forEach(function (it) { track.appendChild(it.cloneNode(true)); });
@@ -532,21 +588,23 @@ document.addEventListener('DOMContentLoaded', function () {
         // If we couldn't measure, fallback to container width
         if (originalWidth <= 0) originalWidth = containerWidth || window.innerWidth;
 
-        // ensure at least two copies of the original cycle exist so the loop can be seamless
-        var currentCopies = Math.max(1, Math.floor(track.querySelectorAll(':scope > .client-box').length / Math.max(1, originalSnapshot.length)));
+        if (!hasServerDuplicatedCycles) {
+          // ensure at least two copies of the original cycle exist so the loop can be seamless
+          var currentCopies = Math.max(1, Math.floor(track.querySelectorAll(':scope > .client-box').length / Math.max(1, originalSnapshot.length)));
 
-        while (currentCopies < 2 && maxIterations-- > 0) {
-          duplicateOnce();
-          currentCopies++;
-        }
+          while (currentCopies < 2 && maxIterations-- > 0) {
+            duplicateOnce();
+            currentCopies++;
+          }
 
-        // Now ensure the track is wide enough for the container (avoid visible empty space during animation)
-        var iter = 0;
-        var multiplier = 2; // we need at least two cycles; multiplier 2 is sufficient
-        var target = (containerWidth > 0) ? containerWidth * multiplier : window.innerWidth * multiplier;
-        while (track.scrollWidth < target && iter < maxIterations) {
-          duplicateOnce();
-          iter++;
+          // Now ensure the track is wide enough for the container (avoid visible empty space during animation)
+          var iter = 0;
+          var multiplier = 2; // we need at least two cycles; multiplier 2 is sufficient
+          var target = (containerWidth > 0) ? containerWidth * multiplier : window.innerWidth * multiplier;
+          while (track.scrollWidth < target && iter < maxIterations) {
+            duplicateOnce();
+            iter++;
+          }
         }
         
 
@@ -555,11 +613,13 @@ document.addEventListener('DOMContentLoaded', function () {
         var scrollDistance = Math.round(originalWidth) + 2;
         track.style.setProperty('--scroll-distance', `-${scrollDistance}px`);
 
-        // ensure at least 3 cycles so JS-driven loop can slide smoothly without visible reset
-        var currentCopies = Math.max(1, Math.floor(track.querySelectorAll(':scope > .client-box').length / Math.max(1, originalSnapshot.length)));
-        while (currentCopies < 3 && maxIterations-- > 0) {
-          duplicateOnce();
-          currentCopies++;
+        if (!hasServerDuplicatedCycles) {
+          // ensure at least 3 cycles so JS-driven loop can slide smoothly without visible reset
+          var currentCopies = Math.max(1, Math.floor(track.querySelectorAll(':scope > .client-box').length / Math.max(1, originalSnapshot.length)));
+          while (currentCopies < 3 && maxIterations-- > 0) {
+            duplicateOnce();
+            currentCopies++;
+          }
         }
 
         // Normalize logo visual size after all clones are present.
@@ -579,6 +639,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
           var x = 0;
           var last = performance.now();
+          var paused = false;
+          var parentEl = trackEl.parentElement;
+
+          if (parentEl && !trackEl._marqueeHoverBound) {
+            trackEl._marqueeHoverBound = true;
+            parentEl.addEventListener('mouseenter', function () { paused = true; });
+            parentEl.addEventListener('mouseleave', function () { paused = false; });
+          }
+
           // duration in seconds for one cycle (increase to slow the marquee further)
           // mobile: ultra slow (200s), desktop: ultra slow (360s)
           function getSpeed() {
@@ -591,11 +660,11 @@ document.addEventListener('DOMContentLoaded', function () {
             last = now;
             var speed = getSpeed();
             // pause when hovered
-            if (!trackEl.parentElement.matches(':hover')) {
+            if (!paused) {
               x -= speed * dt;
               // when we've moved one full cycle, wrap by adding cycleWidth
               while (x <= -cycleWidth) x += cycleWidth;
-              trackEl.style.transform = `translateX(${Math.round(x)}px)`;
+              trackEl.style.transform = `translate3d(${x.toFixed(3)}px,0,0)`;
             }
             trackEl._marqueeRaf = requestAnimationFrame(frame);
           }

@@ -29,6 +29,10 @@
     if (!orbits.length) return;
 
     const contents = orbits.map(o => q('.orbit-content', o));
+    const orbitAngles = orbits.map(o => {
+      const v = getComputedStyle(o).getPropertyValue('--angle') || '0deg';
+      return parseFloat(v) || 0;
+    });
     let state = wrapper._orbitFixState;
 
     if (!state) {
@@ -44,8 +48,7 @@
 
         const rotDeg = getRotationDeg(rotator) || 0;
         orbits.forEach((o, i)=>{
-          const v = getComputedStyle(o).getPropertyValue('--angle') || '0deg';
-          const angle = parseFloat(v) || 0;
+          const angle = orbitAngles[i] || 0;
           const desired = -(rotDeg + angle);
           const c = contents[i];
           if (c) {

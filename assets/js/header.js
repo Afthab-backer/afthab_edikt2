@@ -6,10 +6,14 @@ function initHeaderScroll() {
   const header = document.querySelector('.header');
   if (!header) return;
 
-  let lastScrollY = window.scrollY;
+  if (header.dataset.scrollInit === '1') return;
+  header.dataset.scrollInit = '1';
 
-  function onScroll() {
-    const currentScrollY = window.scrollY;
+  let lastScrollY = window.scrollY;
+  let latestScrollY = lastScrollY;
+  let rafId = null;
+
+  function applyScroll(currentScrollY) {
 
     /* TOP OF PAGE → FULL HEADER */
     if (currentScrollY === 0) {
@@ -33,8 +37,17 @@ function initHeaderScroll() {
     lastScrollY = currentScrollY;
   }
 
-  window.removeEventListener('scroll', onScroll);
-  window.addEventListener('scroll', onScroll);
+  function onScroll() {
+    latestScrollY = window.scrollY;
+    if (rafId) return;
 
-  onScroll(); // run once on load
+    rafId = requestAnimationFrame(function () {
+      rafId = null;
+      applyScroll(latestScrollY);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  applyScroll(lastScrollY); // run once on load
 }

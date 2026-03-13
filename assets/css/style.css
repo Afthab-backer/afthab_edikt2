@@ -3338,6 +3338,8 @@ section {
   --scroll-distance: -50%;
   animation: scroll-left 60s linear infinite;
   align-items: center;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .logo-slider.reverse .logo-track {
