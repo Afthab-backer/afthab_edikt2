@@ -1651,15 +1651,15 @@ section {
 /* CARD */
 .testimonial-card {
   position: relative;
-  min-width: 380px;
-  max-width: 380px;
+  min-width: 350px;
+  max-width: 350px;
   background: transparent;
-  padding: 30px 28px 26px;
+  padding: 20px 20px 18px;
   border-radius: 22px;
   border: 1px solid rgba(15, 23, 42, 0.06);
-  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+  box-shadow: none;
   flex-shrink: 0;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .testimonial-card::before {
@@ -1676,7 +1676,7 @@ section {
 
 .testimonial-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.12);
+  box-shadow: none;
 }
 
 /* HEADER (LOGO + NAME) */
@@ -1748,6 +1748,8 @@ section {
   color: #4b5563;
   font-style: normal;
   margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 /* AUTHOR */
@@ -4537,6 +4539,27 @@ img.magnetic-target {
   box-shadow: 0 18px 45px rgba(0,0,0,0.06);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   will-change: transform;
+}
+
+/* Consistent reveal for client cards */
+.page-clients .client-card.fade-in {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.page-clients .client-card.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ensure all logos animate in the same way (no per-logo scaling differences) */
+.page-clients .client-card.fade-in img {
+  transform: scale(0.95);
+}
+
+.page-clients .client-card.fade-in.show img {
+  transform: scale(1);
 }
 
 /* LOGO */

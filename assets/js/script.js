@@ -661,6 +661,13 @@ function computeLogoScaleByRatio(naturalWidth, naturalHeight, frameWidth, frameH
 function normalizeSingleLogo(img, frameWidth, frameHeight) {
   if (!img) return;
 
+  // On the clients page, we want all logos to animate uniformly.
+  // Avoid per-logo scaling so the reveal motion is consistent.
+  if (img.closest && img.closest('.page-clients')) {
+    img.style.setProperty('--logo-scale', '1');
+    return;
+  }
+
   var apply = function () {
     var w = img.naturalWidth || 0;
     var h = img.naturalHeight || 0;

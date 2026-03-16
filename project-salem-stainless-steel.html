@@ -134,6 +134,28 @@
         -webkit-hyphens: auto;
         overflow-wrap: break-word;
       }
+
+      /* Reduce hero image size on this page (half size) */
+      body.page-salem .project-hero-grid .grid-item img {
+        max-width: 50vw !important;
+        max-height: 50vh !important;
+        width: auto !important;
+        height: auto !important;
+        margin: 0 auto !important;
+      }
+
+    }
+  </style>
+
+  <style>
+    /* Reduce the Post 4 full-bleed image size (logo) on all viewports */
+    body.page-salem .post4-image {
+      max-width: 48vw !important;
+      max-height: 48vh !important;
+      width: auto !important;
+      height: auto !important;
+      display: block !important;
+      margin: 0 auto !important;
     }
   </style>
 </head>
@@ -247,7 +269,7 @@
       <!-- Post 4 image (added as requested) -->
       <div class="project-fullwidth full-bleed reduced reveal delay-7" style="margin-top:24px;">
         <div class="project-fullwidth-wrap no-effect" tabindex="0" style="padding:0;">
-          <img src="assets\images\Projects\Salem stainless\Salem stainless logo (1).webp" alt="STP-I Post 4" loading="lazy" style="display:block; margin:0 auto;">
+          <img class="post4-image" src="assets\images\Projects\Salem stainless\Salem stainless logo (1).webp" alt="STP-I Post 4" loading="lazy" style="display:block; margin:0 auto; width:auto !important; max-width:480px !important; height:auto !important;">
         </div>
       </div>
 
