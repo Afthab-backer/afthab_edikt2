@@ -5729,7 +5729,7 @@ section {
   display: grid;
   grid-template-columns: repeat(4, minmax(220px, 1fr));
   gap: 34px 40px;
-  align-items: start;
+  align-items: stretch; /* ensure all cards match height */
   justify-content: center; /* center grid so last row centers when incomplete */
   max-width: 1400px;
   margin: 0 auto;
@@ -5745,8 +5745,10 @@ section {
   text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* keep button aligned at bottom */
   gap: 14px;
   transition: transform 280ms cubic-bezier(.2,.9,.2,1), box-shadow 280ms ease;
+  height: 100%;
 }
 
 .page-work .job-card h3 {
