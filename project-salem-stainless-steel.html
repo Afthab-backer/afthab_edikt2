@@ -30,6 +30,54 @@
       text-align-last: left !important;
     }
 
+    body.page-salem main.container .project-overview,
+    body.page-salem main.container .project-meta {
+      padding-top: 30px !important;
+    }
+
+    /* Requested typography for section headings/labels and copy */
+    body.page-salem main.container .project-overview h3,
+    body.page-salem main.container .project-meta > div > div:first-child,
+    body.page-salem main.container .project-summary h2,
+    body.page-salem main.container .project-extra h2 {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 24px !important;
+      font-weight: 400 !important;
+    }
+
+    body.page-salem main.container .project-overview p,
+    body.page-salem main.container .project-summary p,
+    body.page-salem main.container .project-extra p,
+    body.page-salem main.container .project-experience p {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 18px !important;
+      font-weight: 400 !important;
+    }
+
+    /* Remove inherited global section padding that creates large empty space */
+    body.page-salem main.container .project-hero-grid,
+    body.page-salem main.container .project-detail,
+    body.page-salem main.container .project-summary,
+    body.page-salem main.container .project-extra {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    /* Hero title font */
+    body.page-salem main.container .project-hero-header .hero-title {
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 36px !important;
+      font-weight: 400 !important;
+    }
+
+    /* Hero subtitle font */
+    body.page-salem main.container .project-hero-header .hero-subtitle {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 18px !important;
+      font-weight: 400 !important;
+      line-height: 26px !important;
+    }
+
     /* Salem page (mobile/tablet): hero + section alignment */
     @media (max-width: 1279px) {
       body.page-salem main.container {
@@ -135,15 +183,37 @@
         overflow-wrap: break-word;
       }
 
-      /* Reduce hero image size on this page (half size) */
-      body.page-salem .project-hero-grid .grid-item img {
-        max-width: 50vw !important;
-        max-height: 50vh !important;
-        width: auto !important;
-        height: auto !important;
-        margin: 0 auto !important;
+      /* Mobile/tablet: make hero images fill the available width with a small gap */
+      body.page-salem .project-hero-grid .grid {
+        gap: 10px !important;
       }
 
+      body.page-salem .project-hero-grid .grid-item {
+        width: 100% !important;
+      }
+
+      body.page-salem .project-hero-grid .grid-item img {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        display: block !important;
+        margin: 0 !important;
+      }
+
+    }
+
+    @media (max-width: 900px) {
+      /* Keep hero images stacked with a visible gap on phones/small tablets */
+      body.page-salem .project-hero-grid .grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      body.page-salem .project-hero-grid .grid-item {
+        margin: 0 !important;
+      }
     }
   </style>
 
@@ -269,7 +339,7 @@
       <!-- Post 4 image (added as requested) -->
       <div class="project-fullwidth full-bleed reduced reveal delay-7" style="margin-top:24px;">
         <div class="project-fullwidth-wrap no-effect" tabindex="0" style="padding:0;">
-          <img class="post4-image" src="assets\images\Projects\Salem stainless\Salem stainless logo (1).webp" alt="STP-I Post 4" loading="lazy" style="display:block; margin:0 auto; width:auto !important; max-width:480px !important; height:auto !important;">
+          <img class="post4-image" src="assets\images\Projects\Salem stainless\Salem stainless logo (1).webp" alt="STP-I Post 4" loading="lazy" style="display:block; margin:0 auto; width:auto !important; max-width:min(480px, calc(100vw - 32px)) !important; height:auto !important;">
         </div>
       </div>
 

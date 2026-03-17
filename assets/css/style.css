@@ -588,6 +588,7 @@ main.stp-narrow .project-summary p {
     position: relative !important;
     z-index: 1000001 !important; /* must exceed custom-cursor z-index (999999) */
     -webkit-transform: translateZ(0); /* create its own stacking context */
+    transform: translateZ(0); /* standard property for compatibility */
   }
 
   /* Push the page bottom fade under the footer on mobile so text isn't visually covered */
@@ -1651,11 +1652,11 @@ section {
 /* CARD */
 .testimonial-card {
   position: relative;
-  min-width: 350px;
-  max-width: 350px;
+  min-width: 310px;
+  max-width: 310px;
   background: transparent;
-  padding: 20px 20px 18px;
-  border-radius: 22px;
+  padding: 16px 16px 14px;
+  border-radius: 20px;
   border: 1px solid rgba(15, 23, 42, 0.06);
   box-shadow: none;
   flex-shrink: 0;
@@ -4440,6 +4441,7 @@ img.magnetic-target {
 .team .team-card .team-bio h3 {
   -webkit-text-fill-color: #ffffff !important;
   -webkit-background-clip: unset !important;
+  background-clip: unset !important;
   background-image: none !important;
   background: none !important;
   color: #ffffff !important;
@@ -4579,6 +4581,76 @@ img.magnetic-target {
 
 .client-card:hover img {
   transform: scale(1.1); /* ⬅ noticeable but classy zoom */
+}
+
+/* Zoom in the Müller logo slightly so it appears larger inside its card */
+.page-clients .client-card img[alt="Muller"] {
+  transform: scale(1.25) !important;
+}
+.page-clients .client-card.fade-in.show img[alt="Muller"] {
+  transform: scale(1.28) !important;
+}
+.page-clients .client-card:hover img[alt="Muller"] {
+  transform: scale(1.35) !important;
+}
+
+/* Zoom in these logos so they appear similar in size to other cards */
+.page-clients .client-card img[alt="SRI DEVARAJA"],
+.page-clients .client-card img[alt="Unicon"],
+.page-clients .client-card img[alt="STP"],
+.page-clients .client-card img[alt="Transformers and Rectifiers"],
+.page-clients .client-card img[alt="Sman"],
+.page-clients .client-card img[alt="Sodick"] {
+  transform: scale(1.22) !important;
+}
+
+.page-clients .client-card.fade-in.show img[alt="SRI DEVARAJA"],
+.page-clients .client-card.fade-in.show img[alt="Unicon"],
+.page-clients .client-card.fade-in.show img[alt="STP"],
+.page-clients .client-card.fade-in.show img[alt="Transformers and Rectifiers"],
+.page-clients .client-card.fade-in.show img[alt="Sman"],
+.page-clients .client-card.fade-in.show img[alt="Sodick"] {
+  transform: scale(1.25) !important;
+}
+
+.page-clients .client-card:hover img[alt="SRI DEVARAJA"],
+.page-clients .client-card:hover img[alt="Unicon"],
+.page-clients .client-card:hover img[alt="STP"],
+.page-clients .client-card:hover img[alt="Transformers and Rectifiers"],
+.page-clients .client-card:hover img[alt="Sman"],
+.page-clients .client-card:hover img[alt="Sodick"] {
+  transform: scale(1.3) !important;
+}
+
+/* Zoom out these logos so they appear similar in size to others */
+.page-clients .client-card.img[alt="Endless"],
+.page-clients .client-card img[alt="Firefly"],
+.page-clients .client-card img[alt="Orion Ball Pen"],
+.page-clients .client-card img[alt="Nail"],
+.page-clients .client-card img[alt="Protia"],
+.page-clients .client-card img[alt="Ridley"],
+.page-clients .client-card img[alt="Silcarb"] {
+  transform: scale(0.76) !important;
+}
+
+.page-clients .client-card.fade-in.show img[alt="Endless"],
+.page-clients .client-card.fade-in.show img[alt="Firefly"],
+.page-clients .client-card.fade-in.show img[alt="Orion Ball Pen"],
+.page-clients .client-card.fade-in.show img[alt="Nail"],
+.page-clients .client-card.fade-in.show img[alt="Protia"],
+.page-clients .client-card.fade-in.show img[alt="Ridley"],
+.page-clients .client-card.fade-in.show img[alt="Silcarb"] {
+  transform: scale(0.78) !important;
+}
+
+.page-clients .client-card:hover img[alt="Endless"],
+.page-clients .client-card:hover img[alt="Firefly"],
+.page-clients .client-card:hover img[alt="Orion Ball Pen"],
+.page-clients .client-card:hover img[alt="Nail"],
+.page-clients .client-card:hover img[alt="Protia"],
+.page-clients .client-card:hover img[alt="Ridley"],
+.page-clients .client-card:hover img[alt="Silcarb"] {
+  transform: scale(0.88) !important;
 }
 
 /* Keep clients-page logos fully inside their cards */
@@ -6896,8 +6968,8 @@ html body main.stp-narrow .project-overview h3 {
 html body main.stp-narrow .project-overview p,
 html body main.stp-narrow .project-summary p,
 html body main.stp-narrow .project-extra p {
-  font-size: 20px !important;
-  font-weight: 400 !important;
+  font-size: 18px !important;
+  font-weight: regular !important;
   line-height: 1.35 !important;
 }
 

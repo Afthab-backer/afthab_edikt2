@@ -11,7 +11,7 @@
 .page-salem .project-hero-header {
   margin-bottom: 18px;
   display: flex;
-  align-items: center; /* vertically center arrow with title */
+  align-items: flex-start;
   gap: 18px;
 }
 
@@ -23,7 +23,7 @@
 .page-salem .hero-arrow-large {
   color: #14A44D;
   font-size: 40px;
-  transform: scaleX(2);
+  transform: scaleX(1.15);
   display: inline-block;
   line-height: 1;
   vertical-align: middle;
@@ -91,37 +91,6 @@
 /* ===============================
    SALEM FULL WIDTH SYSTEM (CLEAN)
 ================================= */
-
-/* Full bleed container */
-.page-salem .project-fullwidth.full-bleed.reduced {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-}
-
-/* Overview wrapper */
-.page-salem .salem-overview-wrap {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-/* Overview image */
-.page-salem .salem-overview-wrap img.salem-overview-img {
-  width: min(1100px, 95vw);
-  height: 320px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.8s ease;
-}
-
-/* Hover zoom */
-.page-salem .salem-overview-wrap:hover img.salem-overview-img {
-  transform: scale(1.05);
-}
-
 
 /* ===============================
    SALEM OVERVIEW IMAGE CLEAN FIX
@@ -233,18 +202,20 @@
   background: transparent !important;
 }
 
-/* Post 1 image: reduced height + cinematic zoom on hover */
+/* Post 1 image: reduced height + simple image-only zoom on hover */
 .page-salem .project-fullwidth .project-fullwidth-wrap.no-overlay .post1-image {
   width: 100% !important;
   max-width: 1400px !important;
-  height: 700px !important; /* updated per user request */
+  height: 560px !important;
   object-fit: cover !important;
   display: block !important;
   margin-left: auto !important;
   margin-right: auto !important;
   border-radius: 12px !important;
+  transform: scale(1) !important;
+  will-change: transform !important;
   transform-origin: center center !important;
-  transition: transform 1.6s cubic-bezier(.16,.84,.24,1), filter 1.6s cubic-bezier(.16,.84,.24,1) !important;
+  transition: transform 0.4s ease !important;
 }
 
 /* Clip overflow so scaling doesn't push surrounding layout */
@@ -257,7 +228,13 @@
 
 .page-salem .project-fullwidth .project-fullwidth-wrap.no-overlay:hover .post1-image,
 .page-salem .project-fullwidth .project-fullwidth-wrap.no-overlay:focus .post1-image {
-  transform: scale(1.08) translateZ(0) !important;
+  transform: scale(1.04) !important;
+}
+
+.page-salem .project-fullwidth .project-fullwidth-wrap.no-overlay:hover,
+.page-salem .project-fullwidth .project-fullwidth-wrap.no-overlay:focus,
+.page-salem .project-fullwidth .project-fullwidth-wrap.no-overlay:focus-within {
+  transform: none !important;
 }
 
 /* Make the Post 1 non-effect image wider and let height scale naturally */
@@ -358,19 +335,23 @@
 /* Ensure the full-bleed wrapper doesn't introduce unwanted offsets */
 .page-salem .project-fullwidth-wrap.no-overlay {
   display: flex !important;
-  justify-content: flex-start !important; /* keep image aligned to the left edge of the wrapper while object-position shifts visible crop to the right */
+  justify-content: center !important;
+  align-items: center !important;
   overflow: hidden !important;
+  transform: none !important;
+  transition: none !important;
 }
 
-/* Compact fluid utilities for Salem page */
-.fluid-padding { padding: clamp(16px, 4vw, 40px) !important; box-sizing: border-box !important; }
-.fluid-text { font-size: clamp(14px, 2vw, 18px) !important; }
-.max-full { max-width: 100% !important; }
-.minh-40vh { min-height: 40vh !important; }
-.aspect-4-5 { aspect-ratio: 4 / 5 !important; }
+.page-salem .project-fullwidth-wrap.no-overlay picture,
+.page-salem .project-fullwidth-wrap.no-overlay picture picture {
+  display: block !important;
+  width: 100% !important;
+}
 
-
-
+.page-salem .project-fullwidth-wrap.no-overlay .post1-image {
+  width: 100% !important;
+  max-width: none !important;
+}
 
 /* Page-scoped: left-align hero subtitle to match hero title */
 .page-salem .project-hero-header .hero-subtitle {
@@ -428,8 +409,3 @@
     display: block !important;
   }
 }
-
-
-
-
-

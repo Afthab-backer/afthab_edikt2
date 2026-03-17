@@ -2,16 +2,12 @@
    Matches conference/project layout and typography without altering image sizes
 */
 
-.page-stp .project-fullwidth img {
-  display: block !important;
-  line-height: 0 !important;
-}
-
-/* Reduce size of the full-width image on the STP page */
+/* Full-width image: size + hover zoom (image only) */
 .page-stp .project-fullwidth {
   max-width: 100%;
   margin-top: 18px !important; /* smaller gap above */
   margin-bottom: 18px !important;
+  overflow: hidden !important;
 }
 
 .page-stp .project-fullwidth img {
@@ -22,6 +18,9 @@
   border-radius: 18px !important;
   display: block !important;
   margin: 0 auto !important;
+  line-height: 0 !important;
+  transform-origin: center center !important;
+  transition: transform 0.6s cubic-bezier(.2,.8,.2,1) !important;
 }
 
 /* Mobile: slightly decrease full-width image height and ensure it fits viewport */
@@ -35,16 +34,6 @@
   }
 }
 
-/* Hover-zoom: scale the image only (not the container/card) */
-.page-stp .project-fullwidth {
-  overflow: hidden !important;
-}
-
-.page-stp .project-fullwidth img {
-  transition: transform 0.6s cubic-bezier(.2,.8,.2,1) !important;
-  transform-origin: center center !important;
-}
-
 .page-stp .project-fullwidth:hover img {
   transform: scale(1.12) !important;
 }
@@ -56,11 +45,6 @@ body.page-stp {
   font-family: 'Poppins', sans-serif !important;
   color: #111 !important;
   background: #fff !important;
-}
-
-.page-stp .container {
-  /* keep full-bleed if project.css made container full-width; ensure spacing */
-  padding: 60px 0 !important;
 }
 
 .page-stp .hero-title {
@@ -123,7 +107,7 @@ body.page-stp {
   width: 100% !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding: 60px 0 !important;
+  padding: 0px 0 !important;
 }
 
 @media (max-width: 900px) {
@@ -159,6 +143,8 @@ body.page-stp {
 
 /* Reduce spacing between hero grid and the following detail/overview */
 .page-stp .project-hero-grid {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
   margin-bottom: 70px !important; /* small space between hero images and Overview */
   padding-bottom: 0 !important;
 }
@@ -242,7 +228,7 @@ body.page-stp {
 
 /* Make project-experience match the Overview sizing and spacing */
 .page-stp .project-experience {
-  padding: 40px 0 !important; /* modest vertical spacing */
+  padding: 0px 0 !important; /* modest vertical spacing */
 }
 
 .page-stp .project-experience .container {
@@ -283,7 +269,7 @@ body.page-stp {
   width: 100% !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding: 60px 0 !important;
+  padding: 0px 0 !important;
 }
 
 @media (max-width: 900px) {
@@ -428,7 +414,6 @@ body.page-stp {
 /* Top-left: large cinematic tile */
 /* Keep top-left as reference (base min-height set on .grid-item)
    and ensure all other tiles use the same height. Width tweaks remain. */
-.project-gallery-grid .gallery-grid .grid-item:nth-child(1) { }
 .project-gallery-grid .gallery-grid .grid-item:nth-child(2) { justify-self: stretch; }
 /* decrease bottom-left width and increase bottom-right width only */
 .project-gallery-grid .gallery-grid .grid-item:nth-child(3) {
@@ -595,14 +580,6 @@ body.page-stp {
   box-sizing: border-box !important;
 }
 
-/* Compact fluid utilities for STP/Edikt page-scoped CSS */
-.fluid-padding { padding: clamp(16px, 4vw, 40px) !important; box-sizing: border-box !important; }
-.fluid-text { font-size: clamp(14px, 2vw, 18px) !important; }
-.max-full { max-width: 100% !important; }
-.minh-40vh { min-height: 40vh !important; }
-.aspect-4-5 { aspect-ratio: 4 / 5 !important; }
-
-
 .page-edikt-logo .project-overview {
   width: 100% !important;
   max-width: none !important;
@@ -695,10 +672,6 @@ body.page-stp {
 }
 
 /* if you want to enable custom effects on this image via a class, keep `.allow-effect` available */
-.page-edikt-logo .project-fullwidth-edikt.allow-effect img {
-  /* preserved as an opt-in, but default hero-like zoom applied above */
-}
-
 @media (prefers-reduced-motion: reduce) {
   .page-edikt-logo .project-fullwidth-edikt img,
   .page-edikt-logo .project-fullwidth-edikt.allow-effect img {

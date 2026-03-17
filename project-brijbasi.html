@@ -32,6 +32,52 @@
       text-align-last: left !important;
     }
 
+      /* Brijbasi page: 20px top padding for every section and image container, no bottom padding */
+      body.page-brijbasi section,
+      body.page-brijbasi .project-fullwidth,
+      body.page-brijbasi .project-fullwidth-image {
+          padding-top: 20px !important;
+          padding-bottom: 0 !important;
+      }
+
+      /* Brijbasi page: ensure .project-overview and .project-meta blocks also get top padding */
+      body.page-brijbasi .project-overview,
+      body.page-brijbasi .project-meta {
+        padding-top: 20px !important;
+      }
+
+        /* Brijbasi page: ensure .project-experience (Impacts section) also gets top padding */
+        body.page-brijbasi .project-experience {
+          padding-top: 20px !important;
+        }
+
+    /* Remove inherited global section padding that creates large empty space */
+    body.page-brijbasi main.project-page .project-hero-grid,
+    body.page-brijbasi main.project-page .project-detail,
+    body.page-brijbasi main.project-page .project-summary,
+    body.page-brijbasi main.project-page .project-experience,
+    body.page-brijbasi main.project-page .project-fullwidth-image {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Hero title font */
+    body.page-brijbasi main.project-page .project-hero-header .hero-title {
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 36px !important;
+      font-weight: 400 !important;
+    }
+
+    /* Hero subtitle font */
+    body.page-brijbasi main.project-page .project-hero-header .hero-subtitle {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 18px !important;
+      font-weight: 400 !important;
+      line-height: 26px !important;
+    }
+
     /* Brijbasi page (mobile/tablet): hero left-aligned + section text flow */
     @media (max-width: 1279px) {
       body.page-brijbasi main.project-page {
@@ -117,7 +163,9 @@
         max-width: 100% !important;
         margin: 0 !important;
         text-align: left !important;
-        font-size: clamp(1.25rem, 5.3vw, 1.5rem) !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 36px !important;
+        font-weight: 400 !important;
         line-height: 1.18 !important;
         letter-spacing: 0 !important;
       }
@@ -128,8 +176,10 @@
         margin: 4px 0 0 !important;
         margin-left: 0 !important;
         text-align: left !important;
-        font-size: clamp(0.82rem, 3.4vw, 0.95rem) !important;
-        line-height: 1.4 !important;
+        font-family: 'Poppins', sans-serif !important;
+        font-size: 18px !important;
+        font-weight: 400 !important;
+        line-height: 26px !important;
         padding-left: 0 !important;
         padding-right: 0 !important;
         align-self: flex-start !important;
@@ -174,6 +224,25 @@
         text-align-last: left !important;
       }
     }
+
+    /* Requested typography: labels/headings 24px Poppins regular, paragraph copy 18px Poppins regular */
+    body.page-brijbasi main.project-page .project-overview .section-title,
+    body.page-brijbasi main.project-page .project-meta .meta-label,
+    body.page-brijbasi main.project-page .project-summary .section-heading,
+    body.page-brijbasi main.project-page .project-summary h2,
+    body.page-brijbasi main.project-page .project-experience .experience-title {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 24px !important;
+      font-weight: 400 !important;
+    }
+
+    body.page-brijbasi main.project-page .project-overview p,
+    body.page-brijbasi main.project-page .project-summary p,
+    body.page-brijbasi main.project-page .project-experience p {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 18px !important;
+      font-weight: 400 !important;
+    }
   </style>
 </head>
 
@@ -207,10 +276,10 @@
   <section class="project-hero-grid">
     <div class="grid">
       <div class="grid-item">
-        <picture><picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 1.avif" alt="Brijabsi image 1" eager=""></picture></picture>
+        <picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 1.avif" alt="Brijabsi image 1" eager=""></picture>
       </div>
       <div class="grid-item">
-        <picture><picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 2.webp" alt="brijabsi image 2" lazy=""></picture></picture>
+        <picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 2.webp" alt="brijabsi image 2" lazy=""></picture>
       </div>
     </div>
   </section>
@@ -250,7 +319,7 @@
     <!-- Full Width Image -->
     <div class="project-fullwidth">
       <div class="project-fullwidth-wrap no-effect pan variant-a" tabindex="0">
-          <picture><picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 3.avif" alt="Brijabsi full width image" class="pan" lazy=""></picture></picture>
+          <picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 3.avif" alt="Brijabsi full width image" class="pan" lazy=""></picture>
       </div>
     </div>
 
@@ -285,7 +354,7 @@
 
   <!-- Full Width Image -->
     <div class="project-fullwidth">
-      <picture><picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 5.avif" alt="Brijabsi full width image" lazy=""></picture></picture>
+      <picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 5.avif" alt="Brijabsi full width image" lazy=""></picture>
     </div>
 
   
@@ -294,8 +363,8 @@
   <!-- ================= EXPERIENCE SECTION ================= -->
 
   <section class="project-experience">
-    <div class="container">
 
+    <div style="padding-top:20px;">
       <h2 class="experience-title">
         Impacts
       </h2>
@@ -310,7 +379,7 @@
   <!-- ================= FULL WIDTH IMAGE ================= -->
 
   <section class="project-fullwidth-image">
-    <picture><picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 6.avif" alt="Brijbasi full width image" loading="lazy"></picture></picture>
+    <picture><img src="/assets\images\Projects\Brijabsi\Brijbasi 6.avif" alt="Brijbasi full width image" loading="lazy"></picture>
   </section>
 
 

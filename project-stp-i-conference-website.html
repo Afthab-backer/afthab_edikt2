@@ -18,6 +18,44 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <!-- Page styles moved to assets/css/style.css -->
+  <style>
+    body.page-stp-web .hero-title {
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 36px !important;
+      font-weight: 400 !important;
+    }
+    body.page-stp-web .hero-subtitle {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 18px !important;
+      font-weight: 400 !important;
+      line-height: 26px !important;
+    }
+    body.page-stp-web main.stp-narrow section,
+    body.page-stp-web main.stp-narrow .project-fullwidth {
+      padding-top: 20px !important;
+      padding-bottom: 0 !important;
+    }
+
+    /* Requested typography: 24px heading labels, 18px paragraph copy (Poppins regular) */
+    body.page-stp-web main.stp-narrow .project-overview h3,
+    body.page-stp-web main.stp-narrow .project-meta > div > div:first-child,
+    body.page-stp-web main.stp-narrow .project-summary h2,
+    body.page-stp-web main.stp-narrow .project-extra h2,
+    body.page-stp-web main.stp-narrow .project-experience .experience-title {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 24px !important;
+      font-weight: 400 !important;
+    }
+
+    body.page-stp-web main.stp-narrow .project-overview p,
+    body.page-stp-web main.stp-narrow .project-summary p,
+    body.page-stp-web main.stp-narrow .project-extra p,
+    body.page-stp-web main.stp-narrow .project-experience p {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 18px !important;
+      font-weight: 400 !important;
+    }
+  </style>
 </head>
 <body class="page-stp-web">
 
@@ -40,22 +78,22 @@
     </div>
 
     <!-- Top hero image grid (2-column) -->
-    <section class="project-hero-grid reveal delay-2" style="margin-top:18px;">
+    <section class="project-hero-grid reveal delay-2" style="margin-top:0;padding:0;">
       <div class="grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;">
         <div class="grid-item">
-          <picture><picture><img src="/assets/images/Projects/STP-I Conference web/Post 3.webp" alt="STP-I Post 3" eager=""></picture></picture>
+          <picture><img src="/assets/images/Projects/STP-I Conference web/Post 3.webp" alt="STP-I Post 3" eager=""></picture>
         </div>
         <div class="grid-item">
-          <picture><picture><img src="/assets/images/Projects/STP-I Conference web/Post 2.webp" alt="STP-I Post 2" lazy=""></picture></picture>
+          <picture><img src="/assets/images/Projects/STP-I Conference web/Post 2.webp" alt="STP-I Post 2" lazy=""></picture>
         </div>
       </div>
     </section>
 
-    <section class="project-detail" style="margin-top:28px;">
+    <section class="project-detail" style="margin-top:28px;padding:0;">
       <div class="project-detail-grid container" style="display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:start;">
 
         <div class="project-overview reveal delay-2" style="color:inherit;">
-          <h3 style="color:#2e7d32;margin-bottom:12px;">Overview</h3>
+          <h3 style="color:#2e7d32;margin-bottom:12px;font-size:24px;">Overview</h3>
           <p style="text-align:justify;text-justify:inter-word;text-align-last:left;">
             The STPI Conference Website was designed as a central digital hub for the Society of Toxicologic Pathology in India (STPI), aimed at promoting its annual scientific conference. The platform provides seamless access to event details, speaker information, abstract submissions, and registration—all in a clean, responsive layout.
           </p>
@@ -82,7 +120,7 @@
       <!-- full-width Post 1 image added after Overview -->
       <div class="project-fullwidth reveal delay-3" style="margin-top:28px;">
         <div class="project-fullwidth-wrap" tabindex="0">
-          <picture><picture><img src="/assets/images/Projects/STP-I Conference web/Post 1.webp" alt="STP-I Post 1" lazy=""></picture></picture>
+          <picture><img src="/assets/images/Projects/STP-I Conference web/Post 1.webp" alt="STP-I Post 1" lazy=""></picture>
         </div>
       </div>
 
@@ -109,7 +147,7 @@
 
           <div class="tile tile-center">
             <div class="tile-inner logo-circle">
-              <picture><picture><img src="/assets\images\Projects\STP-I Conference web\STP logo.webp" alt="STPI logo" lazy=""></picture></picture>
+              <picture><img src="/assets\images\Projects\STP-I Conference web\STP logo.webp" alt="STPI logo" lazy=""></picture>
             </div>
           </div>
 
@@ -121,7 +159,7 @@
             </div>
             <div class="tile-bottom">
               <div class="tile-inner right-bottom">
-                <picture><picture><img src="/assets\images\Projects\STP-I Conference web\post 5.webp" alt="conference" lazy=""></picture></picture>
+                <picture><img src="/assets\images\Projects\STP-I Conference web\post 5.webp" alt="conference" lazy=""></picture>
               </div>
             </div>
           </div>
@@ -171,7 +209,7 @@
       <!-- Post 4 image (added as requested) -->
       <div class="project-fullwidth reveal delay-7" style="margin-top:24px;">
         <div class="project-fullwidth-wrap no-effect" tabindex="0">
-          <picture><picture><img src="/assets/images/Projects/STP-I Conference web/Post 4.webp" alt="STP-I Post 4" lazy=""></picture></picture>
+          <picture><img src="/assets/images/Projects/STP-I Conference web/Post 4.webp" alt="STP-I Post 4" lazy=""></picture>
         </div>
       </div>
 

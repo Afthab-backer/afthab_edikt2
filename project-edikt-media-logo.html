@@ -26,6 +26,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Page-specific mobile CSS moved to assets/css/edikt.css -->
   <style>
+    /* Section headings: 24px Poppins regular */
+    body.page-edikt-logo main.project-page .project-overview .section-title,
+    body.page-edikt-logo main.project-page .project-aim .aim-main-title,
+    body.page-edikt-logo main.project-page .project-summary .section-heading {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 24px !important;
+      font-weight: 400 !important;
+    }
+
+    /* Aim block subheadings: 24px Poppins regular #333333 */
+    body.page-edikt-logo main.project-page .project-aim .aim-block h4 {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 24px !important;
+      font-weight: 400 !important;
+      color: #333333 !important;
+      -webkit-text-fill-color: #333333 !important;
+      background: none !important;
+      -webkit-background-clip: unset !important;
+      background-clip: unset !important;
+    }
+
+    /* Section paragraphs: 18px Poppins regular */
+    body.page-edikt-logo main.project-page .project-overview p,
+    body.page-edikt-logo main.project-page .project-aim .aim-block p,
+    body.page-edikt-logo main.project-page .project-summary p {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 18px !important;
+      font-weight: 400 !important;
+    }
+
     /* Edikt page: keep body copy justified on all viewport sizes */
     body.page-edikt-logo main.project-page .project-overview p,
     body.page-edikt-logo main.project-page .project-summary p,
@@ -35,10 +65,107 @@
       text-align-last: left !important;
     }
 
+    /* Hero title font */
+    body.page-edikt-logo main.project-page .project-hero-header .hero-title {
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 36px !important;
+      font-weight: 400 !important;
+    }
+
+    /* Hero subtitle font */
+    body.page-edikt-logo main.project-page .project-hero-header .hero-subtitle {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 18px !important;
+      font-weight: 400 !important;
+      line-height: 26px !important;
+    }
+
+    /* Fix hero arrow scale at desktop to match reference pages (STP-I website, Brijbasi) */
+    body.page-edikt-logo main.project-page .project-hero-header .hero-back .hero-arrow {
+      font-size: 36px !important;
+      transform: scaleX(1.15) !important;
+      line-height: 1 !important;
+      display: inline-block !important;
+    }
+
+    /* Keep only 30px top spacing above the hero image grid */
+    body.page-edikt-logo main.project-page .project-hero-grid {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-top: 30px !important;
+      padding-bottom: 0 !important;
+    }
+
+    /* Remove extra blank space above and below Overview section */
+    body.page-edikt-logo main.project-page .project-detail {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-top: 30px !important;
+      padding-bottom: 0 !important;
+    }
+
+    body.page-edikt-logo main.project-page .project-overview {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    body.page-edikt-logo main.project-page .project-overview p {
+      margin-bottom: 0 !important;
+    }
+
+    body.page-edikt-logo main.project-page .project-aim {
+      margin-top: 0 !important;
+      padding-top: 30px !important;
+      padding-bottom: 0 !important;
+    }
+
+    body.page-edikt-logo main.project-page .project-aim .aim-content .aim-block:last-child {
+      margin-bottom: 0 !important;
+    }
+
+    body.page-edikt-logo main.project-page .brand-grid {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Constrain project-summary to the same width as the hero images (remove full-vw breakout) */
+    body.page-edikt-logo main.project-page .project-summary {
+      width: auto !important;
+      max-width: 100% !important;
+      position: static !important;
+      left: auto !important;
+      transform: none !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    /* 30px top padding for aim right image */
+    body.page-edikt-logo main.project-page .project-aim .aim-image {
+      padding-top: 30px !important;
+    }
+
+    /* move brand grid card-mark upward */
+    body.page-edikt-logo main.project-page .brand-grid .card-mark {
+      margin-top: -14px !important;
+    }
+
+    /* Constrain project-detail (Overview) to the same width as the hero images */
+    body.page-edikt-logo main.project-page .project-detail {
+      width: auto !important;
+      max-width: 100% !important;
+      position: static !important;
+      left: auto !important;
+      transform: none !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
     /* Edikt logo page (mobile/tablet): hero + section alignment */
     @media (max-width: 1279px) {
       body.page-edikt-logo main.project-page {
-        padding-top: 8px !important;
+        padding-top: 40px !important;
       }
 
       body.page-edikt-logo main.project-page .project-hero-header {
@@ -52,6 +179,14 @@
 
       body.page-edikt-logo main.project-page .project-hero-grid {
         margin-top: 0 !important;
+      }
+
+      body.page-edikt-logo main.project-page .project-hero-grid .grid-item img {
+        height: 480px !important;
+        width: 100% !important;
+        object-fit: cover !important;
+        border-radius: 18px !important;
+        display: block !important;
       }
 
       body.page-edikt-logo main.project-page .project-hero-header > div {
@@ -68,7 +203,9 @@
         max-width: 100% !important;
         margin: 0 !important;
         text-align: left !important;
-        font-size: clamp(1.25rem, 5.3vw, 1.5rem) !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 36px !important;
+        font-weight: 400 !important;
         line-height: 1.18 !important;
         letter-spacing: 0 !important;
       }
@@ -79,8 +216,10 @@
         margin: 4px 0 0 !important;
         margin-left: 0 !important;
         text-align: left !important;
-        font-size: clamp(0.82rem, 3.4vw, 0.95rem) !important;
-        line-height: 1.4 !important;
+        font-family: 'Poppins', sans-serif !important;
+        font-size: 18px !important;
+        font-weight: 400 !important;
+        line-height: 26px !important;
         padding-left: 0 !important;
         padding-right: 0 !important;
         align-self: flex-start !important;
@@ -133,7 +272,19 @@
 
     @media (max-width: 768px) {
       body.page-edikt-logo main.project-page .project-hero-header .hero-title {
-        white-space: nowrap !important;
+        white-space: normal !important;
+      }
+
+      body.page-edikt-logo main.project-page .project-hero-grid .grid-item {
+        aspect-ratio: 1 / 1 !important;
+        overflow: hidden !important;
+      }
+
+      body.page-edikt-logo main.project-page .project-hero-grid .grid-item img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
       }
 
       /* Match the reference mobile card order/scale for the Edikt brand block */
@@ -287,10 +438,10 @@
   <section class="project-hero-grid">
     <div class="grid">
       <div class="grid-item">
-        <picture><picture><img src="/assets/images/extras/Logo Design.webp" alt="edikt media logo image 1" eager=""></picture></picture>
+        <picture><img src="/assets/images/extras/Logo Design.webp" alt="edikt media logo image 1" eager=""></picture>
       </div>
       <div class="grid-item">
-        <picture><picture><img src="/assets/images/Projects/edikt/edikt 2.avif" alt="edikt media logo image 2" lazy=""></picture></picture>
+        <picture><img src="/assets/images/Projects/edikt/edikt 2.avif" alt="edikt media logo image 2" lazy=""></picture>
       </div>
     </div>
   </section>
@@ -348,14 +499,14 @@
         <h4>Reinforce Brand Identity with Tagline</h4>
         <p>We aligned the visual with the tagline:<br>
 “Innovative • Inspiring • Impeccable”<br>
- This further builds clarity around Edikt Media’s personality and promise.”</p>
+ This further builds clarity around Edikt Media’s personality and promise.</p>
       </div>
 
     </div>
 
     <!-- RIGHT IMAGE -->
     <div class="aim-image">
-      <picture><picture><img src="/assets/images/Projects/edikt/edikt 3.avif" lazy=""></picture></picture>
+      <picture><img src="/assets/images/Projects/edikt/edikt 3.avif" lazy=""></picture>
     </div>
 
   </div>
@@ -378,7 +529,7 @@
     </div>
 
     <div class="brand-card card-logo">
-      <picture><picture><img src="/assets\images\Projects\edikt\edikt.png" alt="Edikt wordmark" lazy=""></picture></picture>
+      <picture><img src="/assets\images\Projects\edikt\edikt.png" alt="Edikt wordmark" lazy=""></picture>
     </div>
 
     <div class="brand-card card-gradients">
@@ -394,7 +545,7 @@
     </div>
 
     <div class="brand-card card-mark">
-      <picture><picture><img src="/assets\images\Projects\edikt\edikt updated logo.png" alt="Edikt mark" lazy=""></picture></picture>
+      <picture><img src="/assets\images\Projects\edikt\edikt updated logo.png" alt="Edikt mark" lazy=""></picture>
     </div>
   </section>
 
@@ -413,16 +564,16 @@
     <section class="project-gallery-grid">
       <div class="grid gallery-grid">
         <div class="grid-item large">
-          <picture><picture><img src="/assets/images/Projects/edikt/edikt g 1.avif" alt="Gallery image 1" lazy=""></picture></picture>
+          <picture><img src="/assets/images/Projects/edikt/edikt g 1.avif" alt="Gallery image 1" lazy=""></picture>
         </div>
         <div class="grid-item">
-          <picture><picture><img src="/assets/images/Projects/edikt/edikt g 2.avif" alt="Gallery image 2" lazy=""></picture></picture>
+          <picture><img src="/assets/images/Projects/edikt/edikt g 2.avif" alt="Gallery image 2" lazy=""></picture>
         </div>
         <div class="grid-item">
-          <picture><picture><img src="/assets/images/Projects/edikt/edikt g3.avif" alt="Gallery image 3" lazy=""></picture></picture>
+          <picture><img src="/assets/images/Projects/edikt/edikt g3.avif" alt="Gallery image 3" lazy=""></picture>
         </div>
         <div class="grid-item">
-          <picture><picture><img src="/assets/images/Projects/edikt/edikt g4.avif" alt="Gallery image 4" lazy=""></picture></picture>
+          <picture><img src="/assets/images/Projects/edikt/edikt g4.avif" alt="Gallery image 4" lazy=""></picture>
         </div>
       </div>
     </section>
@@ -431,12 +582,12 @@
 
     <!-- Full width cinematic image (added) - isolated for per-page effects -->
     <section id="project-fullwidth-edikt" class="project-fullwidth-image project-fullwidth-edikt">
-      <picture><picture><img src="/assets\images\Projects\edikt\edikt 4.avif" alt="Full width project image" loading="lazy"></picture></picture>
+      <picture><img src="/assets\images\Projects\edikt\edikt 4.avif" alt="Full width project image" loading="lazy"></picture>
     </section>
 
       <!-- Fullscreen cover (added) -->
       <section class="project-fullscreen-image">
-        <picture><picture><img src="/assets\images\Projects\edikt\edikt 5.avif" alt="Fullscreen cover image" lazy=""></picture></picture>
+        <picture><img src="/assets\images\Projects\edikt\edikt 5.avif" alt="Fullscreen cover image" lazy=""></picture>
       </section>
 
     <!-- ================= CTA ================= -->
