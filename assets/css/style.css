@@ -858,6 +858,8 @@ main.stp-narrow .project-summary p {
   max-width: 1600px; /* matches live scale */
   margin: 0 auto;
   padding: 0 32px;
+  position: relative;
+  z-index: 3;
 }
 .page-home .hero {
   padding-top: 60px; /* header height + reduced breathing room */
@@ -4184,8 +4186,10 @@ img.magnetic-target {
   max-width: 760px !important;
   aspect-ratio: 1 / 1 !important;
   height: auto !important;
-  margin: 30px auto 18px !important;
+  margin: 84px auto 18px !important;
   transform-origin: center center !important;
+  position: relative;
+  z-index: 1;
 }
 
 .page-home .orbit-center,
